@@ -93,12 +93,6 @@
     "light": "/images/logo-dark.svg",
     "dark": "/images/logo-light.svg"
   },
-  "background": {
-    "color": {
-      "light": "#FCFBFB",
-      "dark": "#0E0E0E"
-    }
-  },
   "icons": {
     "library": "fontawesome"
   }

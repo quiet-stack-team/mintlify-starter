@@ -1,7 +1,7 @@
 ---
-title: Webhooks
-description: Payment events, payloads, and how to handle them securely.
-icon: bell
+title: "Webhooks"
+description: "Payment events, payloads, and how to handle them securely."
+icon: "webhook"
 ---
 
 # Webhooks
@@ -17,10 +17,10 @@ Bleepay sends HTTP POST requests to your `webhook_url` when payment-related even
 
 ## Event types
 
-| Event | When it fires |
-|-------|----------------|
+| Event             | When it fires                                                                                                          |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | `payment.settled` | Bank transfer has been initiated (or completed, depending on partner). Use this to mark the order as paid and fulfill. |
-| Other events | Additional events may be documented in the dashboard or API (e.g. pending, failed, refund). |
+| Other events      | Additional events may be documented in the dashboard or API (e.g. pending, failed, refund).                            |
 
 Always check the `event` and `status` fields and handle idempotency (e.g. by `order_id` or `tx_id`).
 

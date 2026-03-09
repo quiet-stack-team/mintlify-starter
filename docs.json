@@ -3,9 +3,15 @@
   "name": "Bleepay",
   "theme": "maple",
   "colors": {
-    "primary": "#0EA5E9",
-    "light": "#0EA5E9",
-    "dark": "#38BDF8"
+    "primary": "#0E0E0E",
+    "light": "#FDD034",
+    "dark": "#FDD034"
+  },
+  "background": {
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#0E0E0E"
+    }
   },
   "topbarLinks": [],
   "topbarCtaButton": {
@@ -86,5 +92,14 @@
   "logo": {
     "light": "/images/logo-dark.svg",
     "dark": "/images/logo-light.svg"
+  },
+  "background": {
+    "color": {
+      "light": "#FCFBFB",
+      "dark": "#0E0E0E"
+    }
+  },
+  "icons": {
+    "library": "fontawesome"
   }
 }

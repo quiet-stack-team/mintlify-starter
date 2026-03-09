@@ -1,0 +1,88 @@
+---
+title: SDK Reference
+description: Bleepay SDK initialization, methods, and configuration.
+icon: code
+---
+
+# SDK Reference
+
+The Bleepay SDK provides a white-labeled payment experience and handles communication with Bleepay’s backend. You interact only with high-level financial parameters.
+
+## Installation
+
+```bash
+npm install @bleepay/sdk
+```
+
+## Initialization
+
+```javascript
+import { BleepaySDK } from '@bleepay/sdk';
+
+const bleepay = new BleepaySDK({
+  apiKey: 'your_api_key',       // Required: from Bleepay dashboard
+  environment: 'sandbox',       // 'sandbox' | 'production'
+  // Optional: UI/UX overrides
+  // locale: 'en',
+  // theme: 'light' | 'dark' | 'system',
+});
+```
+
+## Main method: `redeem`
+
+Starts the payment session and opens the flow where the user enters their 6-digit code.
+
+```javascript
+bleepay.redeem({
+  amount: 299.99,                    // Transaction amount (number)
+  currency: 'EUR',                  // Settlement currency (ISO 4217)
+  merchant_iban: 'DE89370400440532013000',  // Beneficiary IBAN
+  webhook_url: 'https://api.yourshop.com/v1/payments/webhook',
+  order_id: 'ORDER-5678',           // Your internal reference
+});
+```
+
+### Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `amount` | number | Yes | Transaction amount in the settlement currency. |
+| `currency` | string | Yes | ISO 4217 currency code (e.g. EUR, USD). |
+| `merchant_iban` | string | Yes | IBAN where fiat will be sent. |
+| `webhook_url` | string | Yes | URL for payment lifecycle events. |
+| `order_id` | string | Yes | Your order or payment reference (idempotency, reconciliation). |
+
+Optional parameters may be supported for metadata, branding, or limits (see dashboard or latest SDK docs).
+
+## Example: minimal frontend integration
+
+```javascript
+// Initialize once (e.g. in app bootstrap or checkout component mount)
+const bleepay = new BleepaySDK({
+  apiKey: process.env.BLEEPAY_API_KEY,
+  environment: process.env.NODE_ENV === 'production' ? 'production' : 'sandbox',
+});
+
+// On "Pay with Bleepay" click
+function startBleepayPayment(order) {
+  bleepay.redeem({
+    amount: order.total,
+    currency: order.currency,
+    merchant_iban: order.merchantIban,
+    webhook_url: order.webhookUrl,
+    order_id: order.id,
+  });
+}
+```
+
+## What the SDK handles
+
+- Rendering the code-entry UI (or embedding in your layout)
+- Sending redemption requests to Bleepay
+- Exposing success/error/cancel callbacks if needed
+- No wallet connection or signing on the merchant page — that happens in the user’s wallet
+
+## Next steps
+
+- [Implementation workflow](/integration/implementation-workflow) — full flow and best practices.
+- [Webhooks](/integration/webhooks) — handling server-side events.

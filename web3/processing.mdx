@@ -1,0 +1,37 @@
+---
+title: Web3 Processing
+description: Bleepay as a general execution layer for swaps, DeFi, and complex on-chain actions.
+icon: gears
+---
+
+# Web3 Processing
+
+Bleepay’s architecture works as a **general execution layer** for on-chain actions. It is not limited to simple transfers; it can orchestrate **any** supported smart contract interaction.
+
+## What you can do
+
+Developers can use the Bleepay 6-digit UX to trigger:
+
+- **Token swaps** (e.g. ETH → USDC)
+- **Yield / staking** (e.g. deposit into a vault)
+- **NFT minting**
+- **DAO governance** (e.g. cast a vote)
+- **Bundled actions** (e.g. “Swap ETH for USDC and deposit into an Aave vault” in one authorized session)
+
+Bleepay handles calldata construction and presents the user with a **human-readable summary** instead of raw hex. That reduces the technical barrier for end users: advanced DeFi flows become “enter a code and confirm.”
+
+## Gas and routing
+
+- **Gas**: Bleepay can abstract gas (e.g. sponsor or suggest fees) so users with sufficient balance but no native gas token can still execute.
+- **Cross-chain**: Where supported, Bleepay handles bridging and routing so the user approves a single intent (e.g. “pay 100 EUR from my USDC on Polygon”) and the system routes and settles.
+
+## Security and compatibility
+
+- Transactions are still **signed in the user’s wallet**; Bleepay does not hold keys.
+- Transaction objects are **chain-native** (e.g. EIP-1193, Solana format), so existing wallets and auditors can reason about them.
+- The 6-digit code is an **authorization proxy**; it does not expose keys or replace wallet signing.
+
+## Next steps
+
+- [Architecture: execution flow](/architecture/execution-flow) — how transactions are built and settled.
+- [Wallet providers](/web3/wallet-providers) — how wallets present these flows to users.

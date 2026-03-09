@@ -1,0 +1,66 @@
+---
+title: Integration Overview
+description: How Bleepay fits into your stack and what you need to integrate.
+icon: plug
+---
+
+# Integration Overview
+
+Bleepay is built as a **drop-in** payment layer. The full Web3 stack—gas management, cross-chain routing, DEX interactions—is abstracted into a standard Web2-style workflow. For developers, integrating Bleepay is comparable to integrating Stripe or PayPal.
+
+## What you need to provide
+
+Integration is driven by **standard financial metadata**. Your engineering team does **not** need to:
+
+- Write or deploy smart contracts
+- Run or manage blockchain nodes
+- Handle gas, RPC, or wallet connections on the frontend
+
+You provide:
+
+| Parameter | Purpose |
+|-----------|--------|
+| `amount` | Transaction amount |
+| `currency` | Settlement currency (e.g. EUR) |
+| `merchant_iban` | Where fiat funds are delivered |
+| `webhook_url` | Endpoint for payment events |
+| `order_id` | Your internal reference |
+
+## How it works on your side
+
+1. **Checkout**: Add Bleepay as a payment method. When the user selects it, you call the SDK to start a session with the parameters above.
+2. **UI**: The SDK renders a white-labeled payment UI. The user enters their 6-digit code; your site stays chain-agnostic.
+3. **Backend**: Bleepay handles routing (swap → stablecoin → bridge → off-ramp). You receive a webhook when the bank transfer is initiated.
+4. **Order fulfillment**: Your server verifies the webhook and finalizes the order (e.g. mark as paid, release product).
+
+## Implementation workflow
+
+<Steps>
+  <Step title="Initialize SDK">
+    Configure the SDK with API key, environment (sandbox/production), and any UI options.
+  </Step>
+  <Step title="Start redemption">
+    Call the redeem method with amount, currency, IBAN, webhook URL, and order ID.
+  </Step>
+  <Step title="User enters code">
+    User generates a code in their wallet and enters it in the SDK UI (or your custom form).
+  </Step>
+  <Step title="Receive webhook">
+    Implement a webhook handler to process `payment.settled` (and other events) and update your order state.
+  </Step>
+</Steps>
+
+## Environments
+
+| Environment | Use case |
+|-------------|----------|
+| **Sandbox** | Testing; no real funds or bank transfers. |
+| **Production** | Live payments; real crypto and fiat settlement. |
+
+Switch via SDK config (e.g. `environment: 'sandbox'` or `'production'`).
+
+## Next steps
+
+- [SDK reference](/integration/sdk) — initialization, methods, and options.
+- [Implementation workflow](/integration/implementation-workflow) — step-by-step integration.
+- [Webhooks](/integration/webhooks) — event types, payloads, and verification.

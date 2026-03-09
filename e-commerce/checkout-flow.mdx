@@ -1,0 +1,57 @@
+---
+title: Checkout Flow
+description: User and merchant steps in the Bleepay checkout experience.
+icon: route
+---
+
+# Checkout Flow
+
+This page describes the checkout flow from the customer’s and merchant’s perspective.
+
+## Customer journey
+
+1. **Browse and cart** — Customer shops as usual on your site.
+2. **Select Bleepay** — At checkout, they choose “Pay with Bleepay” (or your branded label).
+3. **Get a code** — They open their Bleepay-compatible wallet (same device or another), generate a 6-digit session code.
+4. **Enter code** — They type (or paste) the code into the payment form on your site.
+5. **Confirm in wallet** — Their wallet shows the transaction (amount, recipient, fees); they approve.
+6. **Done** — They see success on your site; you receive fiat and can fulfill the order.
+
+No wallet connection on your domain, no extension, no popups. Just a code and a confirmation step in the wallet.
+
+## Merchant steps
+
+1. **Add Bleepay to checkout** — Integrate the SDK and pass amount, currency, IBAN, webhook URL, order ID when the user selects Bleepay.
+2. **Show code entry** — Use the SDK’s UI or your own input that submits the code to Bleepay.
+3. **Handle webhook** — When you receive `payment.settled`, mark the order as paid and fulfill it.
+4. **Monitor** — Use the Bleepay dashboard to track transactions and payouts.
+
+## UX best practices
+
+- **Clear instructions**: Tell the user to open their wallet, generate a code, and enter it (and that the code expires after a short time).
+- **Error handling**: Handle invalid/expired codes and show a clear message or retry option.
+- **Mobile**: The flow works on mobile; ensure the code input is easy to use on small screens.
+
+## Diagram (high level)
+
+```
+[Your site]                [Bleepay]              [User wallet]
+     |                         |                        |
+     | 1. Start session        |                        |
+     |------------------------>|                        |
+     |                         |  2. User generates    |
+     |                         |     code              |
+     |                         |<-----------------------|
+     |  3. User enters code    |                        |
+     |------------------------>| 4. Redeem & build tx   |
+     |                         |----------------------->| 5. Sign
+     |                         |<-----------------------|
+     |  6. Webhook (settled)    |                        |
+     |<------------------------|                        |
+     | 7. Fulfill order        |                        |
+```
+
+## Next steps
+
+- [Integration workflow](/integration/implementation-workflow) — technical steps.
+- [SDK reference](/integration/sdk) — redeem() and parameters.

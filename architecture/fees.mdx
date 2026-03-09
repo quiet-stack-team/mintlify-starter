@@ -1,0 +1,29 @@
+---
+title: Fee Structure
+description: Transaction cost layers and commercial terms.
+icon: coins
+---
+
+# Fee Structure
+
+Transaction costs are typically categorized into a few layers. Exact numbers and commercial terms are finalized during onboarding with selected liquidity and settlement partners.
+
+## Cost layers (overview)
+
+| Layer | Typical range (indicative) | Description |
+|-------|----------------------------|-------------|
+| **Network & routing** | ~0.06% baseline + LayerZero/gas | Atomic swap and bridge to USDC/USDT (or target stablecoin); gas and cross-chain fees. |
+| **Liquidation & settlement** | ~0.5% – 1.5% | Stable-to-fiat conversion and SEPA/banking rails (provider-dependent). |
+
+- **Network & routing**: Covers DEX swap, bridge (e.g. Stargate/LayerZero), and gas. The baseline percentage is indicative; actual cost depends on chain, volume, and route.
+- **Liquidation & settlement**: Covers the off-ramp provider’s conversion and bank transfer fees. Range depends on partner, region, and volume.
+
+## Commercial terms
+
+- Final pricing and fee splits are agreed **during onboarding** with the selected liquidity and settlement partners.
+- Merchants may see a single blended fee or a breakdown (e.g. Bleepay + network + liquidation); details are provided in the dashboard or contract.
+
+## Next steps
+
+- [Off-ramp](/architecture/off-ramp) — where liquidation and settlement costs apply.
+- [Integration overview](/integration/overview) — how to go live and access production pricing.

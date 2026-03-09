@@ -1,0 +1,85 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "Bleepay",
+  "theme": "willow",
+  "colors": {
+    "primary": "#0EA5E9",
+    "light": "#0EA5E9",
+    "dark": "#38BDF8"
+  },
+  "topbarLinks": [],
+  "topbarCtaButton": {
+    "name": "Dashboard",
+    "url": "https://dashboard.bleepay.com"
+  },
+  "anchors": [
+    { "name": "Website", "icon": "globe", "url": "https://bleepay.com" },
+    { "name": "GitHub", "icon": "github", "url": "https://github.com/bleepay" }
+  ],
+  "navigation": {
+    "groups": [
+      {
+        "group": "Getting Started",
+        "pages": [
+          "index",
+          "getting-started/introduction",
+          "getting-started/quickstart",
+          "getting-started/core-concepts"
+        ]
+      },
+      {
+        "group": "Integration",
+        "pages": [
+          "integration/overview",
+          "integration/sdk",
+          "integration/implementation-workflow",
+          "integration/webhooks"
+        ]
+      },
+      {
+        "group": "E-Commerce",
+        "pages": [
+          "e-commerce/overview",
+          "e-commerce/checkout-flow",
+          "e-commerce/benefits"
+        ]
+      },
+      {
+        "group": "Web3",
+        "pages": [
+          "web3/developers",
+          "web3/wallet-providers",
+          "web3/dapps",
+          "web3/processing"
+        ]
+      },
+      {
+        "group": "Architecture",
+        "pages": [
+          "architecture/execution-flow",
+          "architecture/off-ramp",
+          "architecture/security",
+          "architecture/dependencies",
+          "architecture/fees"
+        ]
+      },
+      {
+        "group": "Reference",
+        "pages": [
+          "reference/terminology",
+          "reference/protocol-flow",
+          "reference/voucher-modes"
+        ]
+      }
+    ]
+  },
+  "footerSocials": {
+    "twitter": "https://twitter.com/bleepay",
+    "github": "https://github.com/bleepay",
+    "linkedin": "https://linkedin.com/company/bleepay"
+  },
+  "metadata": {
+    "title": "Bleepay Technical Documentation",
+    "description": "Non-custodial payment orchestration connecting Web3 liquidity to fiat rails. Accept crypto, receive fiat. 6-digit code UX."
+  }
+}

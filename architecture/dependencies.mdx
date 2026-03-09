@@ -1,0 +1,39 @@
+---
+title: Dependency Management
+description: Modular design to avoid vendor lock-in and ensure resilience.
+icon: puzzle-piece
+---
+
+# Dependency Management
+
+To avoid vendor lock-in and improve resilience, Bleepay’s architecture is **strictly modular**.
+
+## Interchangeable off-ramps
+
+- The **fiat liquidation rail** is provider-agnostic.
+- Bleepay can swap or add providers based on:
+  - Geographic coverage
+  - Fee structures
+  - Merchant-specific agreements
+  - Regulatory requirements
+- Merchants and partners are not tied to a single off-ramp provider.
+
+## Pluggable bridging
+
+- **Stargate** is the current default for reliability and speed.
+- The **bridging layer** is modular: alternative protocols can be plugged in to:
+  - Ensure continuous availability
+  - Mitigate third-party protocol risk
+  - Support different chains or cost/UX tradeoffs
+- This reduces dependence on a single bridge implementation.
+
+## Benefits
+
+- **Continuity**: If one provider or protocol has an outage or policy change, alternatives can be used.
+- **Commercial flexibility**: Different partners and fee models can be supported per region or merchant.
+- **Future-proofing**: New chains, bridges, or off-ramps can be integrated without redesigning the core orchestration.
+
+## Next steps
+
+- [Off-ramp](/architecture/off-ramp) — how liquidation and bridging work.
+- [Fees](/architecture/fees) — how network, routing, and liquidation costs are structured.

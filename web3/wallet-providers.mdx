@@ -1,0 +1,40 @@
+---
+title: Wallet Providers
+description: Integrate Bleepay into your wallet for Web2 payments and code-based dApp connections.
+icon: wallet
+---
+
+# Wallet Providers
+
+If you build a **wallet** (mobile, desktop, or web), you can integrate Bleepay to give your users Web2 payment capabilities and code-based dApp connections without relying on browser extensions.
+
+## What you implement
+
+1. **Voucher generation** — When the user wants to pay or connect, your wallet requests a short-lived voucher (6-digit code) from Bleepay and displays it to the user.
+2. **Secure channel** — Communication with Bleepay’s backend must be authenticated (e.g. signed by the user’s key or session token) so only the rightful payer can generate and redeem vouchers.
+3. **Transaction retrieval and signing** — When a payee (merchant or dApp) redeems the code, Bleepay notifies your wallet with a pending transaction. Your wallet fetches the transaction object, shows it to the user, and signs/broadcasts it.
+
+## User flow
+
+- User chooses “Pay with Bleepay” or “Connect with code” in your wallet.
+- Wallet requests a voucher from Bleepay (signed request).
+- User sees the 6-digit code and enters it at the merchant/dApp (or the other side submits it).
+- When the code is redeemed, the wallet receives a pending transaction; user reviews and approves.
+- Wallet signs and broadcasts; settlement proceeds (on-chain and/or off-ramp).
+
+## Benefits for your users
+
+- **Web2 payments**: Pay at online stores with a code; no need to connect the store to the wallet.
+- **Custody**: Each transaction is authorized individually; no standing permissions or deposits.
+- **dApp connections**: Connect to dApps with a code instead of extension/QR, reducing friction and conflicts.
+
+## Technical notes
+
+- Voucher lifecycle (generation, TTL, redemption, single-use) is defined by the Bleepay protocol; your wallet must comply with the API and signing requirements.
+- Transaction objects are chain-native (e.g. EIP-1193, Solana Web3 format) so your existing signing and broadcast logic can be reused.
+- See [Protocol flow](/reference/protocol-flow) and [Terminology](/reference/terminology) for details.
+
+## Next steps
+
+- [dApps](/web3/dapps) — how dApps accept code-based connections.
+- [Reference: protocol flow](/reference/protocol-flow) — voucher and settlement steps.

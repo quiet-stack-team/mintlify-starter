@@ -1,0 +1,44 @@
+---
+title: Security
+description: Zero-trust, non-custodial model and session integrity.
+icon: shield-halved
+---
+
+# Security
+
+Bleepay follows a **zero-trust, non-custodial** model and keeps orchestration strictly separate from asset custody.
+
+## Client-side signing
+
+- **Private keys** remain in the user’s wallet. Bleepay provides transaction payloads; **all cryptographic signatures are created locally** in the wallet.
+- Bleepay never has access to private keys and cannot sign or broadcast on behalf of the user.
+
+## Session integrity
+
+- **6-digit codes** are ephemeral and bound to a specific payment intent (session). This limits replay attacks and unauthorized redirection.
+- Each voucher is **single-use**: after redemption and retrieval by the payer, the session is finalized and the code is unreserved.
+- Communication between the wallet and Bleepay can be **signed** (e.g. with the payer’s key) so the server can verify that requests and redemptions belong to the correct payer.
+
+## Real-time validation
+
+- The engine can **verify fiat requirements against on-chain swap parameters** before the user signs, helping prevent price manipulation or slippage exploits.
+- Settlement and routing logic are designed to align with the stated amount and currency (e.g. EUR) within agreed tolerances.
+
+## Progressive decentralization (roadmap)
+
+- To reduce single points of failure, the roadmap includes moving **orchestration** from a centralized engine toward a **distributed node network**, aiming for a more trustless architecture over time.
+- Custody and signing remain with the user regardless of how orchestration is distributed.
+
+## Summary
+
+| Principle | Implementation |
+|-----------|----------------|
+| Non-custodial | User holds keys; Bleepay never holds funds. |
+| Zero-trust | Server validates signed requests; no trust in a central custodian for assets. |
+| Session binding | Codes bound to intent; single-use; time-limited. |
+| Validation | Fiat vs on-chain checks before signing where applicable. |
+
+## Next steps
+
+- [Execution flow](/architecture/execution-flow) — where signing and settlement occur.
+- [Reference: terminology](/reference/terminology) — payer, payee, voucher, session.

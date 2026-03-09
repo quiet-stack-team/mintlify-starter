@@ -1,0 +1,32 @@
+---
+title: Off-Ramp Payment Processing
+description: How Bleepay bridges digital assets to bank accounts via intent-based processing.
+icon: bridge-water
+---
+
+# Off-Ramp Payment Processing
+
+Bleepay bridges the gap between **digital assets** and **bank accounts** through an intent-based processing engine. The system normalizes incoming tokens into compliant stablecoins (e.g. USDC/USDT) on the target liquidation chain and then triggers fiat payout to the merchant’s IBAN.
+
+## Liquidation pipeline (overview)
+
+1. **One-time deposit addresses** — The off-ramp API generates one-time deposit addresses mapped to the partner’s IBAN (and merchant/order context).
+2. **Swap and bridge** — Bleepay uses **Stargate Intent Swaps** (or equivalent) to swap any supported token into USDC/USDT and bridge to the liquidation chain in a coordinated flow.
+3. **Stablecoin delivery** — USDC (or other compliant stablecoin) is delivered to the liquidation point (deposit address or partner contract).
+4. **Crypto-to-fiat** — The liquidation provider monitors these addresses, converts stablecoin to fiat upon detection, and dispatches funds via SEPA or ELIXIR to the merchant’s IBAN.
+5. **Monitoring** — The entire flow is monitored in real time for slippage, network fees, and AML/KYC compliance at the liquidation gate.
+
+## Gas friction reduction
+
+The protocol can **eliminate “gas friction”** by automatically providing or sponsoring native gas when the user has sufficient balance but lacks the gas token needed to execute the transaction. This improves completion rates and UX.
+
+## Modularity
+
+- **Interchangeable off-ramps**: The fiat liquidation rail is provider-agnostic. Bleepay can switch or add providers by geography, fees, or merchant agreements.
+- **Pluggable bridging**: Stargate is the current default for reliability and speed, but the bridging layer is modular so alternative protocols can be used for availability and risk mitigation.
+
+## Next steps
+
+- [Execution flow](/architecture/execution-flow) — where off-ramp fits in the full flow.
+- [Dependencies](/architecture/dependencies) — modular off-ramp and bridge design.
+- [Fees](/architecture/fees) — network, routing, and liquidation costs.

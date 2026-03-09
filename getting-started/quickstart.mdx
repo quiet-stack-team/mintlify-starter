@@ -1,0 +1,74 @@
+---
+title: Quickstart
+description: Get your first Bleepay payment flow running in minutes.
+icon: bolt
+---
+
+# Quickstart
+
+This guide gets you from zero to a working Bleepay payment flow.
+
+## Prerequisites
+
+- Node.js 18+ (for SDK)
+- A Bleepay merchant account and API credentials
+- A non-custodial wallet that supports Bleepay (e.g. Bleepay wallet or integrated partner)
+
+## 1. Install the SDK
+
+```bash
+npm install @bleepay/sdk
+```
+
+## 2. Initialize and start a payment
+
+In your checkout or payment page, initialize the Bleepay SDK and start a redemption session with standard financial parameters:
+
+```javascript
+import { BleepaySDK } from '@bleepay/sdk';
+
+const bleepay = new BleepaySDK({
+  apiKey: 'your_api_key',      // from Bleepay dashboard
+  environment: 'sandbox',      // or 'production'
+});
+
+// Start the payment experience — user will enter 6-digit code
+bleepay.redeem({
+  amount: 299.99,
+  currency: 'EUR',
+  merchant_iban: 'DE89370400440532013000',
+  webhook_url: 'https://api.yourshop.com/v1/payments/webhook',
+  order_id: 'ORDER-5678',
+});
+```
+
+No smart contracts, no chain configuration. The SDK renders a white-labeled UI; the user enters their 6-digit code; Bleepay handles chain-native logic.
+
+## 3. Handle the webhook
+
+When the bank transfer is initiated, Bleepay sends a JSON webhook to your `webhook_url`. Use it to finalize the order in your system:
+
+```javascript
+// Example webhook handler (Node.js/Express)
+app.post('/v1/payments/webhook', (req, res) => {
+  const { event, order_id, status, tx_id } = req.body;
+  if (event === 'payment.settled' && status === 'completed') {
+    // Update order, release goods, etc.
+    await orders.markPaid(order_id, tx_id);
+  }
+  res.status(200).send('OK');
+});
+```
+
+## 4. Test the flow
+
+1. Open your checkout page and select Bleepay.
+2. In a Bleepay-compatible wallet, generate a 6-digit session code.
+3. Enter the code in the checkout form and confirm in the wallet.
+4. In sandbox, verify the webhook is received and the order state is updated.
+
+## Next steps
+
+- [Implementation workflow](/integration/implementation-workflow) — full integration flow.
+- [Webhooks](/integration/webhooks) — event types and verification.
+- [E-Commerce checkout](/e-commerce/checkout-flow) — UX and best practices.

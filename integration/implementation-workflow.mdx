@@ -1,0 +1,73 @@
+---
+title: Implementation Workflow
+description: Step-by-step integration flow for Bleepay payments.
+icon: list-check
+---
+
+# Implementation Workflow
+
+This page walks through the standard implementation workflow for accepting Bleepay payments.
+
+## 1. Merchant app starts a payment session
+
+Your checkout (or payment page) triggers the Bleepay SDK with standard values: amount, currency, target IBAN, webhook URL, and order reference.
+
+- No blockchain or wallet logic on your side.
+- The SDK can render a white-labeled UI or you can embed the code-input in your own layout.
+
+## 2. User generates a 6-digit code in their wallet
+
+The user opens a Bleepay-compatible wallet and generates a session code. This creates a secure link between their assets and the merchant’s payment intent. The code is short-lived and bound to that context.
+
+## 3. Merchant redeems the code via the SDK
+
+When the user submits the code (in the SDK UI or your form), the SDK sends it to Bleepay. The backend:
+
+- Validates the voucher and session
+- Synchronizes transaction metadata (amount, currency, merchant, order_id)
+
+## 4. Transaction construction and user signature
+
+- Bleepay’s backend (or the wallet’s integration) generates the specific transaction calldata (swap/bridge/transfer as needed).
+- The user’s wallet receives the transaction for review and signs it.
+- The wallet broadcasts the signed transaction to the liquidation partner’s infrastructure (or the appropriate chain).
+
+## 5. Liquidation and settlement
+
+- The liquidation partner performs crypto-to-fiat conversion and sends funds to the merchant’s IBAN (e.g. via SEPA/ELIXIR).
+- Bleepay tracks this and triggers the webhook when the bank transfer is initiated (or completed, depending on partner and event type).
+
+## 6. Webhook and order finalization
+
+Your server receives a standard JSON webhook at the `webhook_url` you provided. Use it to:
+
+- Verify the event (e.g. signature or idempotency)
+- Update the order state (e.g. mark as paid, attach `tx_id`)
+- Fulfill the order (e.g. release product, send confirmation)
+
+After that, your integration is complete for that payment.
+
+## Summary diagram
+
+```
+[Merchant]                    [Bleepay]                     [User wallet]
+    |                              |                               |
+    | start session (SDK)          |                               |
+    |------------------------------>|                               |
+    |                              |<------- generate code ---------|
+    |                              |                               |
+    | user enters code             |                               |
+    |------------------------------>| redeem                        |
+    |                              |-------- tx for signing ------->|
+    |                              |                               | sign & broadcast
+    |                              |<------- settlement -----------|
+    | webhook (payment.settled)     |                               |
+    |<------------------------------|                               |
+    | finalize order               |                               |
+```
+
+## Next steps
+
+- [Webhooks](/integration/webhooks) — event types and payloads.
+- [E-Commerce checkout](/e-commerce/checkout-flow) — UX and best practices.
+- [Architecture: execution flow](/architecture/execution-flow) — backend and off-ramp details.

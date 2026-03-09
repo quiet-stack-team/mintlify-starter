@@ -1,0 +1,78 @@
+---
+title: Protocol Flow
+description: Detailed voucher generation, redemption, and settlement sequence.
+icon: arrows-spin
+---
+
+# Protocol Flow
+
+This page describes the **algorithmic flow** of the Bleepay voucher-based protocol: generation, transmission, redemption, invoice retrieval, and settlement.
+
+## Phase 1: Voucher generation
+
+1. **S101** — Payer starts a digital payment in the wallet. Wallet builds `VOUCHER_INIT` (e.g. payer identifier, optional context, timestamp, nonce).
+2. **S102** — Wallet signs `VOUCHER_INIT` with the payer’s private key (e.g. ECDSA/Ed25519).
+3. **S103** — Request sent over secure transport (e.g. HTTPS/TLS 1.3 or gRPC).
+4. **S104** — Payment server verifies signature, timestamp, nonce.
+5. **S105** — Server generates a unique voucher code (e.g. 6-char alphanumeric via CSPRNG).
+6. **S106** — Server creates a session record (voucher, payer ref, TTL, context) in storage.
+7. **S107** — Server returns `VOUCHER_ISSUE` (voucher code, TTL, session metadata).
+8. **S108** — Wallet displays the voucher to the user.
+
+## Phase 2: Voucher transmission
+
+- **S109** — Payer transmits the voucher by any channel: manual entry (numeric or alphanumeric), QR, NFC, BLE, messaging, etc. The system is transport-agnostic.
+
+## Phase 3: Redemption and invoice generation
+
+1. **S201** — Payee interface captures the voucher and builds `VOUCHER_REDEEM` (voucher code + payee transaction parameters: amount, asset, destination, network).
+2. **S202** — Payee sends `VOUCHER_REDEEM` over secure transport.
+3. **S203** — Server looks up the active session by voucher; verifies TTL has not expired.
+4. **S204** — Server builds a blockchain-compatible **unsigned** transaction object `TX_UNSIGNED` (e.g. destination, asset, amount, nonce placeholder, fee/gas template, optional contract calldata). No signature or private-key operation is applied on the server.
+5. **S205** — Server marks the session as pending-signature and sends `TX_PENDING_NOTIFY` to the payer’s wallet (e.g. WebSocket/push) so the wallet knows `TX_UNSIGNED` is ready for retrieval.
+
+## Phase 4: Invoice retrieval and payer authorization
+
+1. **S206** — Wallet receives the notification and sends `TX_FETCH` (voucher/session ref), signed by the payer’s private key.
+2. **S207** — Server verifies the signature against the payer bound to the session and returns `TX_UNSIGNED`.
+3. **S208** — Server finalizes the session: marks it completed, deletes session metadata, unreserves the voucher code and returns it to the pool.
+4. **S209** — Wallet displays transaction details (amount, asset, destination, fees).
+5. **S210** — If allowed by the protocol, the wallet may fill or adjust dynamic fields (e.g. nonce, max fee) before signing.
+6. **S211** — After payer confirmation, the wallet validates `TX_UNSIGNED` and signs it, producing `TX_SIGNED`.
+
+## Phase 5: Signing and settlement
+
+1. **S212** — Wallet broadcasts `TX_SIGNED` via the network’s native interface (e.g. JSON-RPC/Web3, REST, node API).
+2. **S213** — The blockchain processes and settles the transaction according to its consensus rules.
+3. **S214** — Wallets and systems update balances/status from on-chain confirmations.
+
+## Message types (summary)
+
+| Message | Direction | Purpose |
+|---------|-----------|---------|
+| `VOUCHER_INIT` | Wallet → Server | Voucher generation request. |
+| `VOUCHER_ISSUE` | Server → Wallet | Voucher code and session data. |
+| `VOUCHER_REDEEM` | Payee → Server | Redemption request with payee parameters. |
+| `TX_PENDING_NOTIFY` | Server → Wallet | Pending invoice ready for retrieval. |
+| `TX_FETCH` | Wallet → Server | Signed request to retrieve transaction object. |
+| `TX_UNSIGNED` | Server → Wallet | Unsigned transaction for signing. |
+| `TX_SIGNED` | Wallet → Network | Signed transaction for broadcast. |
+
+Encoding and transport (JSON, CBOR, gRPC, etc.) can vary; the logical sequence and roles are as above.
+
+## Diagrams
+
+| Diagram | Description |
+|---------|-------------|
+| [Session payment](/images/vouchers-session-payment.png) | High-level session payment flow. |
+| [Session payment (BC integration)](/images/vouchers-session-payment-bc-integration.png) | Session flow with blockchain integration. |
+| [One-time payments](/images/vouchers-one_time-payments-flow.png) | One-time payment flow. |
+| [One-time payment (WC2 integration)](/images/vouchers-one_time-payment-wc2-integration.png) | One-time flow with WalletConnect-style integration. |
+| [Merchant one-time payment](/images/vouchers-merchant-one_time-payment-flow.png) | Merchant one-time payment flow. |
+| [dApp session payment](/images/vouchers-dapp-session-payment-flow.png) | dApp session payment flow. |
+
+## Next steps
+
+- [Terminology](/reference/terminology) — definitions of voucher, session, invoice, etc.
+- [Voucher modes](/reference/voucher-modes) — numeric vs alphanumeric.
+- [Architecture: execution flow](/architecture/execution-flow) — high-level view with merchant and off-ramp.

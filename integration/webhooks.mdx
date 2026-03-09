@@ -1,0 +1,53 @@
+---
+title: Webhooks
+description: Payment events, payloads, and how to handle them securely.
+icon: bell
+---
+
+# Webhooks
+
+Bleepay sends HTTP POST requests to your `webhook_url` when payment-related events occur. Use these to update your order state and fulfill orders.
+
+## Endpoint requirements
+
+- **URL**: The `webhook_url` you pass in the `redeem()` call.
+- **Method**: POST
+- **Content-Type**: `application/json`
+- **Response**: Return `200 OK` quickly so Bleepay can consider the delivery successful. Process asynchronously if needed.
+
+## Event types
+
+| Event | When it fires |
+|-------|----------------|
+| `payment.settled` | Bank transfer has been initiated (or completed, depending on partner). Use this to mark the order as paid and fulfill. |
+| Other events | Additional events may be documented in the dashboard or API (e.g. pending, failed, refund). |
+
+Always check the `event` and `status` fields and handle idempotency (e.g. by `order_id` or `tx_id`).
+
+## Example payload (conceptual)
+
+```json
+{
+  "event": "payment.settled",
+  "order_id": "ORDER-5678",
+  "status": "completed",
+  "tx_id": "bleepay_tx_abc123",
+  "amount": 299.99,
+  "currency": "EUR",
+  "timestamp": "2025-03-09T12:00:00Z"
+}
+```
+
+Exact field names and extra fields (e.g. merchant_id, signature) will be defined in the official Webhook API docs or dashboard.
+
+## Best practices
+
+1. **Idempotency**: Process each event by `order_id` / `tx_id` so duplicate deliveries don’t double-fulfill.
+2. **Verification**: If Bleepay provides a signature or secret, verify the request body to ensure it came from Bleepay.
+3. **Async processing**: Acknowledge with 200 quickly; do heavy work (DB, external APIs) in a background job.
+4. **Retries**: Bleepay may retry on non-2xx or timeout; your handler should remain idempotent.
+
+## Next steps
+
+- [SDK reference](/integration/sdk) — where `webhook_url` is set.
+- [E-Commerce overview](/e-commerce/overview) — role of webhooks in the merchant flow.

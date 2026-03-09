@@ -1,0 +1,54 @@
+---
+title: Execution Flow
+description: End-to-end technical flow from merchant intent to fiat settlement.
+icon: diagram-project
+---
+
+# Execution Flow
+
+This page describes the **core execution flow** from the moment the merchant starts a session to the moment fiat reaches the merchant’s bank account.
+
+## High-level steps
+
+1. **Merchant app** triggers the Bleepay SDK to start a payment session (amount, currency, IBAN, webhook, order_id).
+2. **User** generates a 6-digit session code in their non-custodial wallet, creating a secure link between their assets and the merchant’s intent.
+3. **Merchant** redeems the code via the SDK; Bleepay synchronizes transaction metadata with the backend.
+4. **SDK/backend** generates the specific transaction calldata (swap/bridge/transfer as needed) and requests the user’s signature.
+5. **User** signs in their wallet; the wallet broadcasts the transaction to the liquidation partner’s infrastructure (or the appropriate chain).
+6. **Liquidation partner** performs crypto-to-fiat conversion and sends funds to the merchant’s IBAN.
+7. **Bleepay** sends a webhook to the merchant so they can finalize the order.
+
+## Diagram: session payment flow
+
+![Session payment flow](/images/vouchers-session-payment.png)
+
+## Flow diagram (text)
+
+```
+Merchant                Bleepay backend              User wallet           Liquidation
+   |                           |                         |                      |
+   | start session             |                         |                      |
+   |-------------------------->|                         |                      |
+   |                           |<-------- generate code -|                      |
+   |                           |                         |                      |
+   | redeem(code)              |                         |                      |
+   |-------------------------->| build tx (swap/bridge)   |                      |
+   |                           |------------------------>| sign                 |
+   |                           |                         |--------------------->| broadcast
+   |                           |                         |                      | convert → fiat
+   |                           |                         |                      | SEPA/ELIXIR
+   | webhook (settled)         |<---------------------------------------------   |
+   |<--------------------------|                         |                      |
+```
+
+## Key technical points
+
+- **Orchestration only**: Bleepay coordinates the flow and builds transaction payloads; it does not custody assets or sign on behalf of the user.
+- **Client-side signing**: All cryptographic signatures are produced in the user’s wallet.
+- **Settlement**: Actual value movement is on-chain and/or via the liquidation partner; Bleepay does not sit in the middle as a custodian.
+
+## Next steps
+
+- [Off-ramp](/architecture/off-ramp) — how crypto becomes fiat.
+- [Security](/architecture/security) — zero-trust and non-custodial model.
+- [Reference: protocol flow](/reference/protocol-flow) — voucher generation, redemption, and settlement in detail.

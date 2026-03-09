@@ -1,0 +1,37 @@
+---
+title: Voucher Modes
+description: Numeric vs alphanumeric voucher formats and when each is used.
+icon: hashlang
+---
+
+# Voucher Modes
+
+The Bleepay system supports two voucher modes to balance **compatibility** with existing terminals and **scalability** in digital environments.
+
+## Numeric mode
+
+- **Format**: Short sequence of **digits** (e.g. 6 digits).
+- **Use case**: Compatible with legacy POS devices and keypads that accept only numeric input (e.g. ISO/IEC 7812-1, ANSI X4.13).
+- **Examples**: Countertop payment terminals, integrated POS, kiosks, ATMs, older keypad-based merchant terminals.
+- **Transmission**: User can read the code aloud or enter it manually; works in low-tech retail environments.
+
+## Alphanumeric mode
+
+- **Format**: Short sequence of **letters and digits** (e.g. 6 alphanumeric characters).
+- **Use case**: Modern interfaces that support full keyboard or alphanumeric entry.
+- **Benefits**: Larger space of unique codes in parallel → better scalability and lower code-collision risk.
+- **Examples**: Touchscreen POS, smart POS, merchant web/mobile dashboards, self-checkout kiosks with software keypads.
+
+## Mode selection
+
+- Mode can be chosen **dynamically** based on:
+  - Terminal capabilities
+  - Merchant configuration
+  - User or context preference
+- When the payee uses a numeric-only terminal, the payer’s wallet can generate a **numeric** voucher. When the interface supports alphanumeric input, the wallet can generate an **alphanumeric** voucher for higher throughput and security.
+- Supporting both keeps **interoperability** with legacy hardware while allowing **high-volume** operation in modern setups.
+
+## Next steps
+
+- [Terminology](/reference/terminology) — voucher, voucher code, session.
+- [Protocol flow](/reference/protocol-flow) — where the voucher is generated and redeemed.

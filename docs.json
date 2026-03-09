@@ -81,5 +81,10 @@
   "metadata": {
     "title": "Bleepay Technical Documentation",
     "description": "Non-custodial payment orchestration connecting Web3 liquidity to fiat rails. Accept crypto, receive fiat. 6-digit code UX."
+  },
+  "favicon": "/images/favicon.png",
+  "logo": {
+    "light": "/images/logo-light.svg",
+    "dark": "/images/logo-dark.svg"
   }
 }

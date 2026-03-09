@@ -1,10 +1,8 @@
 ---
-title: Integration Overview
-description: How Bleepay fits into your stack and what you need to integrate.
-icon: plug
+title: "Integration Overview"
+description: "How Bleepay fits into your stack and what you need to integrate."
+icon: "plug"
 ---
-
-# Integration Overview
 
 Bleepay is built as a **drop-in** payment layer. The full Web3 stack—gas management, cross-chain routing, DEX interactions—is abstracted into a standard Web2-style workflow. For developers, integrating Bleepay is comparable to integrating Stripe or PayPal.
 
@@ -18,13 +16,13 @@ Integration is driven by **standard financial metadata**. Your engineering team 
 
 You provide:
 
-| Parameter | Purpose |
-|-----------|--------|
-| `amount` | Transaction amount |
-| `currency` | Settlement currency (e.g. EUR) |
+| Parameter       | Purpose                        |
+| --------------- | ------------------------------ |
+| `amount`        | Transaction amount             |
+| `currency`      | Settlement currency (e.g. EUR) |
 | `merchant_iban` | Where fiat funds are delivered |
-| `webhook_url` | Endpoint for payment events |
-| `order_id` | Your internal reference |
+| `webhook_url`   | Endpoint for payment events    |
+| `order_id`      | Your internal reference        |
 
 ## How it works on your side
 
@@ -52,9 +50,9 @@ You provide:
 
 ## Environments
 
-| Environment | Use case |
-|-------------|----------|
-| **Sandbox** | Testing; no real funds or bank transfers. |
+| Environment    | Use case                                        |
+| -------------- | ----------------------------------------------- |
+| **Sandbox**    | Testing; no real funds or bank transfers.       |
 | **Production** | Live payments; real crypto and fiat settlement. |
 
 Switch via SDK config (e.g. `environment: 'sandbox'` or `'production'`).
@@ -64,3 +62,5 @@ Switch via SDK config (e.g. `environment: 'sandbox'` or `'production'`).
 - [SDK reference](/integration/sdk) — initialization, methods, and options.
 - [Implementation workflow](/integration/implementation-workflow) — step-by-step integration.
 - [Webhooks](/integration/webhooks) — event types, payloads, and verification.
+
+/

@@ -1,10 +1,8 @@
 ---
-title: SDK Reference
-description: Bleepay SDK initialization, methods, and configuration.
-icon: code
+title: "SDK Reference"
+description: "Bleepay SDK initialization, methods, and configuration."
+icon: "code"
 ---
-
-# SDK Reference
 
 The Bleepay SDK provides a white-labeled payment experience and handles communication with Bleepay’s backend. You interact only with high-level financial parameters.
 
@@ -44,13 +42,13 @@ bleepay.redeem({
 
 ### Parameters
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `amount` | number | Yes | Transaction amount in the settlement currency. |
-| `currency` | string | Yes | ISO 4217 currency code (e.g. EUR, USD). |
-| `merchant_iban` | string | Yes | IBAN where fiat will be sent. |
-| `webhook_url` | string | Yes | URL for payment lifecycle events. |
-| `order_id` | string | Yes | Your order or payment reference (idempotency, reconciliation). |
+| Parameter       | Type   | Required | Description                                                    |
+| --------------- | ------ | -------- | -------------------------------------------------------------- |
+| `amount`        | number | Yes      | Transaction amount in the settlement currency.                 |
+| `currency`      | string | Yes      | ISO 4217 currency code (e.g. EUR, USD).                        |
+| `merchant_iban` | string | Yes      | IBAN where fiat will be sent.                                  |
+| `webhook_url`   | string | Yes      | URL for payment lifecycle events.                              |
+| `order_id`      | string | Yes      | Your order or payment reference (idempotency, reconciliation). |
 
 Optional parameters may be supported for metadata, branding, or limits (see dashboard or latest SDK docs).
 

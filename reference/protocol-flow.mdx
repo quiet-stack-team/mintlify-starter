@@ -1,10 +1,8 @@
 ---
-title: Protocol Flow
-description: Detailed voucher generation, redemption, and settlement sequence.
-icon: arrows-spin
+title: "Protocol Flow"
+description: "Detailed voucher generation, redemption, and settlement sequence."
+icon: "arrows-spin"
 ---
-
-# Protocol Flow
 
 This page describes the **algorithmic flow** of the Bleepay voucher-based protocol: generation, transmission, redemption, invoice retrieval, and settlement.
 
@@ -48,28 +46,28 @@ This page describes the **algorithmic flow** of the Bleepay voucher-based protoc
 
 ## Message types (summary)
 
-| Message | Direction | Purpose |
-|---------|-----------|---------|
-| `VOUCHER_INIT` | Wallet → Server | Voucher generation request. |
-| `VOUCHER_ISSUE` | Server → Wallet | Voucher code and session data. |
-| `VOUCHER_REDEEM` | Payee → Server | Redemption request with payee parameters. |
-| `TX_PENDING_NOTIFY` | Server → Wallet | Pending invoice ready for retrieval. |
-| `TX_FETCH` | Wallet → Server | Signed request to retrieve transaction object. |
-| `TX_UNSIGNED` | Server → Wallet | Unsigned transaction for signing. |
-| `TX_SIGNED` | Wallet → Network | Signed transaction for broadcast. |
+| Message             | Direction        | Purpose                                        |
+| ------------------- | ---------------- | ---------------------------------------------- |
+| `VOUCHER_INIT`      | Wallet → Server  | Voucher generation request.                    |
+| `VOUCHER_ISSUE`     | Server → Wallet  | Voucher code and session data.                 |
+| `VOUCHER_REDEEM`    | Payee → Server   | Redemption request with payee parameters.      |
+| `TX_PENDING_NOTIFY` | Server → Wallet  | Pending invoice ready for retrieval.           |
+| `TX_FETCH`          | Wallet → Server  | Signed request to retrieve transaction object. |
+| `TX_UNSIGNED`       | Server → Wallet  | Unsigned transaction for signing.              |
+| `TX_SIGNED`         | Wallet → Network | Signed transaction for broadcast.              |
 
 Encoding and transport (JSON, CBOR, gRPC, etc.) can vary; the logical sequence and roles are as above.
 
 ## Diagrams
 
-| Diagram | Description |
-|---------|-------------|
-| [Session payment](/images/vouchers-session-payment.png) | High-level session payment flow. |
-| [Session payment (BC integration)](/images/vouchers-session-payment-bc-integration.png) | Session flow with blockchain integration. |
-| [One-time payments](/images/vouchers-one_time-payments-flow.png) | One-time payment flow. |
+| Diagram                                                                                     | Description                                         |
+| ------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [Session payment](/images/vouchers-session-payment.png)                                     | High-level session payment flow.                    |
+| [Session payment (BC integration)](/images/vouchers-session-payment-bc-integration.png)     | Session flow with blockchain integration.           |
+| [One-time payments](/images/vouchers-one_time-payments-flow.png)                            | One-time payment flow.                              |
 | [One-time payment (WC2 integration)](/images/vouchers-one_time-payment-wc2-integration.png) | One-time flow with WalletConnect-style integration. |
-| [Merchant one-time payment](/images/vouchers-merchant-one_time-payment-flow.png) | Merchant one-time payment flow. |
-| [dApp session payment](/images/vouchers-dapp-session-payment-flow.png) | dApp session payment flow. |
+| [Merchant one-time payment](/images/vouchers-merchant-one_time-payment-flow.png)            | Merchant one-time payment flow.                     |
+| [dApp session payment](/images/vouchers-dapp-session-payment-flow.png)                      | dApp session payment flow.                          |
 
 ## Next steps
 

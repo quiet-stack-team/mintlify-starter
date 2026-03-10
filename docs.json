@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "Bleepay",
-  "theme": "maple",
+  "theme": "sequoia",
   "colors": {
     "primary": "#0E0E0E",
     "light": "#FDD034",
@@ -9,15 +9,23 @@
   },
   "background": {
     "color": {
-      "light": "#FFFFFF",
+      "light": "#F8F7F7",
       "dark": "#0E0E0E"
     }
   },
-  "topbarLinks": [],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.bleepay.com"
-  },
+ "navbar": {
+  "links": [
+    {
+      "label": "Get Help",
+      "href": "https://bleepay.com"
+    }
+  ],
+  "primary": {
+    "type": "button",
+    "label": "Download App",
+    "href": "https://bleepay.com"
+  }
+},
   "anchors": [
     { "name": "Website", "icon": "globe", "url": "https://bleepay.com" },
     { "name": "GitHub", "icon": "github", "url": "https://github.com/bleepay" }
@@ -95,5 +103,11 @@
   },
   "icons": {
     "library": "fontawesome"
+  },
+  "footer": {
+    "socials": {
+      "x": "https://bleepay.com/",
+      "website": "https://bleepay.com/"
+    }
   }
 }

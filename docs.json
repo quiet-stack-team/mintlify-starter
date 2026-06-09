@@ -42,6 +42,7 @@
     "tabs": [
       {
         "tab": "Home",
+        "icon": "house",
         "groups": [
           {
             "group": "Getting Started",
@@ -106,6 +107,7 @@
       },
       {
         "tab": "API reference",
+        "icon": "code",
         "groups": [
           {
             "group": "Introduction",

@@ -1,0 +1,48 @@
+# Sign Voucher
+
+> Sign a voucher with a public key.
+
+`POST /api/v1/vouchers/:voucherId/sign-voucher`
+
+Attaches a cryptographic signature to a voucher. This is used for protocols that require an explicit signing step separate from resolution.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `voucherId` | `string` | Yes | The voucher ID to sign |
+
+### Body
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `publicKey` | `string` | Yes | Public key used for signing, 1–256 characters |
+| `signature` | `string` | Yes | Cryptographic signature, 1–256 characters |
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/sign-voucher' \
+  --header 'Authorization: Bearer <payer_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "publicKey": "0xPublicKey...",
+    "signature": "0xSignature..."
+  }'
+```
+
+## Response
+
+### Response schema
+
+Returns the updated voucher object with the signature attached.
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `400` | `validation_failed` | Invalid or missing fields |
+| `401` | `unauthorized` | Missing or invalid bearer token |
+| `404` | `not_found` | Voucher not found |

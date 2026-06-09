@@ -1,0 +1,73 @@
+# Get Voucher
+
+> Retrieve a voucher by its ID.
+
+`GET /api/v1/vouchers/:voucherId`
+
+Returns the full state of a voucher, including its type, status, payment details, and any FX negotiation state.
+
+This is the endpoint to poll when waiting for the payer to resolve the voucher.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `voucherId` | `string` | Yes | The voucher ID |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/vch_482916' \
+  --header 'Authorization: Bearer <payee_token>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Voucher identifier |
+| `code` | `string` | 6-digit voucher code |
+| `status` | `string` | Voucher status (`RESERVED`, `REDEEMED`, `RESOLVED`, `DISCARDED`) |
+| `type` | `string` | `SIMPLE` or `CUSTOM` |
+| `expectedPayment` | `object` | Payment the payee expects (SIMPLE vouchers) |
+| `suppliedPayment` | `object` | Payer's FX negotiation offer (if negotiated) |
+| `payments` | `array` | Custom payment instructions (CUSTOM vouchers) |
+| `networks` | `array` | Network specifications (CUSTOM vouchers) |
+| `extras` | `array` | Extra instructions (CUSTOM vouchers) |
+| `expiresAt` | `string` | ISO 8601 expiry timestamp |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+{
+  "id": "vch_482916",
+  "code": "482916",
+  "status": "RESOLVED",
+  "type": "SIMPLE",
+  "expectedPayment": {
+    "network": "polygon",
+    "currency": "EURC",
+    "currencyAddress": "0x73b3db5a96a4b9d9bcfc22b8f1b3d85a5e5b5e5b",
+    "amount": "100",
+    "wallet": {
+      "address": "0xYourWalletAddress"
+    }
+  },
+  "expiresAt": "2026-06-09T12:02:00.000Z",
+  "createdAt": "2026-06-09T12:00:00.000Z",
+  "updatedAt": "2026-06-09T12:01:00.000Z"
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `401` | `unauthorized` | Missing or invalid bearer token |
+| `404` | `not_found` | Voucher not found |

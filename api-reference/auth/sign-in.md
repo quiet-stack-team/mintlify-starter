@@ -1,0 +1,106 @@
+# Sign In
+
+> Authenticate as a user or with a resource to obtain a JWT bearer token.
+
+`POST /api/v1/auth/sign-in`
+
+Authenticate using one of three methods: mobile device credentials, a resource code (for payment contexts), or email and password.
+
+## Parameters
+
+### Body
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `type` | `enum` | Yes | `mobile-device`, `resource`, or `email-password` |
+| `data` | `object` | Yes | Credential data — shape depends on `type` |
+
+**When `type` is `mobile-device`:**
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `data.installationId` | `string` | Yes | Device installation ID, 32–128 characters |
+| `data.password` | `string` | Yes | Device password, 32–256 characters |
+
+**When `type` is `resource`:**
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `data.resource` | `string` | Yes | Resource identifier, 4–128 characters. Format: `voucher::context::code::<code>` |
+
+**When `type` is `email-password`:**
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `data.email` | `string` | Yes | Email address, 3–128 characters |
+| `data.password` | `string` | Yes | Account password, 8–256 characters |
+
+## Request examples
+
+### Payer sign-in (mobile device)
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/auth/sign-in' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "type": "mobile-device",
+    "data": {
+      "installationId": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6",
+      "password": "your-device-password-minimum-32-chars"
+    }
+  }'
+```
+
+### Payee sign-in (resource / context code)
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/auth/sign-in' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "type": "resource",
+    "data": {
+      "resource": "voucher::context::code::A1B2C3"
+    }
+  }'
+```
+
+### Email sign-in
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/auth/sign-in' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "type": "email-password",
+    "data": {
+      "email": "user@example.com",
+      "password": "your-password"
+    }
+  }'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `authorization` | `object` | Authorization payload |
+| `authorization.token` | `string` | JWT bearer token for subsequent requests |
+
+### Example response
+
+```json
+{
+  "authorization": {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+  }
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `400` | `invalid_credentials` | The provided credentials are invalid |
+| `400` | `invalid_type` | The `type` field is missing or unsupported |
+| `429` | `rate_limit` | Too many sign-in attempts — wait and retry |

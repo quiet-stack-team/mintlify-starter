@@ -1,0 +1,31 @@
+# Query Businesses
+
+> List all businesses for the authenticated user.
+
+`GET /api/v1/businesses/`
+
+This endpoint has no query parameters.
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/businesses/' \
+  --header 'Authorization: Bearer <user_token>'
+```
+
+## Response
+
+Returns an array of business objects.
+
+### Example response
+
+```json
+[
+  {
+    "id": "biz_abc123",
+    "name": "Acme Corporation",
+    "status": "ACTIVE",
+    "createdAt": "2026-06-09T12:00:00.000Z"
+  }
+]
+```

@@ -1,0 +1,62 @@
+# Reserve Voucher in Session
+
+> Reserve a voucher within an open session.
+
+`POST /api/v1/vouchers/sessions/:sessionId/reserve-voucher`
+
+Works the same as the standalone `reserve-voucher` endpoint, but scoped to a session. Each voucher reserved in a session is independent — with its own code, lifecycle, and settlement — but tracked together under the session.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `sessionId` | `string` | Yes | The session ID |
+
+### Body
+
+No body parameters required. The context is derived from the session.
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_xyz/reserve-voucher' \
+  --header 'Authorization: Bearer <payee_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{}'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Unique voucher identifier |
+| `code` | `string` | 6-digit voucher code |
+| `status` | `string` | Voucher status — `RESERVED` |
+| `expiresAt` | `string` | ISO 8601 expiry timestamp |
+
+### Example response
+
+```json
+{
+  "id": "vch_482916",
+  "code": "482916",
+  "status": "RESERVED",
+  "expiresAt": "2026-06-09T12:02:00.000Z"
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `400` | `session_closed` | Cannot reserve in a closed session |
+| `401` | `unauthorized` | Missing or invalid bearer token |
+| `404` | `not_found` | Session not found |
+
+## Next steps
+
+After reserving, [redeem the voucher](/api-reference/vouchers/redeem-voucher) to set the payment terms.

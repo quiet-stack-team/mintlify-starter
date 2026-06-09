@@ -1,0 +1,49 @@
+# Submit Interop Signature
+
+> Initiate cross-chain signature submission for a voucher.
+
+`POST /api/v1/vouchers/:voucherId/submit/interop-init`
+
+Initiates a cross-chain signature submission flow. Used when the voucher requires signatures across multiple blockchain networks.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `voucherId` | `string` | Yes | The voucher ID |
+
+### Query
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `id` | `string` | Yes | Signature submission identifier |
+| `paymentIndex` | `integer` | No | Index of the payment being signed (0–10) |
+| `vid` | `string` | No | Voucher ID override for the signature |
+
+### Body
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `signature` | `string` | No | The cryptographic signature, 1–256 characters |
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/submit/interop-init?id=sig_abc&paymentIndex=0' \
+  --header 'Authorization: Bearer <payer_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{ "signature": "0xSignature..." }'
+```
+
+## Response
+
+Returns `{ "id": "<submission_id>" }` on success.
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `401` | `unauthorized` | Missing or invalid bearer token |
+| `404` | `not_found` | Voucher not found |

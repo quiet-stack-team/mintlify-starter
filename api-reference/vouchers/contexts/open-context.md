@@ -1,0 +1,76 @@
+# Open Context
+
+> Start a new payment context — the first step in a voucher payment flow.
+
+`POST /api/v1/vouchers/contexts/context-open`
+
+A context is a secure link between a payer's wallet and a payment session. The payer opens a context in their wallet, which generates a **context code** they share with the payee. The payee then uses this code to authenticate and reserve vouchers.
+
+This endpoint requires authentication as a registered user (the payer).
+
+## Parameters
+
+### Body
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `format` | `enum` | Yes | `numeric` or `alphanum` — the format of the context code |
+| `payers` | `array` | Yes | List of payers, 1–10 entries |
+
+**Payer object:**
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `address` | `string` | Yes | Blockchain wallet address of the payer |
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/contexts/context-open' \
+  --header 'Authorization: Bearer <payer_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "format": "numeric",
+    "payers": [
+      { "address": "0x1234567890abcdef1234567890abcdef12345678" }
+    ]
+  }'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Unique context identifier |
+| `code` | `string` | Context code — share this with the payee |
+| `status` | `string` | Context status (`OPEN`, etc.) |
+| `format` | `string` | Code format (`numeric` or `alphanum`) |
+| `payers` | `array` | Payer objects in the context |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+
+### Example response
+
+```json
+{
+  "id": "ctx_a1b2c3d4e5f6",
+  "code": "A1B2C3",
+  "status": "OPEN",
+  "format": "numeric",
+  "payers": [
+    {
+      "address": "0x1234567890abcdef1234567890abcdef12345678"
+    }
+  ],
+  "createdAt": "2026-06-09T12:00:00.000Z"
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `400` | `validation_failed` | Invalid or missing required fields |
+| `401` | `unauthorized` | Missing or invalid bearer token |
+| `500` | `unexpected` | An unexpected error occurred |

@@ -1,0 +1,46 @@
+# Create Business
+
+> Register a new business.
+
+`POST /api/v1/businesses/create-business`
+
+Creates a new business profile. Once created, you can configure widgets, webhook endpoints, and settlement accounts for the business.
+
+## Parameters
+
+### Body
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `name` | `string` | Yes | Business name, 1–128 characters |
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/businesses/create-business' \
+  --header 'Authorization: Bearer <user_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{ "name": "Acme Corporation" }'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Business identifier |
+| `name` | `string` | Business name |
+| `status` | `string` | Business status |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+
+### Example response
+
+```json
+{
+  "id": "biz_abc123",
+  "name": "Acme Corporation",
+  "status": "ACTIVE",
+  "createdAt": "2026-06-09T12:00:00.000Z"
+}
+```

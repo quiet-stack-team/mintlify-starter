@@ -1,0 +1,43 @@
+# Join Session
+
+> Join a voucher session as the payer.
+
+`POST /api/v1/vouchers/sessions/:sessionId/session-join`
+
+After the payee opens a session, the payer joins it from their wallet. This links the payer's identity to the session so vouchers can be reserved and resolved within it.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `sessionId` | `string` | Yes | The session ID to join |
+
+### Body
+
+No body parameters required.
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_xyz/session-join' \
+  --header 'Authorization: Bearer <payer_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{}'
+```
+
+## Response
+
+### Response schema
+
+Returns the updated session object with the payer joined.
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `400` | `already_joined` | Payer has already joined this session |
+| `400` | `session_closed` | Cannot join a closed session |
+| `401` | `unauthorized` | Missing or invalid bearer token |
+| `404` | `not_found` | Session not found |

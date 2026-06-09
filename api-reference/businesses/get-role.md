@@ -1,0 +1,38 @@
+# Get Business Role
+
+> Get the authenticated user's role in a business.
+
+`GET /api/v1/businesses/:businessId/me`
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/me' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `role` | `string` | User's role in this business |
+| `status` | `string` | User's membership status |
+
+### Example response
+
+```json
+{
+  "role": "OWNER",
+  "status": "ACTIVE"
+}
+```

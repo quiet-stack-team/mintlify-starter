@@ -1,0 +1,29 @@
+# Delete Widget
+
+> Permanently delete a widget.
+
+`POST /api/v1/businesses/:businessId/widgets/:widgetId/delete-widget`
+
+Deleted widgets cannot be recovered. Active deposit sessions for this widget are not affected.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+| `widgetId` | `string` | Yes | The widget ID |
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/widgets/wdgt_abc/delete-widget' \
+  --header 'Authorization: Bearer <business_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{}'
+```
+
+## Response
+
+Returns HTTP 200 with an empty body.

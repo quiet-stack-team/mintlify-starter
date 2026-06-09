@@ -105,12 +105,103 @@
         ]
       },
       {
-        "tab": "API docs",
+        "tab": "API reference",
         "groups": [
           {
-            "group": "Overview",
+            "group": "Introduction",
             "pages": [
-              "new-category/overview"
+              "api-reference/index",
+              "/api-reference/introduction/authentication"
+            ]
+          },
+          {
+            "group": "Auth",
+            "pages": [
+              "/api-reference/auth/sign-in",
+              "/api-reference/auth/sign-up",
+              "/api-reference/auth/get-challenge"
+            ]
+          },
+          {
+            "group": "Vouchers",
+            "pages": [
+              "/api-reference/vouchers/contexts/open-context",
+              "/api-reference/vouchers/contexts/get-context",
+              "/api-reference/vouchers/contexts/query-contexts",
+              "/api-reference/vouchers/contexts/close-context",
+              "/api-reference/vouchers/reserve-voucher",
+              "/api-reference/vouchers/redeem-voucher",
+              "/api-reference/vouchers/resolve-voucher",
+              "/api-reference/vouchers/negotiate-voucher",
+              "/api-reference/vouchers/sign-voucher",
+              "/api-reference/vouchers/discard-voucher",
+              "/api-reference/vouchers/get-voucher",
+              "/api-reference/vouchers/query-vouchers",
+              "/api-reference/vouchers/submit-interop",
+              "/api-reference/vouchers/get-interop-status"
+            ]
+          },
+          {
+            "group": "Sessions",
+            "pages": [
+              "/api-reference/vouchers/sessions/open-session",
+              "/api-reference/vouchers/sessions/get-session",
+              "/api-reference/vouchers/sessions/join-session",
+              "/api-reference/vouchers/sessions/close-session",
+              "/api-reference/vouchers/sessions/reserve-voucher"
+            ]
+          },
+          {
+            "group": "Finance",
+            "pages": [
+              "/api-reference/finance/get-networks",
+              "/api-reference/finance/get-currencies",
+              "/api-reference/finance/convert-amount"
+            ]
+          },
+          {
+            "group": "Widgets",
+            "pages": [
+              "/api-reference/widgets/management/create-widget",
+              "/api-reference/widgets/management/get-widget",
+              "/api-reference/widgets/management/query-widgets",
+              "/api-reference/widgets/management/update-widget",
+              "/api-reference/widgets/management/enable-widget",
+              "/api-reference/widgets/management/disable-widget",
+              "/api-reference/widgets/management/delete-widget",
+              "/api-reference/widgets/public/get-config",
+              "/api-reference/widgets/public/create-session",
+              "/api-reference/widgets/public/get-session",
+              "/api-reference/widgets/public/cancel-session"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "/api-reference/webhooks/create-endpoint",
+              "/api-reference/webhooks/get-endpoint",
+              "/api-reference/webhooks/query-endpoints",
+              "/api-reference/webhooks/update-endpoint",
+              "/api-reference/webhooks/rotate-secret",
+              "/api-reference/webhooks/enable-endpoint",
+              "/api-reference/webhooks/disable-endpoint",
+              "/api-reference/webhooks/delete-endpoint",
+              "/api-reference/webhooks/query-deliveries",
+              "/api-reference/webhooks/get-delivery",
+              "/api-reference/webhooks/retry-delivery"
+            ]
+          },
+          {
+            "group": "Businesses",
+            "pages": [
+              "/api-reference/businesses/create-business",
+              "/api-reference/businesses/get-business",
+              "/api-reference/businesses/query-businesses",
+              "/api-reference/businesses/update-business",
+              "/api-reference/businesses/update-status",
+              "/api-reference/businesses/get-role",
+              "/api-reference/businesses/query-users",
+              "/api-reference/businesses/update-user-status"
             ]
           }
         ]

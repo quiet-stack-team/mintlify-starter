@@ -1,0 +1,35 @@
+# E-Commerce Overview
+
+> Accept crypto payments and receive fiat, without crypto accounting.
+
+Bleepay lets merchants **accept crypto payments** and **receive fiat** — without dealing with crypto accounting. The flow is a familiar checkout experience: no wallet connection on your site, no popups, no browser extensions.
+
+## Why Bleepay for E-Commerce?
+
+Crypto payments, without crypto complexity.
+
+Bleepay removes the operational and UX friction usually associated with accepting crypto, while keeping the model **non-custodial** for the user. The customer pays with any supported token; you receive fiat.
+
+## How it works for merchants
+
+**Checkout** — Customer shops as usual and selects Bleepay at checkout. No wallet connection is required on your site.
+
+**Payment** — Customer enters their six-digit code and confirms the transaction in their wallet. You receive fiat directly to your bank account.
+
+**Monitoring** — Track transactions, view revenue, and manage payouts in one place. Bleepay handles the crypto; you see the fiat.
+
+## Benefits
+
+| Benefit | Description |
+|---------|-------------|
+| One simple API | Integrate in minutes with a small set of parameters. |
+| Minimal frontend changes | Add Bleepay as a payment method; the code input can be embedded in your layout. |
+| No wallet infrastructure | You don't run wallets, RPC, or chain logic. |
+| Standard checkouts | Fits into existing checkout flows like any other payment provider. |
+| Fiat settlement | Funds land in your IBAN; no crypto treasury or accounting unless you want it. |
+
+## Next steps
+
+* [Checkout flow](/home/e-commerce/checkout-flow) — UX and integration details.
+* [Benefits](/home/e-commerce/benefits) — more on why merchants choose Bleepay.
+* [Webhooks](/home/e-commerce/webhooks) — event types, payloads, and verification.

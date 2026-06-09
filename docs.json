@@ -13,82 +13,106 @@
       "dark": "#0E0E0E"
     }
   },
- "navbar": {
-  "links": [
-    {
-      "label": "Get Help",
+  "navbar": {
+    "links": [
+      {
+        "label": "Get Help",
+        "href": "https://bleepay.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Download App",
       "href": "https://bleepay.com"
     }
-  ],
-  "primary": {
-    "type": "button",
-    "label": "Download App",
-    "href": "https://bleepay.com"
-  }
-},
+  },
   "anchors": [
-    { "name": "Website", "icon": "globe", "url": "https://bleepay.com" },
-    { "name": "GitHub", "icon": "github", "url": "https://github.com/bleepay" }
+    {
+      "name": "Website",
+      "icon": "globe",
+      "url": "https://bleepay.com"
+    },
+    {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/bleepay"
+    }
   ],
   "navigation": {
-    "groups": [
+    "tabs": [
       {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "getting-started/introduction",
-          "getting-started/quickstart",
-          "getting-started/core-concepts"
+        "tab": "Home",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "index",
+              "home/getting-started/introduction",
+              "home/getting-started/quickstart",
+              "home/getting-started/core-concepts"
+            ]
+          },
+          {
+            "group": "Web2 and Web3 Payments",
+            "pages": [
+              "home/web2-web3-payments/overview",
+              "home/web2-web3-payments/simple-payments",
+              "home/web2-web3-payments/sessions",
+              "home/web2-web3-payments/smart-contracts"
+            ]
+          },
+          {
+            "group": "E-Commerce",
+            "pages": [
+              "home/e-commerce/overview",
+              "home/e-commerce/benefits",
+              "home/e-commerce/checkout-flow",
+              "home/e-commerce/webhooks"
+            ]
+          },
+          {
+            "group": "Integration",
+            "pages": [
+              "home/integration/dapps",
+              "home/integration/wallet-providers",
+              "home/integration/developers",
+              "home/integration/processing"
+            ]
+          },
+          {
+            "group": "Architecture",
+            "pages": [
+              "home/architecture/system-overview",
+              "home/architecture/bleepay-widget",
+              "home/architecture/bleepay-wallet",
+              "home/architecture/payment-flows",
+              "home/architecture/how-money-moves",
+              "home/architecture/custody-model",
+              "home/architecture/onboarding-kyc-kyb",
+              "home/architecture/security",
+              "home/architecture/dependencies",
+              "home/architecture/fees"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "home/reference/terminology",
+              "home/reference/protocol-flow",
+              "home/reference/voucher-modes"
+            ]
+          }
         ]
       },
       {
-        "group": "Web2 and Web3 Payments",
-        "pages": [
-          "web2-web3-payments/overview",
-          "web2-web3-payments/simple-payments",
-          "web2-web3-payments/sessions",
-          "web2-web3-payments/smart-contracts"
-        ]
-      },
-      {
-        "group": "E-Commerce",
-        "pages": [
-          "e-commerce/overview",
-          "e-commerce/benefits",
-          "e-commerce/checkout-flow",
-          "e-commerce/webhooks"
-        ]
-      },
-      {
-        "group": "Integration",
-        "pages": [
-          "integration/dapps",
-          "integration/wallet-providers",
-          "integration/developers",
-          "integration/processing"
-        ]
-      },
-      {
-        "group": "Architecture",
-        "pages": [
-          "architecture/system-overview",
-          "architecture/bleepay-widget",
-          "architecture/bleepay-wallet",
-          "architecture/payment-flows",
-          "architecture/how-money-moves",
-          "architecture/custody-model",
-          "architecture/onboarding-kyc-kyb",
-          "architecture/security",
-          "architecture/dependencies",
-          "architecture/fees"
-        ]
-      },
-      {
-        "group": "Reference",
-        "pages": [
-          "reference/terminology",
-          "reference/protocol-flow",
-          "reference/voucher-modes"
+        "tab": "API docs",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "new-category/overview"
+            ]
+          }
         ]
       }
     ]

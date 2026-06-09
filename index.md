@@ -17,41 +17,41 @@ Bleepay is a **non-custodial orchestration layer** that connects Web3 liquidity 
 
 ### Getting Started
 - [Index](index)
-- [Introduction](/getting-started/introduction) — What Bleepay is and why it exists
-- [Core Concepts](/getting-started/core-concepts) — Vouchers, sessions, and settlement
-- [Quickstart](/getting-started/quickstart) — Your first EURC payment via the API
+- [Introduction](/home/getting-started/introduction) — What Bleepay is and why it exists
+- [Core Concepts](/home/getting-started/core-concepts) — Vouchers, sessions, and settlement
+- [Quickstart](/home/getting-started/quickstart) — Your first EURC payment via the API
 
 ### Web2/Web3 Payments
-- [Integration Overview](/web2-web3-payments/overview) — Parameters, webhooks, and how Bleepay fits into your stack
-- [Simple Payments](/web2-web3-payments/simple-payments) — SIMPLE vouchers for token transfers with built-in FX
-- [Sessions](/web2-web3-payments/sessions) — Group multiple vouchers into a single session
-- [Smart Contracts](/web2-web3-payments/smart-contracts) — CUSTOM vouchers for contract interactions
+- [Integration Overview](/home/web2-web3-payments/overview) — Parameters, webhooks, and how Bleepay fits into your stack
+- [Simple Payments](/home/web2-web3-payments/simple-payments) — SIMPLE vouchers for token transfers with built-in FX
+- [Sessions](/home/web2-web3-payments/sessions) — Group multiple vouchers into a single session
+- [Smart Contracts](/home/web2-web3-payments/smart-contracts) — CUSTOM vouchers for contract interactions
 
 ### E-Commerce
-- [Overview](/e-commerce/overview) — Accept crypto at checkout, receive fiat
-- [Benefits](/e-commerce/benefits) — Why merchants choose Bleepay
-- [Checkout Flow](/e-commerce/checkout-flow) — Customer and merchant steps
-- [Webhooks](/e-commerce/webhooks) — Event types, payloads, and verification
+- [Overview](/home/e-commerce/overview) — Accept crypto at checkout, receive fiat
+- [Benefits](/home/e-commerce/benefits) — Why merchants choose Bleepay
+- [Checkout Flow](/home/e-commerce/checkout-flow) — Customer and merchant steps
+- [Webhooks](/home/e-commerce/webhooks) — Event types, payloads, and verification
 
 ### Integrations
-- [Overview](/integration/dapps) — How Bleepay integrates into dapps
-- [Wallet Providers](/integration/wallet-providers) — Integrate Bleepay into a wallet
-- [dApp Integration](/integration/developers) — Code-based wallet connections for dApps
-- [Web3 Processing](/integration/processing) — Swaps, DeFi, and complex on-chain actions
+- [Overview](/home/integration/dapps) — How Bleepay integrates into dapps
+- [Wallet Providers](/home/integration/wallet-providers) — Integrate Bleepay into a wallet
+- [dApp Integration](/home/integration/developers) — Code-based wallet connections for dApps
+- [Web3 Processing](/home/integration/processing) — Swaps, DeFi, and complex on-chain actions
 
 ### Architecture
-- [System Overview](/architecture/system-overview) — The two products at a glance
-- [Bleepay Widget](/architecture/bleepay-widget) — Crypto payment gateway
-- [Bleepay Wallet](/architecture/bleepay-wallet) — Vouchers and the wallet app
-- [Payment Flows](/architecture/payment-flows) — Deposit, voucher, FX, and fiat off-ramp
-- [How Money Moves](/architecture/how-money-moves) — Fund flows by scenario
-- [Custody Model](/architecture/custody-model) — Non-custodial across both products
-- [Onboarding & KYC/KYB](/architecture/onboarding-kyc-kyb) — Identity verification for merchants
-- [Security](/architecture/security) — Zero-trust and non-custodial model
-- [Dependency Management](/architecture/dependencies) — Modular provider architecture
-- [Fee Structure](/architecture/fees) — Cost layers and commercial terms
+- [System Overview](/home/architecture/system-overview) — The two products at a glance
+- [Bleepay Widget](/home/architecture/bleepay-widget) — Crypto payment gateway
+- [Bleepay Wallet](/home/architecture/bleepay-wallet) — Vouchers and the wallet app
+- [Payment Flows](/home/architecture/payment-flows) — Deposit, voucher, FX, and fiat off-ramp
+- [How Money Moves](/home/architecture/how-money-moves) — Fund flows by scenario
+- [Custody Model](/home/architecture/custody-model) — Non-custodial across both products
+- [Onboarding & KYC/KYB](/home/architecture/onboarding-kyc-kyb) — Identity verification for merchants
+- [Security](/home/architecture/security) — Zero-trust and non-custodial model
+- [Dependency Management](/home/architecture/dependencies) — Modular provider architecture
+- [Fee Structure](/home/architecture/fees) — Cost layers and commercial terms
 
 ### Reference
-- [Terminology](/reference/terminology) — Glossary of protocol terms
-- [Protocol Flow](/reference/protocol-flow) — Voucher lifecycle from generation to settlement
-- [Voucher Modes](/reference/voucher-modes) — Numeric vs alphanumeric voucher formats
+- [Terminology](/home/reference/terminology) — Glossary of protocol terms
+- [Protocol Flow](/home/reference/protocol-flow) — Voucher lifecycle from generation to settlement
+- [Voucher Modes](/home/reference/voucher-modes) — Numeric vs alphanumeric voucher formats

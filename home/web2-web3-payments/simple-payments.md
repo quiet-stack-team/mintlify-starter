@@ -1,0 +1,127 @@
+# Simple Payments
+
+> Using a SIMPLE voucher to create a single token payment with built-in FX.
+
+A SIMPLE voucher is the easiest way to accept a payment. You specify what currency you want, how much, and where to send it — Bleepay handles everything else including network selection, gas, and FX (foreign exchange).
+
+Using a SIMPLE voucher enables the payer to take advantage of **FX out of the box**. You request payment in one currency (e.g. EURC), and the payer can pay with a different currency they hold (e.g. USDC on the same network). The system automatically calculates the exchange rate and handles the conversion.
+
+## Flow
+
+1. **Payer** opens their Bleepay-compatible wallet, authenticates, and opens a context — the wallet displays a context code.
+2. **Payer** shares the context code with you (QR, link, NFC, etc.).
+3. **You authenticate** using the context code as a resource.
+4. **You reserve** a voucher using the context code → receive a 6-digit voucher code.
+5. **You redeem** the voucher with `expectedPayment` specifying what you want to receive.
+6. (Optional) **Payer negotiates** — if they don't hold the requested currency, their wallet proposes an alternative. Bleepay calculates the FX rate automatically.
+7. **Payer** reviews the transaction in their wallet, signs, and submits the receipt — the wallet resolves the voucher.
+8. **Settlement** — funds arrive at your address.
+
+## Example: Single EURC payment
+
+The payer has already opened their wallet and shared a context code with you.
+
+### 1. Authenticate
+
+```
+POST /api/v1/auth/sign-in
+
+{
+    "type": "resource",
+    "data": {
+        "resource": "voucher::context::code::A1B2C3"
+    }
+}
+```
+
+Response: `{ "authorization": { "token": "<payee_token>" } }`
+
+### 2. Reserve a voucher
+
+```
+POST /api/v1/vouchers/reserve-voucher
+Authorization: Bearer <payee_token>
+
+{
+    "code": "A1B2C3"
+}
+```
+
+Response: `{ "id": "vch_482916", "code": "482916", "status": "RESERVED" }`
+
+### 3. Redeem with expectedPayment
+
+```
+POST /api/v1/vouchers/vch_482916/redeem-voucher
+Authorization: Bearer <payee_token>
+
+{
+    "expectedPayment": {
+        "network": "polygon",
+        "currency": "EURC",
+        "currencyAddress": "0x73b3db5a96a4b9d9bcfc22b8f1b3d85a5e5b5e5b",
+        "amount": "100",
+        "wallet": {
+            "address": "0xYourWalletAddress"
+        }
+    }
+}
+```
+
+The system detects no `networks`, `payments`, or `extras` were provided, so it automatically creates a **SIMPLE** voucher. The network is derived from the currency.
+
+### 4. Payer resolves
+
+The payer reviews the transaction in their wallet, signs it, and the wallet submits the receipt. Poll until the status reaches `RESOLVED`:
+
+```
+GET /api/v1/vouchers/vch_482916
+Authorization: Bearer <payee_token>
+```
+
+### (Optional) FX negotiation
+
+If the payer doesn't hold EURC, their wallet can negotiate by proposing a different currency they do hold (e.g. USDC). Bleepay calculates the exchange rate automatically and fills in the required amount, accounting for fees and slippage. This happens on the payer's side — no action needed from you beyond handling the updated `suppliedPayment` in the voucher response.
+
+### Diagram
+
+```text
+Payer (wallet)          Bleepay              Payee (you)
+     |                     |                     |
+     | open context        |                     |
+     |-------------------->|                     |
+     |<-- context code -----|                     |
+     |                     |                     |
+     |   (share context code via QR/link/etc.)   |
+     |------------------------------------------>|
+     |                     |  sign-in (resource)  |
+     |                     |<---------------------|
+     |                     |  reserve-voucher     |
+     |                     |<---------------------|
+     |                     |-- code "482916" ---->|
+     |                     |                     |
+     |                     |  redeem-voucher      |
+     |                     |  (expectedPayment)   |
+     |                     |<---------------------|
+     |                     |                     |
+     | negotiate (opt.)    |                     |
+     |-------------------->|                     |
+     |                     |                     |
+     | resolve-voucher     |                     |
+     |-------------------->|                     |
+     |                     |                     |
+     |              funds → your address         |
+```
+
+## When to use SIMPLE
+
+* Basic token transfers
+* Payments where you want a specific currency and amount
+* Scenarios where FX flexibility is desired
+* Any straightforward "send me X of token Y" use case
+
+## Next steps
+
+* [Sessions](/home/web2-web3-payments/sessions) — group multiple vouchers in a session.
+* [Smart Contracts](/home/web2-web3-payments/smart-contracts) — complex interactions with CUSTOM vouchers.
+* [Integration overview](/home/web2-web3-payments/overview) — full parameter reference.

@@ -16,6 +16,7 @@ Bleepay is a **non-custodial orchestration layer** that connects Web3 liquidity 
 ## Contents
 
 ### Getting Started
+- [Index](index)
 - [Introduction](/getting-started/introduction) — What Bleepay is and why it exists
 - [Core Concepts](/getting-started/core-concepts) — Vouchers, sessions, and settlement
 - [Quickstart](/getting-started/quickstart) — Your first EURC payment via the API

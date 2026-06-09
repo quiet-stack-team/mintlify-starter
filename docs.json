@@ -42,36 +42,42 @@
         ]
       },
       {
-        "group": "Integration",
+        "group": "Web2 and Web3 Payments",
         "pages": [
-          "integration/overview",
-          "integration/sdk",
-          "integration/implementation-workflow",
-          "integration/webhooks"
+          "web2-web3-payments/overview",
+          "web2-web3-payments/simple-payments",
+          "web2-web3-payments/sessions",
+          "web2-web3-payments/smart-contracts"
         ]
       },
       {
         "group": "E-Commerce",
         "pages": [
           "e-commerce/overview",
+          "e-commerce/benefits",
           "e-commerce/checkout-flow",
-          "e-commerce/benefits"
+          "e-commerce/webhooks"
         ]
       },
       {
-        "group": "Web3",
+        "group": "Integration",
         "pages": [
-          "web3/developers",
-          "web3/wallet-providers",
-          "web3/dapps",
-          "web3/processing"
+          "integration/dapps",
+          "integration/wallet-providers",
+          "integration/developers",
+          "integration/processing"
         ]
       },
       {
         "group": "Architecture",
         "pages": [
-          "architecture/execution-flow",
-          "architecture/off-ramp",
+          "architecture/system-overview",
+          "architecture/bleepay-widget",
+          "architecture/bleepay-wallet",
+          "architecture/payment-flows",
+          "architecture/how-money-moves",
+          "architecture/custody-model",
+          "architecture/onboarding-kyc-kyb",
           "architecture/security",
           "architecture/dependencies",
           "architecture/fees"

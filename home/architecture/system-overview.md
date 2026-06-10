@@ -24,6 +24,8 @@ A payment method based on a **6-digit code** (a voucher). It can be integrated s
 | **Settlement for the merchant** | Crypto (same token or stablecoin) or fiat | Same, including FX |
 | **Custody** | Non-custodial | Non-custodial |
 
+<img width="1920" height="2160" alt="82" src="https://github.com/user-attachments/assets/2261255c-3e1a-41c1-a12b-c60a4525aacb" />
+
 ```mermaid
 flowchart TD
     Customer([Customer / Payer])

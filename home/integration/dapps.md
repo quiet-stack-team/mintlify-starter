@@ -1,6 +1,6 @@
 # dApp Integration
 
-<img width="1500" height="844" alt="108" src="https://github.com/user-attachments/assets/f3381fc1-bafe-421d-be3a-ba9d14e81c22" />
+<img width="1500" height="844" alt="108" src="https://github.com/user-attachments/assets/224ebabf-7120-4853-bf70-9e7ae9677f8d" />
 
 > Accept code-based wallet connections and transaction authorizations in your dApp.
 

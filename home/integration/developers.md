@@ -1,5 +1,7 @@
 # Integrations
 
+<img width="1500" height="844" alt="109" src="https://github.com/user-attachments/assets/4d3992e7-9a55-4e95-ae2d-6c1c779dd13d" />
+
 > How Bleepay improves Web3 apps with fiat payments and code-based UX.
 
 Bleepay adds **fiat e-commerce payments**, **seamless wallet connections without browser extensions**, and **code-based transaction approvals** to Web3 applications. One integration, simpler UX, fewer maintenance headaches.

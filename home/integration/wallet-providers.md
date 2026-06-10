@@ -1,6 +1,6 @@
 # Wallet Providers
 
-<img width="1500" height="844" alt="dasd" src="https://github.com/user-attachments/assets/5d6a4f45-4a7d-4bef-8cb1-4dccc16ba3be" />
+<img width="2880" height="1620" alt="182" src="https://github.com/user-attachments/assets/239065c3-2173-423d-908f-b3b4560ff5c3" />
 
 > Integrate Bleepay into your wallet for Web2 payments and code-based dApp connections.
 

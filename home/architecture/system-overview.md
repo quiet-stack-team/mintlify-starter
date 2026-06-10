@@ -26,22 +26,7 @@ A payment method based on a **6-digit code** (a voucher). It can be integrated s
 | **Settlement for the merchant** | Crypto (same token or stablecoin) or fiat | Same, including FX |
 | **Custody** | Non-custodial | Non-custodial |
 
-```mermaid
-flowchart TD
-    Customer([Customer / Payer])
-    Widget[Bleepay Widget<br/>embedded or white-label]
-    Voucher[Voucher method<br/>6-digit code]
-    Wallet[Bleepay Wallet app<br/>user signs & sends]
-    MerchantWallet[(Merchant settlement<br/>stablecoin wallet)]
-    Bank[(Merchant bank account<br/>fiat)]
-
-    Customer --> Widget
-    Widget -. "enabled by default" .-> Voucher
-    Voucher --> Wallet
-    Wallet --> Widget
-    Widget --> MerchantWallet
-    Widget -- "FX + off-ramp" --> Bank
-```
+<img width="1000" height="1166" alt="150" src="https://github.com/user-attachments/assets/bec96acc-1ba6-4876-9146-55eb81152e2e" />
 
 ## What a merchant can receive (settlement options)
 

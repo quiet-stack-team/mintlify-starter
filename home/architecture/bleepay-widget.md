@@ -1,5 +1,7 @@
 # Bleepay Widget — Crypto Payment Gateway
 
+<img width="1920" height="1080" alt="130" src="https://github.com/user-attachments/assets/074c2615-9780-4cb3-b42f-dc02bb51be14" />
+
 > An embeddable (or white-label) gateway a merchant configures once to accept crypto, settling in crypto or fiat.
 
 The Widget is the merchant-facing product. A merchant integrates it in one of two ways:

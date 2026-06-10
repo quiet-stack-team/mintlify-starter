@@ -17,11 +17,7 @@ The base case: a customer pays a merchant on-chain, in the token the merchant ac
 
 Edge cases: `EXPIRED` (no funds in 30 min), `UNDERPAID`, `OVERPAID`, customer cancellation (only from `CREATED`/`PENDING`), and domain-restriction blocks.
 
-```mermaid
-flowchart LR
-    Payer([Customer wallet]) -- "token X on-chain" --> MerchantAddr[(Merchant's own address)]
-    Bleepay[[Bleepay system]] -. "monitors chain<br/>validates, notifies" .-> MerchantAddr
-```
+<img width="1500" height="1056" alt="181" src="https://github.com/user-attachments/assets/fd4bc2c5-db6d-4556-a257-b94505ab5080" />
 
 Funds move directly from the customer's wallet to the merchant's own address; Bleepay monitors, validates, and notifies.
 
@@ -37,16 +33,7 @@ Funds move directly from the customer's wallet to the merchant's own address; Bl
 
 The payer holds their own funds throughout; Bleepay prepares the transaction but the payer signs and broadcasts it. A SIMPLE voucher can also carry FX.
 
-```mermaid
-flowchart TD
-    Gen[Bleepay Wallet app<br/>generates 6-digit code]
-    Enter[Widget / integration<br/>payer enters code]
-    Build[Bleepay builds<br/>voucher transaction]
-    Sign[Payer signs & sends<br/>in Bleepay Wallet app]
-    Settle[(Payee receives value)]
-
-    Gen --> Enter --> Build --> Sign --> Settle
-```
+<img width="1500" height="2004" alt="182" src="https://github.com/user-attachments/assets/03ae9f83-3ded-4162-b95c-497d3796aa81" />
 
 ## FX — crypto ↔ crypto
 
@@ -61,12 +48,7 @@ Constraints: SIMPLE vouchers only; both currencies on the same network; both mus
 
 Bleepay integrates **multiple swap/exchange providers** and routes each pair to a suitable one, rather than relying on a single venue.
 
-```mermaid
-flowchart LR
-    Payer([Payer wallet<br/>token B]) --> Swap{{Swap / exchange service}}
-    Swap --> Payee[(Payee<br/>token A)]
-    Bleepay[[Bleepay system]] -. "quotes, builds tx,<br/>orchestrates swap" .-> Swap
-```
+<img width="1500" height="1252" alt="183" src="https://github.com/user-attachments/assets/78f1a651-18a6-4cc5-88c0-9563ad69b64f" />
 
 ## FX & fiat off-ramp (crypto → bank account)
 
@@ -82,15 +64,7 @@ The payee receives traditional money in a bank account while the payer pays in c
 
 A liquidation address is a single-purpose crypto address: crypto in → fiat out to a preset bank account, created per payment by the partner. Because a fiat payout is involved, the receiving merchant completes KYC/KYB (see [Onboarding and KYC/KYB](/home/architecture/onboarding-kyc-kyb)).
 
-```mermaid
-flowchart LR
-    Payer([Payer wallet<br/>crypto]) --> Swap{{Swap<br/>stage 1, if needed}}
-    Swap --> Liq[(Liquidation address<br/>operated by fiat partner)]
-    Payer -. "or directly if token matches" .-> Liq
-    Liq --> Partner[[Fiat partner<br/>e.g. Bridge.xyz]]
-    Partner --> Bank[(Payee bank account<br/>fiat via ACH/SEPA/wire)]
-    Bleepay[[Bleepay system]] -. "creates liquidation addr,<br/>quotes, orchestrates" .-> Liq
-```
+<img width="1500" height="1590" alt="184" src="https://github.com/user-attachments/assets/5bda61e2-4eeb-4e3d-9333-0980bb109c46" />
 
 ## Next steps
 

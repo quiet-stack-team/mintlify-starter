@@ -14,6 +14,8 @@ A merchant integrates Bleepay by embedding the Widget or via a white-label integ
 
 A payment method based on a **6-digit code** (a voucher). It can be integrated standalone or surfaced inside the Widget, where it is enabled by default. The payer enters the code, and confirms the payment in the **Bleepay Wallet** — a mobile app where they sign and send the transaction themselves.
 
+<img width="1920" height="2160" alt="82" src="https://github.com/user-attachments/assets/2261255c-3e1a-41c1-a12b-c60a4525aacb" />
+
 ## The two products at a glance
 
 | | Bleepay Widget | Bleepay Wallet & Vouchers |
@@ -23,8 +25,6 @@ A payment method based on a **6-digit code** (a voucher). It can be integrated s
 | **How the customer pays** | Sends crypto via a simple form | Enters a 6-digit code, confirms in the app |
 | **Settlement for the merchant** | Crypto (same token or stablecoin) or fiat | Same, including FX |
 | **Custody** | Non-custodial | Non-custodial |
-
-<img width="1920" height="2160" alt="82" src="https://github.com/user-attachments/assets/2261255c-3e1a-41c1-a12b-c60a4525aacb" />
 
 ```mermaid
 flowchart TD

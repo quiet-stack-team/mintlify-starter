@@ -12,29 +12,7 @@ This guide walks through the payee (merchant/dApp) side of a Bleepay voucher pay
 
 ## Flow overview
 
-```text
-Payer (wallet)          Bleepay API            Payee (you)
-     |                       |                     |
-     | open context           |                     |
-     |---------------------->|                     |
-     |<-- context code -------|                     |
-     |                       |                     |
-     |   (share context code: QR, link, NFC, etc.) |
-     |-------------------------------------------->|
-     |                       |  sign-in (resource)  |
-     |                       |<---------------------|
-     |                       |  reserve-voucher     |
-     |                       |<---------------------|
-     |                       |-- voucher "482916" ->|
-     |                       |                     |
-     |                       |  redeem-voucher      |
-     |                       |  (expectedPayment)   |
-     |                       |<---------------------|
-     |                       |                     |
-     | resolve-voucher       |                     |
-     | (sign & submit)       |                     |
-     |---------------------->|                     |
-```
+<img width="1154" height="1480" alt="144" src="https://github.com/user-attachments/assets/e08b9772-77f5-4ccb-9bab-72ea61b7ffb2" />
 
 Your responsibility is the **payee side** (right column). The payer side happens in their wallet.
 

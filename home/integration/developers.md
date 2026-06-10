@@ -1,6 +1,6 @@
 # Integrations
 
-<img width="1500" height="844" alt="109" src="https://github.com/user-attachments/assets/8e93b9b0-4012-445e-9cd3-e24796fb4f66" />
+<img width="1500" height="844" alt="109" src="https://github.com/user-attachments/assets/e3dd3244-80ef-4f4f-a961-36b10dc46c05" />
 
 > How Bleepay improves Web3 apps with fiat payments and code-based UX.
 

@@ -4,9 +4,13 @@ Bleepay offers two complementary products. They can be used independently, but t
 
 ## Bleepay Widget — a crypto payment gateway
 
+<img width="1920" height="1080" alt="177" src="https://github.com/user-attachments/assets/c0189478-a568-431e-aa2c-8e1d94d05694" />
+
 A merchant integrates Bleepay by embedding the Widget or via a white-label integration, and can then accept cryptocurrency payments from their customers. The customer pays in a supported token; the merchant can settle in a stablecoin or have Bleepay convert the payment to fiat and pay out to a bank account. When the customer's token differs from what the merchant wants, Bleepay arranges the FX in the background.
 
 ## Bleepay Wallet & Vouchers — a native payment method
+
+<img width="1920" height="1080" alt="178" src="https://github.com/user-attachments/assets/0a44649e-7e65-4097-8d9b-936bf8d2be05" />
 
 A payment method based on a **6-digit code** (a voucher). It can be integrated standalone or surfaced inside the Widget, where it is enabled by default. The payer enters the code, and confirms the payment in the **Bleepay Wallet** — a mobile app where they sign and send the transaction themselves.
 

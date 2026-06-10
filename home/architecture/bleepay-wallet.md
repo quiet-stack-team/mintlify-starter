@@ -13,11 +13,15 @@ The payer's experience:
 3. Bleepay **generates the transaction(s) associated with the voucher**.
 4. The payer **signs and sends** those transactions in the **Bleepay Wallet** app.
 
+<img width="1000" height="563" alt="180" src="https://github.com/user-attachments/assets/5ec01a68-0fae-47b5-b2e7-b3439bebdd57" />
+
 ## The Bleepay Wallet
 
 The Bleepay Wallet is a **mobile app (iOS / Android)** and is **non-custodial**: the user holds their own funds and keys. Bleepay's role is to **generate the transactions tied to a voucher** and present them in the app; the user then **signs and broadcasts them themselves**. Bleepay never holds the user's funds. This keeps the experience simple — a code and a tap — without Bleepay taking custody.
 
 The wallet that generates voucher codes is currently the Bleepay Wallet; the design anticipates other wallets generating codes in future.
+
+<img width="1000" height="563" alt="60" src="https://github.com/user-attachments/assets/f22cd5c0-0953-44fb-864f-9adfce680f7d" />
 
 ## Integration modes
 

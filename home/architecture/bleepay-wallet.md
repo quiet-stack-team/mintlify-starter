@@ -21,7 +21,7 @@ The Bleepay Wallet is a **mobile app (iOS / Android)** and is **non-custodial**:
 
 The wallet that generates voucher codes is currently the Bleepay Wallet; the design anticipates other wallets generating codes in future.
 
-<img width="1000" height="563" alt="60" src="https://github.com/user-attachments/assets/f22cd5c0-0953-44fb-864f-9adfce680f7d" />
+<img width="1000" height="563" alt="60" src="https://github.com/user-attachments/assets/9987822e-161b-407b-a6a2-66b0d5175f32" />
 
 ## Integration modes
 

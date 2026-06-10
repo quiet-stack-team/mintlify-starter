@@ -21,21 +21,10 @@ Where funds go and who holds them at each step, by scenario:
 | Fiat off-ramp | Fiat partner's liquidation address (transiently) |
 | Voucher | Payer holds own funds; signs and sends directly |
 
-```mermaid
-flowchart TD
-    subgraph A[A. Same token]
-      P1[Customer] --> M1[(Merchant's own address)]
-    end
-    subgraph B[B. Crypto FX]
-      P2[Payer token B] --> SW{{Swap service}} --> PA[(Payee token A)]
-    end
-    subgraph C[C. Fiat off-ramp]
-      P3[Payer crypto] --> SW2{{Swap?}} --> LQ[(Liquidation addr<br/>= partner)] --> BANK[(Payee bank)]
-    end
-    subgraph D[D. Voucher]
-      U[Payer signs & sends<br/>own funds] --> SET[(Payee)]
-    end
-```
+<img width="1500" height="723" alt="d" src="https://github.com/user-attachments/assets/a02308b8-44fa-46da-b65f-2adc9b497611" />
+<img width="1500" height="630" alt="c" src="https://github.com/user-attachments/assets/db38df34-0994-4008-9c91-28c0e34188a1" />
+<img width="1500" height="630" alt="b" src="https://github.com/user-attachments/assets/5eead8a3-cd2f-4fb3-9faf-c7a6b075149a" />
+<img width="1500" height="723" alt="a" src="https://github.com/user-attachments/assets/88b9716d-bd77-4fbf-8a68-5a7aa2683dca" />
 
 ## Next steps
 

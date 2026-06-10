@@ -1,5 +1,7 @@
 # Bleepay Documentation
 
+<img width="1920" height="1080" alt="95" src="https://github.com/user-attachments/assets/80fb329f-8934-4d30-ad53-37aa3aa8add2" />
+
 > Non-custodial payment orchestration connecting Web3 liquidity to traditional fiat rails. Pay with any token, receive fiat.
 
 Pay with a **6-digit code**. No extensions. No wallet popups. Crypto in, fiat out.

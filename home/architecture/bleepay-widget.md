@@ -13,6 +13,8 @@ From the customer's point of view it is a simple form: choose a currency, enter 
 
 ## What the merchant configures
 
+<img width="1000" height="563" alt="179" src="https://github.com/user-attachments/assets/c1c21c20-5f0e-4049-8260-404a6f396719" />
+
 A merchant sets up one or more Widgets from a dashboard and configures:
 
 - a **mode**: `FIXED_AMOUNT` (merchant sets the price) or `CUSTOMER_AMOUNT` (amount set dynamically, e.g. a checkout total, within min/max limits);

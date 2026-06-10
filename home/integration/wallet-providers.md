@@ -1,5 +1,7 @@
 # Wallet Providers
 
+<img width="1500" height="844" alt="dasd" src="https://github.com/user-attachments/assets/5d6a4f45-4a7d-4bef-8cb1-4dccc16ba3be" />
+
 > Integrate Bleepay into your wallet for Web2 payments and code-based dApp connections.
 
 If you build a **wallet** (mobile, desktop, or web), you can integrate Bleepay to give your users Web2 payment capabilities and code-based dApp connections without relying on browser extensions.

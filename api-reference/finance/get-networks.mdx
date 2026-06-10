@@ -1,0 +1,57 @@
+---
+title: Get Networks
+---
+
+
+> Get information about supported blockchain networks.
+
+`GET /api/v1/finance/networks`
+
+Returns details about supported blockchain networks including name, type, chain ID, and native currency. Can be filtered to a specific network or queried for source/destination routing pairs.
+
+## Parameters
+
+### Query
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `network` | `string` | No | Filter by network name (e.g. `polygon`, `ethereum`). 4–32 chars. |
+| `srcNetwork` | `string` | No | Source network for routing queries |
+| `dstNetwork` | `string` | No | Destination network for routing queries |
+| `limit` | `integer` | No | Number of items (default 1000) |
+| `offset` | `integer` | No | Pagination offset |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/finance/networks?network=polygon' \
+  --header 'Content-Type: application/json'
+```
+
+## Response
+
+Returns an array of network objects.
+
+**Network object:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `network` | `string` | Network identifier (e.g. `polygon`) |
+| `type` | `string` | Network type (`evm`, `solana`, etc.) |
+| `chainId` | `string` | Chain ID |
+| `nativeCurrency` | `string` | Native gas currency symbol |
+| `enabled` | `boolean` | Whether the network is active |
+
+### Example response
+
+```json
+[
+  {
+    "network": "polygon",
+    "type": "evm",
+    "chainId": "137",
+    "nativeCurrency": "POL",
+    "enabled": true
+  }
+]
+```

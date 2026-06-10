@@ -1,0 +1,47 @@
+---
+title: Get Business
+---
+
+
+> Retrieve a business by its ID.
+
+`GET /api/v1/businesses/:businessId`
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc123' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Business identifier |
+| `name` | `string` | Business name |
+| `status` | `string` | `ACTIVE`, `INACTIVE`, etc. |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+{
+  "id": "biz_abc123",
+  "name": "Acme Corporation",
+  "status": "ACTIVE",
+  "createdAt": "2026-06-09T12:00:00.000Z",
+  "updatedAt": "2026-06-09T12:00:00.000Z"
+}
+```

@@ -1,0 +1,62 @@
+---
+title: Query Webhook Deliveries
+---
+
+
+> List webhook delivery attempts for a business.
+
+`GET /api/v1/businesses/:businessId/webhook-deliveries`
+
+Returns a list of webhook delivery attempts with their status. Failed deliveries are automatically retried up to 3 times at 30-second intervals.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+
+### Query
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `limit` | `integer` | No | Number of items (default 100) |
+| `offset` | `integer` | No | Pagination offset |
+| `since` | `integer` | No | Unix timestamp (ms) — return items created after this time |
+| `until` | `integer` | No | Unix timestamp (ms) — return items created before this time |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webhook-deliveries?limit=20' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+**Delivery object:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Delivery identifier |
+| `eventType` | `string` | Event type (e.g. `deposit.confirmed`) |
+| `status` | `string` | Delivery status: `PENDING`, `DELIVERED`, `FAILED`, `RETRYING` |
+| `attempts` | `integer` | Number of delivery attempts made |
+| `lastAttemptAt` | `string` or `null` | ISO 8601 timestamp of last attempt |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+
+### Example response
+
+```json
+[
+  {
+    "id": "dly_abc123",
+    "eventType": "deposit.confirmed",
+    "status": "DELIVERED",
+    "attempts": 1,
+    "lastAttemptAt": "2026-06-09T12:05:00.000Z",
+    "createdAt": "2026-06-09T12:05:00.000Z"
+  }
+]
+```

@@ -1,0 +1,35 @@
+---
+title: Update Business
+---
+
+
+> Update a business's details.
+
+`POST /api/v1/businesses/:businessId/update-business`
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+
+### Body
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `name` | `string` | No | New business name, 1–128 characters |
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/update-business' \
+  --header 'Authorization: Bearer <business_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{ "name": "Acme Corp Updated" }'
+```
+
+## Response
+
+Returns HTTP 200 with an empty body.

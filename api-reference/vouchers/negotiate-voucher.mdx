@@ -1,0 +1,94 @@
+---
+title: Negotiate Voucher
+---
+
+
+> Propose an alternative payment currency — used for FX negotiation.
+
+`POST /api/v1/vouchers/:voucherId/negotiate-voucher`
+
+If the payer doesn't hold the currency the payee requested, their wallet can negotiate by proposing an alternative currency they do hold. The system calculates the exchange rate and fills in the required amount.
+
+This only applies to SIMPLE vouchers. The negotiation happens on the payer's side — the payee's `expectedPayment` remains unchanged, and a `suppliedPayment` is added to the voucher.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `voucherId` | `string` | Yes | The voucher ID to negotiate |
+
+### Body
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `suppliedPayment` | `object` | Yes | The payment the payer is offering |
+| `suppliedPayment.network` | `string` | Yes | Blockchain network |
+| `suppliedPayment.currency` | `string` | Yes | Currency symbol (e.g. `USDC`) |
+| `suppliedPayment.currencyAddress` | `string` | Yes | Contract address of the offered token |
+| `suppliedPayment.amount` | `string` | Yes | Amount the payer is offering |
+| `suppliedPayment.wallet` | `object` | Yes | Payer's wallet |
+| `suppliedPayment.wallet.address` | `string` | Yes | Payer's wallet address |
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/negotiate-voucher' \
+  --header 'Authorization: Bearer <payer_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "suppliedPayment": {
+      "network": "polygon",
+      "currency": "USDC",
+      "currencyAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+      "amount": "105",
+      "wallet": {
+        "address": "0xPayerWalletAddress"
+      }
+    }
+  }'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Voucher identifier |
+| `status` | `string` | Voucher status |
+| `expectedPayment` | `object` | The payee's original request (unchanged) |
+| `suppliedPayment` | `object` | The payer's proposed alternative, with FX-adjusted amount |
+
+### Example response
+
+```json
+{
+  "id": "vch_482916",
+  "status": "REDEEMED",
+  "expectedPayment": {
+    "network": "polygon",
+    "currency": "EURC",
+    "currencyAddress": "0x73b3db5a96a4b9d9bcfc22b8f1b3d85a5e5b5e5b",
+    "amount": "100",
+    "wallet": { "address": "0xYourWalletAddress" }
+  },
+  "suppliedPayment": {
+    "network": "polygon",
+    "currency": "USDC",
+    "currencyAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+    "amount": "105.23",
+    "wallet": { "address": "0xPayerWalletAddress" }
+  }
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `400` | `not_simple` | Negotiation is only available for SIMPLE vouchers |
+| `400` | `different_network` | The supplied currency must be on the same network as the expected currency |
+| `401` | `unauthorized` | Missing or invalid bearer token |
+| `404` | `not_found` | Voucher not found |

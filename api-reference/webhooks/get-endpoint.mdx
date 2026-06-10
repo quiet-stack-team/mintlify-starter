@@ -1,0 +1,54 @@
+---
+title: Get Webhook Endpoint
+---
+
+
+> Retrieve a webhook endpoint by its ID.
+
+`GET /api/v1/businesses/:businessId/webhook-endpoints/:endpointId`
+
+Returns the configuration of a single webhook endpoint. The signing secret is **not** returned.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+| `endpointId` | `string` | Yes | The endpoint ID |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webhook-endpoints/wh_abc123' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Endpoint identifier |
+| `url` | `string` | Delivery URL |
+| `description` | `string` | Human-readable description |
+| `events` | `array` | Subscribed event types |
+| `enabled` | `boolean` | Whether the endpoint is active |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+{
+  "id": "wh_abc123",
+  "url": "https://example.com/webhooks/bleepay",
+  "description": "Production webhook endpoint",
+  "events": ["deposit.pending", "deposit.confirmed", "deposit.expired"],
+  "enabled": true,
+  "createdAt": "2026-06-09T12:00:00.000Z",
+  "updatedAt": "2026-06-09T12:00:00.000Z"
+}
+```

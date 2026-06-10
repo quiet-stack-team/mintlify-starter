@@ -1,0 +1,50 @@
+---
+title: Query Widgets
+---
+
+
+> List all widgets for a business.
+
+`GET /api/v1/businesses/:businessId/widgets`
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+
+### Query
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `limit` | `integer` | No | Number of items (default 100) |
+| `offset` | `integer` | No | Pagination offset |
+| `since` | `integer` | No | Unix timestamp (ms) — return items created after this time |
+| `until` | `integer` | No | Unix timestamp (ms) — return items created before this time |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/widgets' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+Returns an array of widget objects. See [Get Widget](/api-reference/widgets/management/get-widget) for the object schema.
+
+### Example response
+
+```json
+[
+  {
+    "id": "wdgt_abc",
+    "name": "Checkout Widget",
+    "mode": "CUSTOMER_AMOUNT",
+    "enabled": true,
+    "createdAt": "2026-06-09T12:00:00.000Z"
+  }
+]
+```

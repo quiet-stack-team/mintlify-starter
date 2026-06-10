@@ -1,0 +1,52 @@
+---
+title: Convert Amount
+---
+
+
+> Convert an amount between two currencies — get the current exchange rate.
+
+`POST /api/v1/finance/currencies/convert`
+
+Returns the converted amount based on current market rates. Used for FX calculations when a payer wants to pay in a different currency than the payee requested.
+
+## Parameters
+
+### Body
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `sourceNetwork` | `string` | Yes | Source blockchain network, 4–32 characters |
+| `sourceCurrency` | `string` | Yes | Source currency symbol, 2–8 uppercase alphanumeric |
+| `sourceCurrencyAddress` | `string` | Yes | Source token contract address, 0–66 characters |
+| `targetNetwork` | `string` | Yes | Target blockchain network, 4–32 characters |
+| `targetCurrency` | `string` | Yes | Target currency symbol, 2–8 uppercase alphanumeric |
+| `targetCurrencyAddress` | `string` | Yes | Target token contract address, 0–66 characters |
+| `amount` | `string` | Yes | Amount to convert, numeric decimal string (e.g. `"100"`) |
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/finance/currencies/convert' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "sourceNetwork": "polygon",
+    "sourceCurrency": "USDC",
+    "sourceCurrencyAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+    "targetNetwork": "polygon",
+    "targetCurrency": "EURC",
+    "targetCurrencyAddress": "0x73b3db5a96a4b9d9bcfc22b8f1b3d85a5e5b5e5b",
+    "amount": "100"
+  }'
+```
+
+## Response
+
+### Response schema
+
+Returns a `string` — the converted amount.
+
+### Example response
+
+```json
+"92.15"
+```

@@ -1,0 +1,125 @@
+---
+title: Authentication
+---
+
+
+> How to authenticate with the Bleepay API — bearer tokens, resource-based auth, and API keys.
+
+The Bleepay API uses **Bearer tokens** (JWTs) for most endpoints. The authentication method depends on who you are and what you're doing.
+
+## Authentication methods
+
+| Method | Header | Used by |
+|--------|--------|---------|
+| **Bearer token (JWT)** | `Authorization: Bearer <token>` | Payers, payees, businesses |
+| **Client secret** | `X-Client-Secret: <secret>` | Widget public endpoints (customer-facing) |
+| **None** | — | Auth endpoints, finance endpoints, health checks |
+
+## Bearer token (JWT)
+
+The most common method. Obtain a token by signing in, then include it in all subsequent requests.
+
+### Obtaining a token
+
+**User sign-in** — for payers using a wallet:
+
+```
+POST /api/v1/auth/sign-in
+
+{
+    "type": "mobile-device",
+    "data": {
+        "installationId": "a1b2c3d4e5f6...",
+        "password": "your-device-password..."
+    }
+}
+```
+
+**Resource sign-in** — for payees authenticating with a context code:
+
+```
+POST /api/v1/auth/sign-in
+
+{
+    "type": "resource",
+    "data": {
+        "resource": "voucher::context::code::A1B2C3"
+    }
+}
+```
+
+**Response:**
+
+```json
+{
+    "authorization": {
+        "token": "eyJhbGciOiJIUzI1NiIs..."
+    }
+}
+```
+
+### Using the token
+
+Include it as a Bearer token in the `Authorization` header:
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/reserve-voucher' \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIs...' \
+  --header 'Content-Type: application/json' \
+  --data '{ "code": "A1B2C3" }'
+```
+
+### Token types
+
+Bleepay JWTs encode the authentication method:
+
+| Guard | Token type | Access |
+|-------|-----------|--------|
+| `RegisteredUserGuard` | JWT with `userId` or `deviceId` | Full user operations |
+| `RegisteredUserOrResourceGuard` | JWT with `userId`, `deviceId`, or resource | Finance, voucher, and session operations |
+| `BusinessUserGuard` | JWT with `userId` + business membership | Widget management, business CRUD |
+
+Resource-based tokens (obtained via `type: "resource"` sign-in) are scoped to a specific context and cannot access user management endpoints.
+
+## Client secret
+
+Widget public endpoints accept either a JWT or a client secret header:
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/wdgt_123/config' \
+  --header 'X-Client-Secret: wdgt_secret_abc123...'
+```
+
+Client secrets are issued when a widget is created.
+
+> **Security notice:** Never expose client secrets in client-side code, public repositories, or logs. Client secrets are shown only once at the time of widget creation.
+
+## HTTP status codes
+
+| Status | Meaning |
+|--------|---------|
+| `200` | Success |
+| `400` | Invalid request (bad parameters, validation failure) |
+| `401` | Missing or invalid authentication |
+| `403` | Authenticated but not authorized for this resource |
+| `404` | Resource not found |
+| `429` | Rate limit exceeded |
+| `500` | Unexpected server error |
+
+## Rate limits
+
+Each endpoint has its own rate limit. The limits below are per-endpoint (not per scope):
+
+| Endpoint group | Limit |
+|----------------|-------|
+| Auth (`sign-in`, `sign-up`, `get-challenge`) | 5 requests per 300 seconds |
+| Businesses read/write | 5 requests per 300 seconds |
+| Finance read/write | 5 requests per 300 seconds |
+| Vouchers read (`query`, `get`) | 10 requests per 600 seconds |
+| Vouchers write (`reserve`, `redeem`, `resolve`, `sign`, `discard`, sessions) | 5 requests per 300 seconds |
+| Voucher negotiate | 1 request per 60 seconds |
+| Widgets read/write | 5 requests per 300 seconds |
+| Widgets public read/write | 5 requests per 300 seconds |
+| Webhooks read/write | 5 requests per 300 seconds |
+
+When a limit is exceeded, the API returns `429 Too Many Requests`.

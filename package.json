@@ -1,0 +1,6 @@
+{
+  "name": "mdx-converter",
+  "version": "1.0.0",
+  "main": "convert-md-to-mdx.js",
+  "license": "MIT"
+}

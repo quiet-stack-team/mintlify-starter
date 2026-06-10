@@ -1,0 +1,42 @@
+---
+title: Get Challenge
+---
+
+
+> Get a verification challenge for device registration.
+
+`GET /api/v1/auth/get-challenge`
+
+Returns a challenge string that must be included when signing up with a mobile device. The challenge is used in the device attestation flow to verify the authenticity of the device.
+
+## Parameters
+
+None.
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/auth/get-challenge'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `challenge` | `string` | Verification challenge string |
+
+### Example response
+
+```json
+{
+  "challenge": "abcdefghijklmnopqrstuvwxyz0123456789abcdefghij"
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `429` | `rate_limit` | Too many requests |

@@ -1,0 +1,39 @@
+---
+title: Update Widget
+---
+
+
+> Update a widget's configuration.
+
+`POST /api/v1/businesses/:businessId/widgets/:widgetId/update-widget`
+
+All body parameters are optional — only provide the fields you want to change.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+| `widgetId` | `string` | Yes | The widget ID |
+
+### Body
+
+Same shape as [Create Widget](/api-reference/widgets/management/create-widget), but all fields are optional.
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/widgets/wdgt_abc/update-widget' \
+  --header 'Authorization: Bearer <business_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "name": "Updated Checkout",
+    "maxAmount": "5000"
+  }'
+```
+
+## Response
+
+Returns HTTP 200 with an empty body.

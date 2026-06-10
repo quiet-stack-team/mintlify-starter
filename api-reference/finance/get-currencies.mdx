@@ -1,0 +1,65 @@
+---
+title: Get Currencies
+---
+
+
+> Get information about supported currencies and tokens.
+
+`GET /api/v1/finance/currencies`
+
+Returns details about supported currencies including symbol, contract address, network, and whether the currency is enabled for swaps (bridgeable).
+
+## Parameters
+
+### Query
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `network` | `string` | No | Filter by network |
+| `symbol` | `string` | No | Filter by currency symbol (e.g. `EURC`, `USDC`) |
+| `address` | `string` | No | Filter by contract address |
+| `srcNetwork` | `string` | No | Source network for routing queries |
+| `srcSymbol` | `string` | No | Source currency symbol for routing queries |
+| `srcAddress` | `string` | No | Source contract address for routing queries |
+| `dstNetwork` | `string` | No | Destination network for routing queries |
+| `dstSymbol` | `string` | No | Destination currency symbol for routing queries |
+| `dstAddress` | `string` | No | Destination contract address for routing queries |
+| `limit` | `integer` | No | Number of items (default 1000) |
+| `offset` | `integer` | No | Pagination offset |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/finance/currencies?network=polygon&symbol=EURC' \
+  --header 'Content-Type: application/json'
+```
+
+## Response
+
+Returns an array of currency objects.
+
+**Currency object:**
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `symbol` | `string` | Currency symbol (e.g. `USDC`) |
+| `network` | `string` | Blockchain network |
+| `address` | `string` | Contract address on-chain |
+| `decimals` | `integer` | Token decimals |
+| `bridgeable` | `boolean` | Whether the currency can be swapped/bridged |
+| `enabled` | `boolean` | Whether the currency is active |
+
+### Example response
+
+```json
+[
+  {
+    "symbol": "EURC",
+    "network": "polygon",
+    "address": "0x73b3db5a96a4b9d9bcfc22b8f1b3d85a5e5b5e5b",
+    "decimals": 6,
+    "bridgeable": true,
+    "enabled": true
+  }
+]
+```

@@ -1,0 +1,64 @@
+---
+title: Get Context
+---
+
+
+> Retrieve a voucher context by its ID.
+
+`GET /api/v1/vouchers/contexts/:contextId`
+
+Returns the full state of a payment context, including its code, status, and associated payers.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `contextId` | `string` | Yes | The context ID returned when the context was opened |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/contexts/ctx_a1b2c3d4e5f6' \
+  --header 'Authorization: Bearer <payer_token>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Unique context identifier |
+| `code` | `string` | Context code |
+| `status` | `string` | Context status (`OPEN`, `CLOSED`) |
+| `format` | `string` | Code format (`numeric` or `alphanumeric`) |
+| `payers` | `array` | Payer objects |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+{
+  "id": "ctx_a1b2c3d4e5f6",
+  "code": "A1B2C3",
+  "status": "OPEN",
+  "format": "numeric",
+  "payers": [
+    {
+      "address": "0x1234567890abcdef1234567890abcdef12345678"
+    }
+  ],
+  "createdAt": "2026-06-09T12:00:00.000Z",
+  "updatedAt": "2026-06-09T12:00:00.000Z"
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `401` | `unauthorized` | Missing or invalid bearer token |
+| `404` | `not_found` | Context not found |

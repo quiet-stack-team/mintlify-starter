@@ -1,0 +1,60 @@
+---
+title: Get Session
+---
+
+
+> Retrieve a voucher session by its ID.
+
+`GET /api/v1/vouchers/sessions/:sessionId`
+
+Returns the state of a session, including its status and any vouchers reserved within it.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `sessionId` | `string` | Yes | The session ID |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_xyz' \
+  --header 'Authorization: Bearer <payee_token>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Session identifier |
+| `code` | `string` | Session code |
+| `status` | `string` | Session status (`OPEN`, `CLOSED`) |
+| `type` | `string` | Session type |
+| `vouchers` | `array` | Vouchers reserved within this session |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+{
+  "id": "ses_xyz",
+  "code": "D4E5F6",
+  "status": "OPEN",
+  "type": "payment",
+  "vouchers": [],
+  "createdAt": "2026-06-09T12:00:00.000Z",
+  "updatedAt": "2026-06-09T12:00:00.000Z"
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `401` | `unauthorized` | Missing or invalid bearer token |
+| `404` | `not_found` | Session not found |

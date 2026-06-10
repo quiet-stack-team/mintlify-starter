@@ -1,0 +1,58 @@
+---
+title: Close Session
+---
+
+
+> Close a voucher session — prevents new vouchers from being reserved.
+
+`POST /api/v1/vouchers/sessions/:sessionId/session-close`
+
+Close the session once all vouchers within it have been resolved. This finalizes the session; no new vouchers can be reserved in a closed session.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `sessionId` | `string` | Yes | The session ID to close |
+
+### Body
+
+No body parameters required.
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_xyz/session-close' \
+  --header 'Authorization: Bearer <payee_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{}'
+```
+
+## Response
+
+### Response schema
+
+Returns the updated session object with status `CLOSED`.
+
+### Example response
+
+```json
+{
+  "id": "ses_xyz",
+  "code": "D4E5F6",
+  "status": "CLOSED",
+  "type": "payment",
+  "createdAt": "2026-06-09T12:00:00.000Z",
+  "updatedAt": "2026-06-09T12:10:00.000Z"
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `400` | `already_closed` | The session is already closed |
+| `401` | `unauthorized` | Missing or invalid bearer token |
+| `404` | `not_found` | Session not found |

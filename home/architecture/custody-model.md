@@ -14,15 +14,8 @@
 
 > The only party other than the user and merchant that ever holds funds is the **fiat payout partner**, and only transiently during the crypto→fiat off-ramp.
 
-```mermaid
-flowchart LR
-    subgraph Gateway [Widget gateway - non-custodial]
-      C([Customer]) --> M[(Merchant / partner address)]
-    end
-    subgraph WalletPath [Bleepay Wallet - non-custodial]
-      U([User holds own funds]) --> Sign[User signs & sends] --> S[(Payee)]
-    end
-```
+<img width="1512" height="729" alt="158" src="https://github.com/user-attachments/assets/5b1d0678-cfea-448f-972f-fd18eb7609de" />
+<img width="1512" height="635" alt="157" src="https://github.com/user-attachments/assets/071c324d-f2ec-40f4-a7c8-0e02ac93b0f5" />
 
 ## Next steps
 

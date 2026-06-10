@@ -1,5 +1,7 @@
 # Bleepay Wallet & Vouchers — A Native Payment Method
 
+<img width="1920" height="1080" alt="176" src="https://github.com/user-attachments/assets/bf0efc9d-85c1-4227-8a63-1ae8f11d089a" />
+
 > A payer pays by entering a 6-digit code and confirming it in the non-custodial Bleepay Wallet app.
 
 The voucher method lets a payment be initiated with a **6-digit code** instead of wallet addresses and network selection.

@@ -26,7 +26,7 @@ A payment method based on a **6-digit code** (a voucher). It can be integrated s
 | **Settlement for the merchant** | Crypto (same token or stablecoin) or fiat | Same, including FX |
 | **Custody** | Non-custodial | Non-custodial |
 
-<img width="1000" height="1166" alt="150" src="https://github.com/user-attachments/assets/bec96acc-1ba6-4876-9146-55eb81152e2e" />
+<img width="1500" height="1749" alt="150" src="https://github.com/user-attachments/assets/c89bd001-e25a-47b4-a194-be711d73dc93" />
 
 ## What a merchant can receive (settlement options)
 

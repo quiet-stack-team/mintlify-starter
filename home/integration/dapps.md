@@ -1,5 +1,7 @@
 # dApp Integration
 
+<img width="1500" height="844" alt="108" src="https://github.com/user-attachments/assets/f3381fc1-bafe-421d-be3a-ba9d14e81c22" />
+
 > Accept code-based wallet connections and transaction authorizations in your dApp.
 
 dApps can use Bleepay to accept **code-based wallet connections** and **transaction authorizations**. Users connect with a six-digit code instead of browser extensions or QR scans—no popups, no session management, no conflicts with other wallets.

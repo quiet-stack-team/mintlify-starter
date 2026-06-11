@@ -1,5 +1,6 @@
 ---
-title: Integration Overview
+title: "Integration Overview"
+icon: "arrow-alt-to-bottom"
 ---
 
 > How Bleepay fits into your stack and what you need to integrate.
@@ -12,19 +13,19 @@ Bleepay allows a merchant to receive **crypto (Web3)** or **fiat (Web2)**. You d
 
 Integration is driven by **standard financial metadata**. Your engineering team does **not** need to:
 
-* Write or deploy smart contracts
-* Run or manage blockchain nodes
-* Handle gas, RPC, or wallet connections on the frontend
+- Write or deploy smart contracts
+- Run or manage blockchain nodes
+- Handle gas, RPC, or wallet connections on the frontend
 
 ### Parameters
 
-| Parameter                  | Web3 (Crypto) | Web2 (Fiat) | Purpose                                              |
-| -------------------------- | :-----------: | :---------: | ---------------------------------------------------- |
-| `amount`                   | Required      | Required    | Transaction amount in the settlement currency.       |
-| `currency`                 | Required      | Required    | Settlement currency (e.g. EURC, USDC for Web3; EUR, USD for Web2). |
-| `currencyAddress`          | Required      | —           | Contract address of the settlement token on-chain.   |
-| `network`                  | Required      | —           | Blockchain network for settlement (e.g. polygon, ethereum). |
-| `wallet.address`           | Required      | —           | Payee's wallet address where crypto funds will be sent. |
+| Parameter | Web3 (Crypto) | Web2 (Fiat) | Purpose |
+| --- | :-: | :-: | --- |
+| `amount` | Required | Required | Transaction amount in the settlement currency. |
+| `currency` | Required | Required | Settlement currency (e.g. EURC, USDC for Web3; EUR, USD for Web2). |
+| `currencyAddress` | Required | — | Contract address of the settlement token on-chain. |
+| `network` | Required | — | Blockchain network for settlement (e.g. polygon, ethereum). |
+| `wallet.address` | Required | — | Payee's wallet address where crypto funds will be sent. |
 
 | `order_id`                 | Required      | Required    | Your internal order or payment reference (idempotency, reconciliation). |
 
@@ -32,9 +33,9 @@ Integration is driven by **standard financial metadata**. Your engineering team 
 
 Businesses can register webhook endpoints to receive payment lifecycle events. Each webhook endpoint is configured with:
 
-* A **URL** to deliver events to
-* A list of **event types** to subscribe to (e.g. `deposit.confirmed`, `deposit.expired`)
-* A **signing secret** for HMAC-SHA256 payload verification
+- A **URL** to deliver events to
+- A list of **event types** to subscribe to (e.g. `deposit.confirmed`, `deposit.expired`)
+- A **signing secret** for HMAC-SHA256 payload verification
 
 Webhooks are dispatched as signed HTTP POST requests. The signature is included in the `X-Platform-Signature` header. Failed deliveries are retried up to 3 times with 30-second intervals.
 
@@ -49,14 +50,14 @@ Webhooks are dispatched as signed HTTP POST requests. The signature is included 
 
 ## Environments
 
-| Environment    | Use case                                        |
-| -------------- | ----------------------------------------------- |
-| **Sandbox**    | Testing; no real funds or bank transfers.       |
+| Environment | Use case |
+| --- | --- |
+| **Sandbox** | Testing; no real funds or bank transfers. |
 | **Production** | Live payments; real crypto and fiat settlement. |
 
 ## Next steps
 
-* [Simple Payments](/home/web2-web3-payments/simple-payments) — create a single EURC payment with SIMPLE voucher.
-* [Sessions](/home/web2-web3-payments/sessions) — group multiple vouchers in a session.
-* [Smart Contracts](/home/web2-web3-payments/smart-contracts) — interact with contracts via CUSTOM vouchers.
-* [Webhooks](/home/e-commerce/webhooks) — event types, payloads, and verification.
+- [Simple Payments](/home/web2-web3-payments/simple-payments) — create a single EURC payment with SIMPLE voucher.
+- [Sessions](/home/web2-web3-payments/sessions) — group multiple vouchers in a session.
+- [Smart Contracts](/home/web2-web3-payments/smart-contracts) — interact with contracts via CUSTOM vouchers.
+- [Webhooks](/home/e-commerce/webhooks) — event types, payloads, and verification.

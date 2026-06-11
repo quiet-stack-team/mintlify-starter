@@ -1,5 +1,6 @@
 ---
-title: Quickstart
+title: "Quickstart"
+icon: "fire"
 ---
 
 import { ThemeImage } from '/snippets/theme-image.jsx'
@@ -10,16 +11,13 @@ This guide walks through the payee (merchant/dApp) side of a Bleepay voucher pay
 
 ## Prerequisites
 
-* A Bleepay account with API credentials
-* A Bleepay-compatible wallet (e.g. Bleepay Wallet) for the payer
-* cURL or any HTTP client
+- A Bleepay account with API credentials
+- A Bleepay-compatible wallet (e.g. Bleepay Wallet) for the payer
+- cURL or any HTTP client
 
 ## Flow overview
 
-<ThemeImage
-    img_name="Flow-overview.png"
-    alt="Flow overview"
-/>
+<ThemeImage img_name="Flow-overview.png" alt="Flow overview" />
 
 Your responsibility is the **payee side** (right column). The payer side happens in their wallet.
 
@@ -33,7 +31,7 @@ This step happens entirely inside the payer's wallet. You just need to provide a
 
 Use the context code to authenticate. This links your session to the payer's context.
 
-```
+```text
 POST /api/v1/auth/sign-in
 
 {
@@ -50,7 +48,7 @@ POST /api/v1/auth/sign-in
 
 Reserve a voucher within the payer's context. This generates a 6-digit voucher code.
 
-```
+```text
 POST /api/v1/vouchers/reserve-voucher
 Authorization: Bearer <payee_token>
 
@@ -60,6 +58,7 @@ Authorization: Bearer <payee_token>
 ```
 
 **Response:**
+
 ```json
 {
     "id": "vch_482916",
@@ -73,7 +72,7 @@ Authorization: Bearer <payee_token>
 
 Specify what you expect to receive — currency, amount, network, and destination address. The `expectedPayment` parameter tells Bleepay to create a **SIMPLE** voucher with automatic network selection.
 
-```
+```text
 POST /api/v1/vouchers/vch_482916/redeem-voucher
 Authorization: Bearer <payee_token>
 
@@ -91,6 +90,7 @@ Authorization: Bearer <payee_token>
 ```
 
 **Response:**
+
 ```json
 {
     "id": "vch_482916",
@@ -111,7 +111,7 @@ The payer reviews the transaction in their wallet, signs it, and the wallet subm
 
 Poll the voucher to track its status until it reaches `RESOLVED`:
 
-```
+```text
 GET /api/v1/vouchers/vch_482916
 Authorization: Bearer <payee_token>
 ```
@@ -176,6 +176,6 @@ while (status !== 'RESOLVED') {
 
 ## Next steps
 
-* [Integration overview](/home/web2-web3-payments/overview) — full parameter reference and Web2 vs Web3 modes.
-* [Simple Payments](/home/web2-web3-payments/simple-payments) — SIMPLE vouchers, FX, and negotiation.
-* [Webhooks](/home/e-commerce/webhooks) — event-driven settlement tracking.
+- [Integration overview](/home/web2-web3-payments/overview) — full parameter reference and Web2 vs Web3 modes.
+- [Simple Payments](/home/web2-web3-payments/simple-payments) — SIMPLE vouchers, FX, and negotiation.
+- [Webhooks](/home/e-commerce/webhooks) — event-driven settlement tracking.

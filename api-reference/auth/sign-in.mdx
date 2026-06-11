@@ -1,7 +1,7 @@
 ---
-title: Sign In
+title: "Sign In"
+icon: "angle-right"
 ---
-
 
 > Authenticate as a user or with a resource to obtain a JWT bearer token.
 
@@ -14,27 +14,27 @@ Authenticate using one of three methods: mobile device credentials, a resource c
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `type` | `enum` | Yes | `mobile-device`, `resource`, or `email-password` |
 | `data` | `object` | Yes | Credential data — shape depends on `type` |
 
 **When `type` is `mobile-device`:**
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `data.installationId` | `string` | Yes | Device installation ID, 32–128 characters |
 | `data.password` | `string` | Yes | Device password, 32–256 characters |
 
 **When `type` is `resource`:**
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `data.resource` | `string` | Yes | Resource identifier, 4–128 characters. Format: `voucher::context::code::<code>` |
 
 **When `type` is `email-password`:**
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `data.email` | `string` | Yes | Email address, 3–128 characters |
 | `data.password` | `string` | Yes | Account password, 8–256 characters |
 
@@ -86,7 +86,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/auth/sign-in' \
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `authorization` | `object` | Authorization payload |
 | `authorization.token` | `string` | JWT bearer token for subsequent requests |
 
@@ -103,7 +103,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/auth/sign-in' \
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `invalid_credentials` | The provided credentials are invalid |
 | `400` | `invalid_type` | The `type` field is missing or unsupported |
 | `429` | `rate_limit` | Too many sign-in attempts — wait and retry |

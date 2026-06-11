@@ -1,7 +1,7 @@
 ---
-title: Authentication
+title: "Authentication"
+icon: "angle-right"
 ---
-
 
 > How to authenticate with the Bleepay API — bearer tokens, resource-based auth, and API keys.
 
@@ -10,7 +10,7 @@ The Bleepay API uses **Bearer tokens** (JWTs) for most endpoints. The authentica
 ## Authentication methods
 
 | Method | Header | Used by |
-|--------|--------|---------|
+| --- | --- | --- |
 | **Bearer token (JWT)** | `Authorization: Bearer <token>` | Payers, payees, businesses |
 | **Client secret** | `X-Client-Secret: <secret>` | Widget public endpoints (customer-facing) |
 | **None** | — | Auth endpoints, finance endpoints, health checks |
@@ -23,7 +23,7 @@ The most common method. Obtain a token by signing in, then include it in all sub
 
 **User sign-in** — for payers using a wallet:
 
-```
+```text
 POST /api/v1/auth/sign-in
 
 {
@@ -37,7 +37,7 @@ POST /api/v1/auth/sign-in
 
 **Resource sign-in** — for payees authenticating with a context code:
 
-```
+```text
 POST /api/v1/auth/sign-in
 
 {
@@ -74,10 +74,10 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/reserve-vouche
 Bleepay JWTs encode the authentication method:
 
 | Guard | Token type | Access |
-|-------|-----------|--------|
+| --- | --- | --- |
 | `RegisteredUserGuard` | JWT with `userId` or `deviceId` | Full user operations |
 | `RegisteredUserOrResourceGuard` | JWT with `userId`, `deviceId`, or resource | Finance, voucher, and session operations |
-| `BusinessUserGuard` | JWT with `userId` + business membership | Widget management, business CRUD |
+| `BusinessUserGuard` | JWT with `userId` \+ business membership | Widget management, business CRUD |
 
 Resource-based tokens (obtained via `type: "resource"` sign-in) are scoped to a specific context and cannot access user management endpoints.
 
@@ -97,7 +97,7 @@ Client secrets are issued when a widget is created.
 ## HTTP status codes
 
 | Status | Meaning |
-|--------|---------|
+| --- | --- |
 | `200` | Success |
 | `400` | Invalid request (bad parameters, validation failure) |
 | `401` | Missing or invalid authentication |
@@ -111,7 +111,7 @@ Client secrets are issued when a widget is created.
 Each endpoint has its own rate limit. The limits below are per-endpoint (not per scope):
 
 | Endpoint group | Limit |
-|----------------|-------|
+| --- | --- |
 | Auth (`sign-in`, `sign-up`, `get-challenge`) | 5 requests per 300 seconds |
 | Businesses read/write | 5 requests per 300 seconds |
 | Finance read/write | 5 requests per 300 seconds |

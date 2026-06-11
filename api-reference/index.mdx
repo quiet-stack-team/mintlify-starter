@@ -1,7 +1,7 @@
 ---
-title: API Reference
+title: "API Reference"
+icon: "angle-right"
 ---
-
 
 > Programmatic access to the Bleepay payment protocol — vouchers, widgets, on-chain settlement.
 
@@ -9,28 +9,31 @@ Bleepay's REST API lets you create payment vouchers, manage widget integrations,
 
 ## Base URL
 
-```
+```text
 https://payments.bleepay.com/api/v1
 ```
 
 ## Environments
 
 | Environment | Base URL | Use case |
-|-------------|----------|----------|
+| --- | --- | --- |
 | **Sandbox** | `https://sandbox.bleepay.com/api/v1` | Testing; no real funds |
 | **Production** | `https://payments.bleepay.com/api/v1` | Live payments |
 
 ## API reference
 
 ### Introduction
+
 - [Authentication](/api-reference/introduction/authentication) — API keys, bearer tokens, and resource-based auth
 
 ### Auth
+
 - [Sign in](/api-reference/auth/sign-in) — Authenticate as a user or with a resource
 - [Sign up](/api-reference/auth/sign-up) — Create a new user account
 - [Get challenge](/api-reference/auth/get-challenge) — Get a verification challenge
 
 ### Vouchers
+
 - [Open context](/api-reference/vouchers/contexts/open-context) — Start a payment context
 - [Get context](/api-reference/vouchers/contexts/get-context) — Retrieve a context by ID
 - [Query contexts](/api-reference/vouchers/contexts/query-contexts) — List all contexts
@@ -47,6 +50,7 @@ https://payments.bleepay.com/api/v1
 - [Get interop status](/api-reference/vouchers/get-interop-status) — Check cross-chain signature status
 
 #### Sessions
+
 - [Open session](/api-reference/vouchers/sessions/open-session) — Start a multi-voucher session
 - [Get session](/api-reference/vouchers/sessions/get-session) — Retrieve a session by ID
 - [Join session](/api-reference/vouchers/sessions/join-session) — Join a session as payer
@@ -54,11 +58,13 @@ https://payments.bleepay.com/api/v1
 - [Reserve voucher in session](/api-reference/vouchers/sessions/reserve-voucher) — Reserve a voucher within a session
 
 ### Finance
+
 - [Get networks](/api-reference/finance/get-networks) — Supported blockchain networks
 - [Get currencies](/api-reference/finance/get-currencies) — Supported currencies and tokens
 - [Convert amount](/api-reference/finance/convert-amount) — Convert an amount between currencies
 
 ### Widgets
+
 - [Create widget](/api-reference/widgets/management/create-widget) — Configure a new widget
 - [Get widget](/api-reference/widgets/management/get-widget) — Retrieve a widget by ID
 - [Query widgets](/api-reference/widgets/management/query-widgets) — List business widgets
@@ -72,6 +78,7 @@ https://payments.bleepay.com/api/v1
 - [Cancel deposit session](/api-reference/widgets/public/cancel-session) — Cancel a deposit session
 
 ### Webhooks
+
 - [Create endpoint](/api-reference/webhooks/create-endpoint) — Register a webhook endpoint
 - [Get endpoint](/api-reference/webhooks/get-endpoint) — Retrieve an endpoint by ID
 - [Query endpoints](/api-reference/webhooks/query-endpoints) — List webhook endpoints
@@ -85,6 +92,7 @@ https://payments.bleepay.com/api/v1
 - [Retry delivery](/api-reference/webhooks/retry-delivery) — Retry a failed delivery
 
 ### Businesses
+
 - [Create business](/api-reference/businesses/create-business) — Register a new business
 - [Get business](/api-reference/businesses/get-business) — Retrieve a business by ID
 - [Query businesses](/api-reference/businesses/query-businesses) — List user businesses

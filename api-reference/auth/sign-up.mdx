@@ -1,7 +1,7 @@
 ---
-title: Sign Up
+title: "Sign Up"
+icon: "angle-right"
 ---
-
 
 > Create a new user account with a device or email and password.
 
@@ -14,14 +14,14 @@ Register a new user. Supports two methods: mobile device registration (for walle
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `type` | `enum` | Yes | `mobile-device` or `email-password` |
 | `data` | `object` | Yes | Registration data — shape depends on `type` |
 
 **When `type` is `mobile-device`:**
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `data.installationId` | `string` | Yes | Device installation ID, 32–128 characters |
 | `data.password` | `string` | Yes | Device password, 32–256 characters |
 | `data.platform` | `enum` | Yes | `ios` or `android` |
@@ -32,7 +32,7 @@ Register a new user. Supports two methods: mobile device registration (for walle
 **When `type` is `email-password`:**
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `data.email` | `string` | Yes | Email address, 3–128 characters |
 | `data.password` | `string` | Yes | Account password, 8–256 characters |
 
@@ -74,7 +74,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/auth/sign-up' \
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Unique user identifier |
 | `role` | `string` | User role (`USER`, etc.) |
 | `createdAt` | `string` | ISO 8601 creation timestamp |
@@ -94,7 +94,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/auth/sign-up' \
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `invalid_type` | The `type` field is missing or unsupported |
 | `400` | `validation_failed` | Required fields are missing or invalid |
 | `409` | `already_exists` | A user with this installation ID or email already exists |

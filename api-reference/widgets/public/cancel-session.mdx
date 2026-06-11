@@ -1,7 +1,7 @@
 ---
-title: Cancel Deposit Session
+title: "Cancel Deposit Session"
+icon: "angle-right"
 ---
-
 
 > Cancel a deposit session before funds are sent.
 
@@ -14,7 +14,7 @@ Cancels a deposit session. Only sessions in `CREATED` or `PENDING` status can be
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `sessionId` | `string` | Yes | The deposit session ID to cancel |
 
 ### Body
@@ -35,7 +35,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/widgets/deposit-session
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `status` | `string` | Result status |
 | `error` | `string` | Error message if cancellation failed |
 
@@ -50,7 +50,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/widgets/deposit-session
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `cannot_cancel` | Session is already confirmed or expired |
 | `401` | `unauthorized` | Missing or invalid authentication |
 | `404` | `not_found` | Session not found |

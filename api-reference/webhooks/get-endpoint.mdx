@@ -1,7 +1,7 @@
 ---
-title: Get Webhook Endpoint
+title: "Get Webhook Endpoint"
+icon: "angle-right"
 ---
-
 
 > Retrieve a webhook endpoint by its ID.
 
@@ -14,7 +14,7 @@ Returns the configuration of a single webhook endpoint. The signing secret is **
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `businessId` | `string` | Yes | The business ID |
 | `endpointId` | `string` | Yes | The endpoint ID |
 
@@ -30,7 +30,7 @@ curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webho
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Endpoint identifier |
 | `url` | `string` | Delivery URL |
 | `description` | `string` | Human-readable description |

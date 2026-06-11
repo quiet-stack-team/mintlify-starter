@@ -1,7 +1,7 @@
 ---
-title: Get Voucher
+title: "Get Voucher"
+icon: "angle-right"
 ---
-
 
 > Retrieve a voucher by its ID.
 
@@ -16,7 +16,7 @@ This is the endpoint to poll when waiting for the payer to resolve the voucher.
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `voucherId` | `string` | Yes | The voucher ID |
 
 ## Request example
@@ -31,7 +31,7 @@ curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/vch_482916' \
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Voucher identifier |
 | `code` | `string` | 6-digit voucher code |
 | `status` | `string` | Voucher status (`RESERVED`, `REDEEMED`, `RESOLVED`, `DISCARDED`) |
@@ -71,6 +71,6 @@ curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/vch_482916' \
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `404` | `not_found` | Voucher not found |

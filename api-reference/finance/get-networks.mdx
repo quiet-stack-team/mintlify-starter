@@ -1,7 +1,7 @@
 ---
-title: Get Networks
+title: "Get Networks"
+icon: "angle-right"
 ---
-
 
 > Get information about supported blockchain networks.
 
@@ -14,7 +14,7 @@ Returns details about supported blockchain networks including name, type, chain 
 ### Query
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `network` | `string` | No | Filter by network name (e.g. `polygon`, `ethereum`). 4–32 chars. |
 | `srcNetwork` | `string` | No | Source network for routing queries |
 | `dstNetwork` | `string` | No | Destination network for routing queries |
@@ -35,7 +35,7 @@ Returns an array of network objects.
 **Network object:**
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `network` | `string` | Network identifier (e.g. `polygon`) |
 | `type` | `string` | Network type (`evm`, `solana`, etc.) |
 | `chainId` | `string` | Chain ID |

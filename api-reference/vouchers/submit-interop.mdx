@@ -1,7 +1,7 @@
 ---
-title: Submit Interop Signature
+title: "Submit Interop Signature"
+icon: "angle-right"
 ---
-
 
 > Initiate cross-chain signature submission for a voucher.
 
@@ -14,13 +14,13 @@ Initiates a cross-chain signature submission flow. Used when the voucher require
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `voucherId` | `string` | Yes | The voucher ID |
 
 ### Query
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `id` | `string` | Yes | Signature submission identifier |
 | `paymentIndex` | `integer` | No | Index of the payment being signed (0–10) |
 | `vid` | `string` | No | Voucher ID override for the signature |
@@ -28,7 +28,7 @@ Initiates a cross-chain signature submission flow. Used when the voucher require
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `signature` | `string` | No | The cryptographic signature, 1–256 characters |
 
 ## Request example
@@ -47,6 +47,6 @@ Returns `{ "id": "<submission_id>" }` on success.
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `404` | `not_found` | Voucher not found |

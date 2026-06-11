@@ -1,7 +1,7 @@
 ---
-title: Query Webhook Deliveries
+title: "Query Webhook Deliveries"
+icon: "angle-right"
 ---
-
 
 > List webhook delivery attempts for a business.
 
@@ -14,13 +14,13 @@ Returns a list of webhook delivery attempts with their status. Failed deliveries
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `businessId` | `string` | Yes | The business ID |
 
 ### Query
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `limit` | `integer` | No | Number of items (default 100) |
 | `offset` | `integer` | No | Pagination offset |
 | `since` | `integer` | No | Unix timestamp (ms) — return items created after this time |
@@ -38,7 +38,7 @@ curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webho
 **Delivery object:**
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Delivery identifier |
 | `eventType` | `string` | Event type (e.g. `deposit.confirmed`) |
 | `status` | `string` | Delivery status: `PENDING`, `DELIVERED`, `FAILED`, `RETRYING` |

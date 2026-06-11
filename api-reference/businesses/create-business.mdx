@@ -1,7 +1,7 @@
 ---
-title: Create Business
+title: "Create Business"
+icon: "angle-right"
 ---
-
 
 > Register a new business.
 
@@ -14,7 +14,7 @@ Creates a new business profile. Once created, you can configure widgets, webhook
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `name` | `string` | Yes | Business name, 1–128 characters |
 
 ## Request example
@@ -31,7 +31,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/businesses/create-busin
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Business identifier |
 | `name` | `string` | Business name |
 | `status` | `string` | Business status |

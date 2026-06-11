@@ -1,7 +1,7 @@
 ---
-title: Get Business
+title: "Get Business"
+icon: "angle-right"
 ---
-
 
 > Retrieve a business by its ID.
 
@@ -12,7 +12,7 @@ title: Get Business
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `businessId` | `string` | Yes | The business ID |
 
 ## Request example
@@ -27,7 +27,7 @@ curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc123' \
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Business identifier |
 | `name` | `string` | Business name |
 | `status` | `string` | `ACTIVE`, `INACTIVE`, etc. |

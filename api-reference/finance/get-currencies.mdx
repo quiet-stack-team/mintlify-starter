@@ -1,7 +1,7 @@
 ---
-title: Get Currencies
+title: "Get Currencies"
+icon: "angle-right"
 ---
-
 
 > Get information about supported currencies and tokens.
 
@@ -14,7 +14,7 @@ Returns details about supported currencies including symbol, contract address, n
 ### Query
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `network` | `string` | No | Filter by network |
 | `symbol` | `string` | No | Filter by currency symbol (e.g. `EURC`, `USDC`) |
 | `address` | `string` | No | Filter by contract address |
@@ -41,7 +41,7 @@ Returns an array of currency objects.
 **Currency object:**
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `symbol` | `string` | Currency symbol (e.g. `USDC`) |
 | `network` | `string` | Blockchain network |
 | `address` | `string` | Contract address on-chain |

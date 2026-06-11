@@ -1,7 +1,7 @@
 ---
-title: Get Session
+title: "Get Session"
+icon: "angle-right"
 ---
-
 
 > Retrieve a voucher session by its ID.
 
@@ -14,7 +14,7 @@ Returns the state of a session, including its status and any vouchers reserved w
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `sessionId` | `string` | Yes | The session ID |
 
 ## Request example
@@ -29,7 +29,7 @@ curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_xy
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Session identifier |
 | `code` | `string` | Session code |
 | `status` | `string` | Session status (`OPEN`, `CLOSED`) |
@@ -55,6 +55,6 @@ curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_xy
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `404` | `not_found` | Session not found |

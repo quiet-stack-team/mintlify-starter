@@ -1,7 +1,7 @@
 ---
-title: Discard Voucher
+title: "Discard Voucher"
+icon: "angle-right"
 ---
-
 
 > Discard an unused voucher — releases it from the reserved state.
 
@@ -16,7 +16,7 @@ This endpoint accepts both resource-based and registered user tokens.
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `voucherId` | `string` | Yes | The voucher ID to discard |
 
 ### Body
@@ -41,7 +41,7 @@ Returns the updated voucher object with a discarded status.
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `already_resolved` | A resolved voucher cannot be discarded |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `404` | `not_found` | Voucher not found |

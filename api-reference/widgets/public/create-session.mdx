@@ -1,7 +1,7 @@
 ---
-title: Create Deposit Session
+title: "Create Deposit Session"
+icon: "angle-right"
 ---
-
 
 > Start a customer deposit session through a widget.
 
@@ -16,13 +16,13 @@ This endpoint accepts either a JWT bearer token or the widget's client secret vi
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `widgetId` | `string` | Yes | The widget ID |
 
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `amount` | `string` | Yes | Payment amount as a decimal string, 1–32 characters |
 | `currency` | `string` | Yes | Currency symbol, 2–8 uppercase alphanumeric (e.g. `USDC`) |
 | `network` | `string` | Yes | Blockchain network, 4–66 characters |
@@ -54,7 +54,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc/create
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Unique session identifier |
 | `paymentStatus` | `string` | Initial status — `CREATED` |
 | `amount` | `string` | Payment amount |
@@ -84,7 +84,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc/create
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `validation_failed` | Parameters outside allowed ranges (amount not in min/max, disallowed network/currency, etc.) |
 | `401` | `unauthorized` | Missing or invalid authentication |
 | `404` | `not_found` | Widget not found |

@@ -1,7 +1,7 @@
 ---
-title: Resolve Voucher
+title: "Resolve Voucher"
+icon: "angle-right"
 ---
-
 
 > Finalize a voucher by submitting signed transaction receipts.
 
@@ -16,19 +16,19 @@ This endpoint requires authentication as a registered user (the payer).
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `voucherId` | `string` | Yes | The voucher ID to resolve |
 
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `receipts` | `array` | Yes | 1–5 signed transaction receipts |
 
 **Receipt object:**
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `paymentId` | `string` | Yes | The ID of the payment this receipt corresponds to |
 
 ## Request example
@@ -49,7 +49,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/res
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Voucher identifier |
 | `status` | `string` | Voucher status — `RESOLVED` |
 
@@ -65,7 +65,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/res
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `not_redeemed` | The voucher must be redeemed before resolving |
 | `400` | `already_resolved` | The voucher has already been resolved |
 | `400` | `validation_failed` | Invalid or missing receipt data |

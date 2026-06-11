@@ -1,7 +1,7 @@
 ---
-title: Redeem Voucher
+title: "Redeem Voucher"
+icon: "angle-right"
 ---
-
 
 > Set the payment terms for a reserved voucher — creates a SIMPLE or CUSTOM voucher.
 
@@ -19,7 +19,7 @@ You cannot provide both `expectedPayment` and `networks`/`payments`/`extras` —
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `voucherId` | `string` | Yes | The voucher ID from the reserve response |
 
 ### Body — SIMPLE voucher
@@ -27,7 +27,7 @@ You cannot provide both `expectedPayment` and `networks`/`payments`/`extras` —
 Use `expectedPayment` for straightforward token transfers:
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `expectedPayment` | `object` | See note | The payment the payee expects to receive |
 | `expectedPayment.network` | `string` | Yes | Blockchain network (e.g. `polygon`, `ethereum`) |
 | `expectedPayment.currency` | `string` | Yes | Settlement currency symbol (e.g. `EURC`, `USDC`) |
@@ -41,7 +41,7 @@ Use `expectedPayment` for straightforward token transfers:
 Use `networks`, `payments`, and `extras` for smart contract interactions:
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `networks` | `array` | Yes | 1–3 blockchain network specifications |
 | `networks[].network` | `string` | Yes | Network name (e.g. `ethereum`) |
 | `networks[].type` | `string` | Yes | Network type (`evm`, `solana`) |
@@ -110,7 +110,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_591234/red
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Voucher identifier |
 | `status` | `string` | Voucher status — `REDEEMED` |
 | `type` | `string` | `SIMPLE` or `CUSTOM` |
@@ -141,7 +141,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_591234/red
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `already_redeemed` | The voucher has already been redeemed |
 | `400` | `validation_failed` | Invalid parameters — check that `expectedPayment` and `networks`/`payments` are not both provided |
 | `401` | `unauthorized` | Missing or invalid bearer token |

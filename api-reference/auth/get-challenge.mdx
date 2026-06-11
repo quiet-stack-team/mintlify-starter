@@ -1,7 +1,7 @@
 ---
-title: Get Challenge
+title: "Get Challenge"
+icon: "angle-right"
 ---
-
 
 > Get a verification challenge for device registration.
 
@@ -24,7 +24,7 @@ curl --request GET 'https://payments.bleepay.com/api/v1/auth/get-challenge'
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `challenge` | `string` | Verification challenge string |
 
 ### Example response
@@ -38,5 +38,5 @@ curl --request GET 'https://payments.bleepay.com/api/v1/auth/get-challenge'
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `429` | `rate_limit` | Too many requests |

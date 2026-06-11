@@ -1,7 +1,7 @@
 ---
-title: Reserve Voucher in Session
+title: "Reserve Voucher in Session"
+icon: "angle-right"
 ---
-
 
 > Reserve a voucher within an open session.
 
@@ -14,7 +14,7 @@ Works the same as the standalone `reserve-voucher` endpoint, but scoped to a ses
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `sessionId` | `string` | Yes | The session ID |
 
 ### Body
@@ -35,7 +35,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_x
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Unique voucher identifier |
 | `code` | `string` | 6-digit voucher code |
 | `status` | `string` | Voucher status — `RESERVED` |
@@ -55,7 +55,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_x
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `session_closed` | Cannot reserve in a closed session |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `404` | `not_found` | Session not found |

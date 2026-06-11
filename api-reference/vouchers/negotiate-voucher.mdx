@@ -1,7 +1,7 @@
 ---
-title: Negotiate Voucher
+title: "Negotiate Voucher"
+icon: "angle-right"
 ---
-
 
 > Propose an alternative payment currency — used for FX negotiation.
 
@@ -16,13 +16,13 @@ This only applies to SIMPLE vouchers. The negotiation happens on the payer's sid
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `voucherId` | `string` | Yes | The voucher ID to negotiate |
 
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `suppliedPayment` | `object` | Yes | The payment the payer is offering |
 | `suppliedPayment.network` | `string` | Yes | Blockchain network |
 | `suppliedPayment.currency` | `string` | Yes | Currency symbol (e.g. `USDC`) |
@@ -55,7 +55,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/neg
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Voucher identifier |
 | `status` | `string` | Voucher status |
 | `expectedPayment` | `object` | The payee's original request (unchanged) |
@@ -87,7 +87,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/neg
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `not_simple` | Negotiation is only available for SIMPLE vouchers |
 | `400` | `different_network` | The supplied currency must be on the same network as the expected currency |
 | `401` | `unauthorized` | Missing or invalid bearer token |

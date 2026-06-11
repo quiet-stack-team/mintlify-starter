@@ -1,7 +1,7 @@
 ---
-title: Get Widget Config
+title: "Get Widget Config"
+icon: "angle-right"
 ---
-
 
 > Get the public configuration for a widget.
 
@@ -16,7 +16,7 @@ This endpoint accepts either a JWT bearer token or the widget's client secret vi
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `widgetId` | `string` | Yes | The widget ID |
 
 ## Request example
@@ -31,14 +31,14 @@ curl --request GET 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc/config'
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `config` | `object` or `null` | Widget configuration, or `null` if the widget is inactive or domain-restricted |
 | `reason` | `string` | Reason why config is `null` (if applicable) |
 
 **Config object:**
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `name` | `string` | Widget display name |
 | `mode` | `string` | `FIXED_AMOUNT` or `CUSTOMER_AMOUNT` |
 | `minAmount` | `string` | Minimum deposit amount |
@@ -82,6 +82,6 @@ curl --request GET 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc/config'
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `401` | `unauthorized` | Missing or invalid authentication |
 | `404` | `not_found` | Widget not found |

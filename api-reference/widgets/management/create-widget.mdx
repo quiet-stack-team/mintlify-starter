@@ -1,7 +1,7 @@
 ---
-title: Create Widget
+title: "Create Widget"
+icon: "angle-right"
 ---
-
 
 > Create and configure a new payment widget for a business.
 
@@ -14,13 +14,13 @@ A widget is an embeddable crypto payment gateway. Each business can have up to 1
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `businessId` | `string` | Yes | The business ID |
 
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `name` | `string` | Yes | Widget display name, 1–128 characters |
 | `mode` | `enum` | Yes | `FIXED_AMOUNT` or `CUSTOMER_AMOUNT` |
 | `minAmount` | `string` or `null` | No | Minimum deposit amount as a decimal string |
@@ -70,14 +70,14 @@ curl --request POST 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/w
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `widget` | `object` | The created widget object |
 | `clientSecret` | `string` | Client secret for embedding the widget — **shown only once** |
 
 **Widget object:**
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Widget identifier |
 | `name` | `string` | Widget name |
 | `mode` | `string` | `FIXED_AMOUNT` or `CUSTOMER_AMOUNT` |

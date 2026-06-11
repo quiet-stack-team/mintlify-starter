@@ -1,7 +1,7 @@
 ---
-title: Sign Voucher
+title: "Sign Voucher"
+icon: "angle-right"
 ---
-
 
 > Sign a voucher with a public key.
 
@@ -14,13 +14,13 @@ Attaches a cryptographic signature to a voucher. This is used for protocols that
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `voucherId` | `string` | Yes | The voucher ID to sign |
 
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `publicKey` | `string` | Yes | Public key used for signing, 1–256 characters |
 | `signature` | `string` | Yes | Cryptographic signature, 1–256 characters |
 
@@ -45,7 +45,7 @@ Returns the updated voucher object with the signature attached.
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `validation_failed` | Invalid or missing fields |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `404` | `not_found` | Voucher not found |

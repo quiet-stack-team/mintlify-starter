@@ -1,7 +1,7 @@
 ---
-title: Open Session
+title: "Open Session"
+icon: "angle-right"
 ---
-
 
 > Start a new voucher session — groups multiple vouchers under a single context.
 
@@ -14,7 +14,7 @@ A session groups multiple vouchers together for multi-payment flows like split p
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `code` | `string` | Yes | The context code shared by the payer. 6 characters. |
 | `type` | `enum` | Yes | Session type — always `SESSION_DEFAULT` |
 | `payeeInfo` | `object` | No | Additional payee information |
@@ -36,7 +36,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/sessi
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Unique session identifier (e.g. `ses_xyz`) |
 | `code` | `string` | Session code |
 | `status` | `string` | Session status — `OPEN` |
@@ -58,6 +58,6 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/sessi
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `invalid_code` | The context code is invalid or expired |
 | `401` | `unauthorized` | Missing or invalid bearer token |

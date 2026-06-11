@@ -1,7 +1,7 @@
 ---
-title: Join Session
+title: "Join Session"
+icon: "angle-right"
 ---
-
 
 > Join a voucher session as the payer.
 
@@ -14,7 +14,7 @@ After the payee opens a session, the payer joins it from their wallet. This link
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `sessionId` | `string` | Yes | The session ID to join |
 
 ### Body
@@ -39,7 +39,7 @@ Returns the updated session object with the payer joined.
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `already_joined` | Payer has already joined this session |
 | `400` | `session_closed` | Cannot join a closed session |
 | `401` | `unauthorized` | Missing or invalid bearer token |

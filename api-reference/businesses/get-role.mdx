@@ -1,7 +1,7 @@
 ---
-title: Get Business Role
+title: "Get Business Role"
+icon: "angle-right"
 ---
-
 
 > Get the authenticated user's role in a business.
 
@@ -12,7 +12,7 @@ title: Get Business Role
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `businessId` | `string` | Yes | The business ID |
 
 ## Request example
@@ -27,7 +27,7 @@ curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/me
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `role` | `string` | User's role in this business |
 | `status` | `string` | User's membership status |
 

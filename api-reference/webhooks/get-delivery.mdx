@@ -1,7 +1,7 @@
 ---
-title: Get Webhook Delivery
+title: "Get Webhook Delivery"
+icon: "angle-right"
 ---
-
 
 > Retrieve a single webhook delivery by its ID.
 
@@ -14,7 +14,7 @@ Returns the full details of a webhook delivery attempt, including request/respon
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `businessId` | `string` | Yes | The business ID |
 | `deliveryId` | `string` | Yes | The delivery ID |
 
@@ -30,7 +30,7 @@ curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webho
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Delivery identifier |
 | `eventType` | `string` | Event type |
 | `endpointId` | `string` | The endpoint this delivery was sent to |

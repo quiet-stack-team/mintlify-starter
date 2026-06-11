@@ -1,7 +1,7 @@
 ---
-title: Close Session
+title: "Close Session"
+icon: "angle-right"
 ---
-
 
 > Close a voucher session — prevents new vouchers from being reserved.
 
@@ -14,7 +14,7 @@ Close the session once all vouchers within it have been resolved. This finalizes
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `sessionId` | `string` | Yes | The session ID to close |
 
 ### Body
@@ -52,7 +52,7 @@ Returns the updated session object with status `CLOSED`.
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `already_closed` | The session is already closed |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `404` | `not_found` | Session not found |

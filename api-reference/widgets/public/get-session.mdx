@@ -1,7 +1,7 @@
 ---
-title: Get Deposit Session
+title: "Get Deposit Session"
+icon: "angle-right"
 ---
-
 
 > Check the status of a deposit session.
 
@@ -16,7 +16,7 @@ This endpoint accepts either a JWT bearer token or the session's client secret v
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `sessionId` | `string` | Yes | The deposit session ID |
 
 ## Request example
@@ -31,7 +31,7 @@ curl --request GET 'https://payments.bleepay.com/api/v1/widgets/deposit-sessions
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Session identifier |
 | `paymentStatus` | `string` | Status: `CREATED`, `PENDING`, `CONFIRMED`, `EXPIRED`, `UNDERPAID`, `OVERPAID` |
 | `amount` | `string` | Payment amount |
@@ -63,6 +63,6 @@ curl --request GET 'https://payments.bleepay.com/api/v1/widgets/deposit-sessions
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `401` | `unauthorized` | Missing or invalid authentication |
 | `404` | `not_found` | Session not found |

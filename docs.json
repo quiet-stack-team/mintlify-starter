@@ -51,7 +51,8 @@
               "home/getting-started/introduction",
               "home/getting-started/quickstart",
               "home/getting-started/core-concepts"
-            ]
+            ],
+            "icon": "rocket"
           },
           {
             "group": "Web2 and Web3 Payments",

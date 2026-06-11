@@ -1,7 +1,7 @@
 ---
-title: Reserve Voucher
+title: "Reserve Voucher"
+icon: "angle-right"
 ---
-
 
 > Reserve a voucher within a payment context — returns a 6-digit voucher code.
 
@@ -16,7 +16,7 @@ This endpoint accepts both resource-based tokens (from context code authenticati
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `code` | `string` | Yes | The context code shared by the payer. 6 characters. |
 
 ## Request example
@@ -33,7 +33,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/reserve-vouche
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Unique voucher identifier |
 | `code` | `string` | 6-digit voucher code |
 | `status` | `string` | Voucher status — `RESERVED` |
@@ -53,7 +53,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/reserve-vouche
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `invalid_code` | The context code is invalid or expired |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `404` | `not_found` | Context not found |

@@ -1,7 +1,7 @@
 ---
-title: Close Context
+title: "Close Context"
+icon: "angle-right"
 ---
-
 
 > Close an open payment context.
 
@@ -14,13 +14,13 @@ Closes a context, preventing any new vouchers from being reserved against it. Ex
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `contextId` | `string` | Yes | The context ID to close |
 
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `payeeId` | `string` or `null` | Yes | The payee ID (exactly 64 characters), or `null` if no payee was involved |
 
 ## Request example
@@ -59,7 +59,7 @@ Returns the updated context object with status `CLOSED`.
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `already_closed` | The context is already closed |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `404` | `not_found` | Context not found |

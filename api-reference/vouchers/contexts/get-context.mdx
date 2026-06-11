@@ -1,7 +1,7 @@
 ---
-title: Get Context
+title: "Get Context"
+icon: "angle-right"
 ---
-
 
 > Retrieve a voucher context by its ID.
 
@@ -14,7 +14,7 @@ Returns the full state of a payment context, including its code, status, and ass
 ### Path
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `contextId` | `string` | Yes | The context ID returned when the context was opened |
 
 ## Request example
@@ -29,7 +29,7 @@ curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/contexts/ctx_a1
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Unique context identifier |
 | `code` | `string` | Context code |
 | `status` | `string` | Context status (`OPEN`, `CLOSED`) |
@@ -59,6 +59,6 @@ curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/contexts/ctx_a1
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `404` | `not_found` | Context not found |

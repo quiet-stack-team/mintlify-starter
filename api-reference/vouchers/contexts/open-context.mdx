@@ -1,7 +1,7 @@
 ---
-title: Open Context
+title: "Open Context"
+icon: "angle-right"
 ---
-
 
 > Start a new payment context — the first step in a voucher payment flow.
 
@@ -16,14 +16,14 @@ This endpoint requires authentication as a registered user (the payer).
 ### Body
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `format` | `enum` | Yes | `numeric` or `alphanum` — the format of the context code |
 | `payers` | `array` | Yes | List of payers, 1–10 entries |
 
 **Payer object:**
 
 | Name | Type | Required | Description |
-|------|------|----------|-------------|
+| --- | --- | --- | --- |
 | `address` | `string` | Yes | Blockchain wallet address of the payer |
 
 ## Request example
@@ -45,7 +45,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/contexts/conte
 ### Response schema
 
 | Field | Type | Description |
-|-------|------|-------------|
+| --- | --- | --- |
 | `id` | `string` | Unique context identifier |
 | `code` | `string` | Context code — share this with the payee |
 | `status` | `string` | Context status (`OPEN`, etc.) |
@@ -73,7 +73,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/contexts/conte
 ### Error responses
 
 | Status | Code | Description |
-|--------|------|-------------|
+| --- | --- | --- |
 | `400` | `validation_failed` | Invalid or missing required fields |
 | `401` | `unauthorized` | Missing or invalid bearer token |
 | `500` | `unexpected` | An unexpected error occurred |

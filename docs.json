@@ -51,8 +51,7 @@
               "home/getting-started/introduction",
               "home/getting-started/quickstart",
               "home/getting-started/core-concepts"
-            ],
-            "icon": "rocket"
+            ]
           },
           {
             "group": "Web2 and Web3 Payments",
@@ -61,8 +60,7 @@
               "home/web2-web3-payments/simple-payments",
               "home/web2-web3-payments/sessions",
               "home/web2-web3-payments/smart-contracts"
-            ],
-            "icon": "money-bill-simple-wave"
+            ]
           },
           {
             "group": "E-Commerce",
@@ -71,8 +69,7 @@
               "home/e-commerce/benefits",
               "home/e-commerce/checkout-flow",
               "home/e-commerce/webhooks"
-            ],
-            "icon": "asterisk"
+            ]
           },
           {
             "group": "Integration",
@@ -81,8 +78,7 @@
               "home/integration/wallet-providers",
               "home/integration/developers",
               "home/integration/processing"
-            ],
-            "icon": "asterisk"
+            ]
           },
           {
             "group": "Architecture",
@@ -97,8 +93,7 @@
               "home/architecture/security",
               "home/architecture/dependencies",
               "home/architecture/fees"
-            ],
-            "icon": "asterisk"
+            ]
           },
           {
             "group": "Reference",
@@ -106,14 +101,12 @@
               "home/reference/terminology",
               "home/reference/protocol-flow",
               "home/reference/voucher-modes"
-            ],
-            "icon": "asterisk"
+            ]
           }
         ]
       },
       {
         "tab": "API reference",
-        "icon": "asterisk",
         "groups": [
           {
             "group": "Introduction",

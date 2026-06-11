@@ -1,6 +1,8 @@
 ---
-title: How Money Moves
+title: "How Money Moves"
+icon: "money-bill"
 ---
+
 import { ThemeImage } from '/snippets/theme-image.jsx'
 
 > Who holds funds at each step — Bleepay never does (only the fiat partner, and only briefly).
@@ -18,33 +20,21 @@ Where funds go and who holds them at each step, by scenario:
 ## Summary
 
 | Scenario | Who holds funds |
-|----------|----------------|
+| --- | --- |
 | Same token | Merchant's own address |
 | Crypto FX | Swap service (transiently) |
 | Fiat off-ramp | Fiat partner's liquidation address (transiently) |
 | Voucher | Payer holds own funds; signs and sends directly |
 
-<ThemeImage
-    img_name="SameToken.png"
-    alt="Same Token"
-/>
+<ThemeImage img_name="SameToken.png" alt="Same Token" />
 
-<ThemeImage
-    img_name="CryptoFX.png"
-    alt="Crypto FX"
-/>
+<ThemeImage img_name="CryptoFX.png" alt="Crypto FX" />
 
-<ThemeImage
-    img_name="Fiat-off-ramp.png"
-    alt="Fiat Off-Ramp"
-/>
+<ThemeImage img_name="Fiat-off-ramp.png" alt="Fiat Off-Ramp" />
 
-<ThemeImage
-    img_name="Voucher.png"
-    alt="Voucher"
-/>
+<ThemeImage img_name="Voucher.png" alt="Voucher" />
 
 ## Next steps
 
-* [Custody model](/home/architecture/custody-model) — non-custodial across both products.
-* [Security](/home/architecture/security) — zero-trust design.
+- [Custody model](/home/architecture/custody-model) — non-custodial across both products.
+- [Security](/home/architecture/security) — zero-trust design.

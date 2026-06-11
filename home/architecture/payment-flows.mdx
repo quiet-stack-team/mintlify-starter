@@ -1,6 +1,8 @@
 ---
-title: Payment Flows
+title: "Payment Flows"
+icon: "almost-equal-to"
 ---
+
 import { ThemeImage } from '/snippets/theme-image.jsx'
 
 > Four flows, from a plain same-token deposit to a full crypto→fiat payout.
@@ -20,10 +22,7 @@ The base case: a customer pays a merchant on-chain, in the token the merchant ac
 
 Edge cases: `EXPIRED` (no funds in 30 min), `UNDERPAID`, `OVERPAID`, customer cancellation (only from `CREATED`/`PENDING`), and domain-restriction blocks.
 
-<ThemeImage
-    img_name="Widget-deposit-same-token.png"
-    alt="Widget deposit (same token)"
-/>
+<ThemeImage img_name="Widget-deposit-same-token.png" alt="Widget deposit (same token)" />
 
 Funds move directly from the customer's wallet to the merchant's own address; Bleepay monitors, validates, and notifies.
 
@@ -39,10 +38,7 @@ Funds move directly from the customer's wallet to the merchant's own address; Bl
 
 The payer holds their own funds throughout; Bleepay prepares the transaction but the payer signs and broadcasts it. A SIMPLE voucher can also carry FX.
 
-<ThemeImage
-    img_name="Voucher-payment-6-digit-code.png"
-    alt="Voucher payment (6-digit code)"
-/>
+<ThemeImage img_name="Voucher-payment-6-digit-code.png" alt="Voucher payment (6-digit code)" />
 
 ## FX — crypto ↔ crypto
 
@@ -57,10 +53,7 @@ Constraints: SIMPLE vouchers only; both currencies on the same network; both mus
 
 Bleepay integrates **multiple swap/exchange providers** and routes each pair to a suitable one, rather than relying on a single venue.
 
-<ThemeImage
-    img_name="FX-crypto-crypto.png"
-    alt="FX crypto-crypto"
-/>
+<ThemeImage img_name="FX-crypto-crypto.png" alt="FX crypto-crypto" />
 
 ## FX & fiat off-ramp (crypto → bank account)
 
@@ -76,13 +69,10 @@ The payee receives traditional money in a bank account while the payer pays in c
 
 A liquidation address is a single-purpose crypto address: crypto in → fiat out to a preset bank account, created per payment by the partner. Because a fiat payout is involved, the receiving merchant completes KYC/KYB (see [Onboarding and KYC/KYB](/home/architecture/onboarding-kyc-kyb)).
 
-<ThemeImage
-    img_name="fx_offramp.png"
-    alt="FX Offramp"
-/>
+<ThemeImage img_name="fx_offramp.png" alt="FX Offramp" />
 
 ## Next steps
 
-* [How money moves](/home/architecture/how-money-moves) — who holds funds at each step.
-* [Custody model](/home/architecture/custody-model) — non-custodial design.
-* [Security](/home/architecture/security) — zero-trust model.
+- [How money moves](/home/architecture/how-money-moves) — who holds funds at each step.
+- [Custody model](/home/architecture/custody-model) — non-custodial design.
+- [Security](/home/architecture/security) — zero-trust model.

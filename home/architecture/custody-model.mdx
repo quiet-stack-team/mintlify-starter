@@ -1,5 +1,6 @@
 ---
-title: Custody Model
+title: "Custody Model"
+icon: "heart"
 ---
 
 import { ThemeImage } from '/snippets/theme-image.jsx'
@@ -9,7 +10,7 @@ import { ThemeImage } from '/snippets/theme-image.jsx'
 "Custody" means holding, or being able to control and move, another party's funds or the keys to them. **Bleepay is non-custodial across both products** — it never holds users' funds.
 
 | Product / path | Custody | What it means |
-|----------------|---------|----------------|
+| --- | --- | --- |
 | **Bleepay Widget (gateway)** | **Non-custodial** | Funds land at the merchant's own address (or a partner's address for fiat payouts) — never an address Bleepay controls |
 | **Bleepay Wallet (vouchers)** | **Non-custodial** | The Bleepay Wallet is a mobile app where the user holds their own funds and keys; Bleepay only builds the transaction, the user signs and sends it |
 
@@ -18,17 +19,11 @@ import { ThemeImage } from '/snippets/theme-image.jsx'
 
 > The only party other than the user and merchant that ever holds funds is the **fiat payout partner**, and only transiently during the crypto→fiat off-ramp.
 
+<ThemeImage img_name="BleepayWallet-non-custodial.png" alt="Bleepay Wallet non-custodial.png" />
 
-<ThemeImage
-    img_name="BleepayWallet-non-custodial.png"
-    alt="Bleepay Wallet non-custodial.png"
-/>
-<ThemeImage
-    img_name="WidgetGateway-non-custodial.png"
-    alt="Bleepay Wallet non-custodial.png"
-/>
+<ThemeImage img_name="WidgetGateway-non-custodial.png" alt="Bleepay Wallet non-custodial.png" />
 
 ## Next steps
 
-* [Security](/home/architecture/security) — zero-trust and non-custodial model.
-* [How money moves](/home/architecture/how-money-moves) — fund flows by scenario.
+- [Security](/home/architecture/security) — zero-trust and non-custodial model.
+- [How money moves](/home/architecture/how-money-moves) — fund flows by scenario.

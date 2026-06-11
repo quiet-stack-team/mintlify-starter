@@ -1,9 +1,14 @@
 ---
-title: dApp Integration
+title: "dApp Integration"
+icon: "square"
 ---
 
-
-<img width="1500" height="844" alt="108" src="https://github.com/user-attachments/assets/224ebabf-7120-4853-bf70-9e7ae9677f8d" />
+<img
+  width="1500"
+  height="844"
+  alt="108"
+  src="https://github.com/user-attachments/assets/224ebabf-7120-4853-bf70-9e7ae9677f8d"
+/>
 
 > Accept code-based wallet connections and transaction authorizations in your dApp.
 
@@ -11,9 +16,9 @@ dApps can use Bleepay to accept **code-based wallet connections** and **transact
 
 ## Use cases
 
-* **Onboarding**: User opens your dApp, selects "Connect with code," and enters the code from their wallet. No extension required.
-* **Transactions**: For sensitive or high-value actions, require a fresh code + in-wallet confirmation (e.g. swap, transfer, governance).
-* **Mobile**: Same flow on mobile; no extension workarounds.
+- **Onboarding**: User opens your dApp, selects "Connect with code," and enters the code from their wallet. No extension required.
+- **Transactions**: For sensitive or high-value actions, require a fresh code \+ in-wallet confirmation (e.g. swap, transfer, governance).
+- **Mobile**: Same flow on mobile; no extension workarounds.
 
 ## How it works
 
@@ -25,21 +30,21 @@ dApps can use Bleepay to accept **code-based wallet connections** and **transact
 
 ## Benefits
 
-* **Simpler onboarding**: No extension install or connect popup.
-* **Fewer failures**: No popup/extension conflicts; fewer drop-offs at connection.
-* **Mobile-friendly**: Works on mobile without special handling.
-* **Per-action authorization**: Optional extra step (code + confirm) for sensitive operations.
+- **Simpler onboarding**: No extension install or connect popup.
+- **Fewer failures**: No popup/extension conflicts; fewer drop-offs at connection.
+- **Mobile-friendly**: Works on mobile without special handling.
+- **Per-action authorization**: Optional extra step (code \+ confirm) for sensitive operations.
 
 ## Implementation
 
 Integrate with Bleepay's API (or SDK) to:
 
-* Start a "connection" or "session" and receive a code (or accept a code from the user and resolve it to a session).
-* Request transaction objects for the actions you need (e.g. token approval, swap, transfer).
+- Start a "connection" or "session" and receive a code (or accept a code from the user and resolve it to a session).
+- Request transaction objects for the actions you need (e.g. token approval, swap, transfer).
 
 Your frontend only needs a code input and status/feedback; the wallet handles signing and broadcast. Exact endpoints and SDK methods depend on the Bleepay developer offering for dApps; see dashboard or API docs when available.
 
 ## Next steps
 
-* [Wallet providers](/home/integration/wallet-providers) — how wallets implement Bleepay.
-* [Web3 processing](/home/integration/processing) — complex actions (swaps, DeFi) via Bleepay.
+- [Wallet providers](/home/integration/wallet-providers) — how wallets implement Bleepay.
+- [Web3 processing](/home/integration/processing) — complex actions (swaps, DeFi) via Bleepay.

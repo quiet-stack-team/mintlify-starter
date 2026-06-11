@@ -2,6 +2,7 @@
 title: Checkout Flow
 ---
 
+import { ThemeImage } from '/snippets/theme-image.jsx'
 
 > User and merchant steps in the Bleepay checkout experience.
 
@@ -33,22 +34,11 @@ No wallet connection on your domain, no extension, no popups. Just a code and a 
 
 ## Diagram (high level)
 
-```
-[Your site]         [Bleepay]           [User wallet]
-    |                   |                     |
-    | 1. Start session  |                     |
-    |------------------>|                     |
-    |                   | 2. User generates   |
-    |                   |    code             |
-    |                   |<--------------------|
-    | 3. User enters code|                    |
-    |------------------>| 4. Redeem & build tx|
-    |                   |-------------------->| 5. Sign
-    |                   |<--------------------|
-    | 6. Webhook (settled)                    |
-    |<------------------|                     |
-    | 7. Fulfill order  |                     |
-```
+<ThemeImage
+    img_name="Checkout-Flow.png"
+    alt="Checkout Flow"
+/>
+
 
 ## Next steps
 

@@ -2,6 +2,7 @@
 title: Smart Contracts
 ---
 
+import { ThemeImage } from '/snippets/theme-image.jsx'
 
 > Using a CUSTOM voucher to interact with smart contracts — for staking, DeFi, and complex on-chain actions.
 
@@ -121,34 +122,10 @@ Authorization: Bearer <payee_token>
 
 ### Diagram
 
-```text
-Payer (wallet)          Bleepay              Payee (you / dApp)
-     |                     |                     |
-     | open context        |                     |
-     |-------------------->|                     |
-     |<-- code "A1B2C3" ---|                     |
-     |                     |                     |
-     |   (share context code)                    |
-     |------------------------------------------>|
-     |                     |  sign-in            |
-     |                     |<---------------------|
-     |                     |  reserve-voucher    |
-     |                     |<---------------------|
-     |                     |-- code "591234" --->|
-     |                     |                     |
-     |                     |  redeem-voucher     |
-     |                     |  (networks, payments,|
-     |                     |   extras)           |
-     |                     |<---------------------|
-     |                     |                     |
-     |                     |  type = CUSTOM      |
-     |                     |                     |
-     | resolve-voucher     |                     |
-     | (signs staking tx)  |                     |
-     |-------------------->|                     |
-     |                     |                     |
-     | staking contract called on-chain          |
-```
+<ThemeImage
+    img_name="Payer-resolves.png"
+    alt="Payer resolves"
+/>
 
 ## When to use CUSTOM
 

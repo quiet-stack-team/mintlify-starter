@@ -2,6 +2,7 @@
 title: Sessions
 ---
 
+import { ThemeImage } from '/snippets/theme-image.jsx'
 
 > Group multiple vouchers in a session for multi-payment flows.
 
@@ -124,42 +125,10 @@ Authorization: Bearer <payee_token>
 
 ### Diagram
 
-```text
-Payer (wallet)          Bleepay              Payee (you)
-     |                     |                     |
-     | open context        |                     |
-     |-------------------->|                     |
-     |<-- code "A1B2C3" ---|                     |
-     |                     |                     |
-     |   (share context code)                    |
-     |------------------------------------------>|
-     |                     |  sign-in, session-open
-     |                     |<---------------------|
-     |                     |-- ses_xyz --------->|
-     |                     |                     |
-     | join session        |                     |
-     |-------------------->|                     |
-     |                     |                     |
-     |                     |  reserve vch_482916    |
-     |                     |<---------------------|
-     |                     |  redeem vch_482916     |
-     |                     |<---------------------|
-     |                     |                     |
-     |                     |  reserve vch_739104    |
-     |                     |<---------------------|
-     |                     |  redeem vch_739104     |
-     |                     |<---------------------|
-     |                     |                     |
-     | resolve vch_482916     |                     |
-     |-------------------->|                     |
-     | resolve vch_739104     |                     |
-     |-------------------->|                     |
-     |                     |                     |
-     |                     |  session-close      |
-     |                     |<---------------------|
-     |                     |                     |
-     |          funds → your address (EURC + USDC)|
-```
+<ThemeImage
+    img_name="Payer-resolves-you-close.png"
+    alt="Payer resolves, you close"
+/>
 
 ## Key points
 

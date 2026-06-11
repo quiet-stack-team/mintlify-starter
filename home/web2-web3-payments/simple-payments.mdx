@@ -88,33 +88,10 @@ If the payer doesn't hold EURC, their wallet can negotiate by proposing a differ
 
 ### Diagram
 
-```text
-Payer (wallet)          Bleepay              Payee (you)
-     |                     |                     |
-     | open context        |                     |
-     |-------------------->|                     |
-     |<-- context code -----|                     |
-     |                     |                     |
-     |   (share context code via QR/link/etc.)   |
-     |------------------------------------------>|
-     |                     |  sign-in (resource)  |
-     |                     |<---------------------|
-     |                     |  reserve-voucher     |
-     |                     |<---------------------|
-     |                     |-- code "482916" ---->|
-     |                     |                     |
-     |                     |  redeem-voucher      |
-     |                     |  (expectedPayment)   |
-     |                     |<---------------------|
-     |                     |                     |
-     | negotiate (opt.)    |                     |
-     |-------------------->|                     |
-     |                     |                     |
-     | resolve-voucher     |                     |
-     |-------------------->|                     |
-     |                     |                     |
-     |              funds → your address         |
-```
+<ThemeImage
+    img_name="fx-negotiation.png"
+    alt="FX negotiation"
+/>
 
 ## When to use SIMPLE
 

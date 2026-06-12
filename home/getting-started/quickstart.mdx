@@ -21,6 +21,28 @@ This guide walks through the payee (merchant/dApp) side of a Bleepay voucher pay
 
 Your responsibility is the **payee side** (right column). The payer side happens in their wallet.
 
+<Steps>
+  <Step title="1. Payer opens a context in their wallet">
+    The payer uses a Bleepay-compatible wallet to authenticate and open a payment context. The wallet returns a **context code** — a short alphanumeric string the payer shares with you.
+
+    This step happens entirely inside the payer's wallet. You just need to provide a way for the payer to give you the context code (QR scan, text input, deeplink, etc.).
+  </Step>
+  <Step title="Authenticate as the payee">
+    Use the context code to authenticate. This links your session to the payer's context.
+
+    ```text
+    POST /api/v1/auth/sign-in
+    
+    {
+        "type": "resource",
+        "data": {
+            "resource": "voucher::context::code::A1B2C3"
+        }
+    }
+    ```
+  </Step>
+</Steps>
+
 ## 1. Payer opens a context in their wallet
 
 The payer uses a Bleepay-compatible wallet to authenticate and open a payment context. The wallet returns a **context code** — a short alphanumeric string the payer shares with you.

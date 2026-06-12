@@ -40,105 +40,81 @@ Your responsibility is the **payee side** (right column). The payer side happens
         }
     }
     ```
+
+    **Response:** `{ "authorization": { "token": "<payee_token>" } }`
   </Step>
-</Steps>
+  <Step title="Reserve a voucher">
+    Reserve a voucher within the payer's context. This generates a 6-digit voucher code.
 
-## 1. Payer opens a context in their wallet
-
-The payer uses a Bleepay-compatible wallet to authenticate and open a payment context. The wallet returns a **context code** — a short alphanumeric string the payer shares with you.
-
-This step happens entirely inside the payer's wallet. You just need to provide a way for the payer to give you the context code (QR scan, text input, deeplink, etc.).
-
-## 2. Authenticate as the payee
-
-Use the context code to authenticate. This links your session to the payer's context.
-
-```text
-POST /api/v1/auth/sign-in
-
-{
-    "type": "resource",
-    "data": {
-        "resource": "voucher::context::code::A1B2C3"
+    ```text
+    POST /api/v1/vouchers/reserve-voucher
+    Authorization: Bearer <payee_token>
+    
+    {
+        "code": "A1B2C3"
     }
-}
-```
+    ```
 
-**Response:** `{ "authorization": { "token": "<payee_token>" } }`
+    **Response:**
 
-## 3. Reserve a voucher
+    ```json
+    {
+        "id": "vch_482916",
+        "code": "482916",
+        "status": "RESERVED",
+        "expiresAt": "2026-06-09T12:02:00Z"
+    }
+    ```
+  </Step>
+  <Step title="Redeem the voucher">
+    Specify what you expect to receive — currency, amount, network, and destination address. The `expectedPayment` parameter tells Bleepay to create a **SIMPLE** voucher with automatic network selection.
 
-Reserve a voucher within the payer's context. This generates a 6-digit voucher code.
-
-```text
-POST /api/v1/vouchers/reserve-voucher
-Authorization: Bearer <payee_token>
-
-{
-    "code": "A1B2C3"
-}
-```
-
-**Response:**
-
-```json
-{
-    "id": "vch_482916",
-    "code": "482916",
-    "status": "RESERVED",
-    "expiresAt": "2026-06-09T12:02:00Z"
-}
-```
-
-## 4. Redeem the voucher
-
-Specify what you expect to receive — currency, amount, network, and destination address. The `expectedPayment` parameter tells Bleepay to create a **SIMPLE** voucher with automatic network selection.
-
-```text
-POST /api/v1/vouchers/vch_482916/redeem-voucher
-Authorization: Bearer <payee_token>
-
-{
-    "expectedPayment": {
-        "network": "polygon",
-        "currency": "EURC",
-        "currencyAddress": "0x73b3db5a96a4b9d9bcfc22b8f1b3d85a5e5b5e5b",
-        "amount": "100",
-        "wallet": {
-            "address": "0xYourWalletAddress"
+    ```text
+    POST /api/v1/vouchers/vch_482916/redeem-voucher
+    Authorization: Bearer <payee_token>
+    
+    {
+        "expectedPayment": {
+            "network": "polygon",
+            "currency": "EURC",
+            "currencyAddress": "0x73b3db5a96a4b9d9bcfc22b8f1b3d85a5e5b5e5b",
+            "amount": "100",
+            "wallet": {
+                "address": "0xYourWalletAddress"
+            }
         }
     }
-}
-```
+    ```
 
-**Response:**
+    **Response:**
 
-```json
-{
-    "id": "vch_482916",
-    "status": "REDEEMED",
-    "type": "SIMPLE",
-    "expectedPayment": {
-        "network": "polygon",
-        "currency": "EURC",
-        "amount": "100",
-        "wallet": { "address": "0xYourWalletAddress" }
+    ```json
+    {
+        "id": "vch_482916",
+        "status": "REDEEMED",
+        "type": "SIMPLE",
+        "expectedPayment": {
+            "network": "polygon",
+            "currency": "EURC",
+            "amount": "100",
+            "wallet": { "address": "0xYourWalletAddress" }
+        }
     }
-}
-```
+    ```
+  </Step>
+  <Step title="Payer signs and resolves">
+    The payer reviews the transaction in their wallet, signs it, and the wallet submits the receipt. This happens on the payer's side — no action needed from you.
 
-## 5. Payer signs and resolves
+    Poll the voucher to track its status until it reaches `RESOLVED`:
 
-The payer reviews the transaction in their wallet, signs it, and the wallet submits the receipt. This happens on the payer's side — no action needed from you.
+    ```text
+    GET /api/v1/vouchers/vch_482916
+    Authorization: Bearer <payee_token>
+    ```
 
-Poll the voucher to track its status until it reaches `RESOLVED`:
-
-```text
-GET /api/v1/vouchers/vch_482916
-Authorization: Bearer <payee_token>
-```
-
-The voucher moves through states: `RESERVED` → `REDEEMED` → `RESOLVED`. Poll every 2–5 seconds until the final state is reached. For production, register a webhook endpoint instead of polling.
+    The voucher moves through states: `RESERVED` → `REDEEMED` → `RESOLVED`. Poll every 2–5 seconds until the final state is reached. For production, register a webhook endpoint instead of polling.
+  </Step>
+</Steps>
 
 ## Complete payee-side example
 

@@ -92,14 +92,19 @@ A session can contain **multiple transactions** — not just a single payment. E
   <Step title="Payer ">
     shares the context code with the payee (typed, spoken, QR, etc.).
   </Step>
+  <Step title="Payee">
+    authenticates with the context code, reserves a voucher (receives a 6-digit code), and redeems it by specifying what they expect to receive (`expectedPayment`) — currency, amount, and destination address.
+  </Step>
+  <Step title="Bleepay">
+    validates the voucher, syncs transaction metadata, and builds the transaction (swap/bridge/transfer) for the appropriate chain and token.
+  </Step>
+  <Step title="Payer">
+    reviews, signs in their wallet, and submits the receipt via `resolve-voucher`; the wallet broadcasts to the network.
+  </Step>
+  <Step title="Settlement">
+    funds arrive at the payee's address (or via liquidation partner for fiat).
+  </Step>
 </Steps>
-
-1. **Payer** logs in and opens a context → receives a context code that links their identity to the payment session.
-2. **Payer** shares the context code with the payee (typed, spoken, QR, etc.).
-3. **Payee** authenticates with the context code, reserves a voucher (receives a 6-digit code), and redeems it by specifying what they expect to receive (`expectedPayment`) — currency, amount, and destination address.
-4. **Bleepay** validates the voucher, syncs transaction metadata, and builds the transaction (swap/bridge/transfer) for the appropriate chain and token.
-5. **Payer** reviews, signs in their wallet, and submits the receipt via `resolve-voucher`; the wallet broadcasts to the network.
-6. **Settlement** — funds arrive at the payee's address (or via liquidation partner for fiat).
 
 ## Non-custodial model
 

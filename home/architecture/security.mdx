@@ -30,6 +30,16 @@ To reduce single points of failure, the roadmap includes moving **orchestration*
 
 Custody and signing remain with the user regardless of how orchestration is distributed.
 
+## Widget security
+
+The security of the Widget relies on a **"Secure by Default"** architecture, which protects both the business and the customer throughout the entire payment flow. The key security mechanisms of this module include:
+
+- **Rigorous server-side validation:** Every transaction attempt initiated through the Widget is strictly verified on the server against the initial configuration set by the business. The system validates whether the deposit amount falls within the strictly defined min/max limits, ensures the selected blockchain network and currency are on the allowed lists, and verifies that funds are directed to an authorized deposit address.
+- **Domain Restrictions:** The Widget can be locked to specific business website domains. If anyone attempts to embed your Widget on an unauthorized page (e.g., during a phishing attack), the system detects this and the Widget will simply not load.
+- **Single-use client secrets:** The platform does not use persistent credentials, eliminating the risk of password leaks. Instead, customer deposit sessions are accessed and tracked using dynamically generated, single-use client secrets.
+- **Cryptographic authentication (HMAC-SHA256):** The backend communication with the business's server via webhooks is secured using digital signatures. This guarantees that when the company's system receives an event notification (like `deposit.confirmed`), the payload is 100% authentic and has not been tampered with.
+- **Strict session time management:** Each created deposit session is valid for exactly 30 minutes. If the customer fails to send the funds within this time window, the session automatically expires (moving to an `EXPIRED` status), which significantly minimizes the risk of hanging or vulnerable payment states.
+
 ## Summary
 
 | Principle | Implementation |

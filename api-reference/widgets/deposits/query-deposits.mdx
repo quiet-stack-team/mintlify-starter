@@ -1,0 +1,92 @@
+---
+title: "Query Deposits"
+icon: "angle-right"
+---
+
+> List confirmed on-chain deposits for a business.
+
+`GET /api/v1/widgets/deposits`
+
+Returns a paginated list of on-chain deposits that have been detected and matched to deposit sessions. Deposits represent the actual blockchain transactions that triggered a payment confirmation.
+
+## Parameters
+
+### Query
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+| `widgetId` | `string` | No | Filter by widget ID |
+| `depositSessionId` | `string` | No | Filter by deposit session ID |
+| `status` | `string` | No | Deposit status: `PENDING`, `ENABLED`, `DISABLED`, `SUSPENDED` |
+| `network` | `string` | No | Filter by blockchain network (e.g. `polygon`) |
+| `currency` | `string` | No | Filter by currency symbol (e.g. `USDC`) |
+| `txid` | `string` | No | Filter by transaction hash |
+| `limit` | `integer` | No | Number of items (default 20, max 100) |
+| `offset` | `integer` | No | Pagination offset |
+| `since` | `integer` | No | Unix timestamp (ms) -- return items created after this time |
+| `until` | `integer` | No | Unix timestamp (ms) -- return items created before this time |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/deposits?businessId=biz_abc123&network=polygon&currency=USDC&limit=20' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Unique deposit identifier |
+| `depositSessionId` | `string` | Linked deposit session ID |
+| `businessId` | `string` | The business ID |
+| `txid` | `string` | Blockchain transaction hash |
+| `network` | `string` | Blockchain network |
+| `currency` | `string` | Currency symbol |
+| `currencyAddress` | `string` | Currency contract address |
+| `amount` | `string` | Deposit amount as a decimal string |
+| `amountRaw` | `string` | Raw amount in lowest denominator |
+| `value` | `string` | Estimated USD value |
+| `valueRaw` | `string` | Raw USD value in lowest denominator |
+| `srcAddress` | `string` or `null` | Sender wallet address |
+| `dstAddress` | `string` | Destination (merchant) address |
+| `timestamp` | `integer` | Unix timestamp of the on-chain deposit |
+| `status` | `string` | Deposit status: `PENDING`, `ENABLED`, `DISABLED`, `SUSPENDED` |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+[
+  {
+    "id": "dep_tx_abc123",
+    "depositSessionId": "dep_a1b2c3d4e5f6",
+    "businessId": "biz_abc123",
+    "txid": "0x7a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b",
+    "network": "polygon",
+    "currency": "USDC",
+    "currencyAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+    "amount": "100.00",
+    "amountRaw": "100000000",
+    "value": "100.00",
+    "valueRaw": "10000",
+    "srcAddress": "0xPayerWallet123...",
+    "dstAddress": "0xMerchantWalletAddress",
+    "timestamp": 1717934400,
+    "status": "ENABLED",
+    "createdAt": "2026-06-09T12:05:00.000Z",
+    "updatedAt": "2026-06-09T12:05:00.000Z"
+  }
+]
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `401` | `unauthorized` | Missing or invalid authentication |
+| `400` | `validation_failed` | Invalid query parameters |

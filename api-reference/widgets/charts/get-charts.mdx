@@ -1,0 +1,93 @@
+---
+title: "Get Charts"
+icon: "angle-right"
+---
+
+> Get aggregated deposit statistics for dashboards.
+
+`GET /api/v1/widgets/charts`
+
+Returns aggregated deposit metrics and time-series data for dashboard visualizations. You must provide either a `businessId` or `widgetId`, along with an interval for time-series bucketing.
+
+## Parameters
+
+### Query
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Required if `widgetId` is not provided | The business ID |
+| `widgetId` | `string` | Required if `businessId` is not provided | Filter by widget ID |
+| `interval` | `string` | Yes | Time bucket size: `1M`, `6M`, `12M`, `AllTime` |
+
+At least one of `businessId` or `widgetId` must be provided.
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/charts?businessId=biz_abc123&interval=1M' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `sumValue` | `string` | Total USD value across all deposits |
+| `sumCount` | `integer` | Total number of deposits |
+| `deposits` | `object` | Breakdown of deposit counts by status |
+| `deposits.CONFIRMED` | `integer` | Number of confirmed deposits |
+| `deposits.PENDING` | `integer` | Number of pending deposits |
+| `deposits.FAILED` | `integer` | Number of failed deposits |
+| `deposits.EXPIRED` | `integer` | Number of expired deposits |
+| `deposits.REFUNDED` | `integer` | Number of refunded deposits |
+| `ticks` | `array` | Time-series data points |
+
+### Tick object
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `tickDate` | `string` | ISO 8601 date for this time bucket |
+| `sumValue` | `string` | Total USD value in this time bucket |
+| `sumCount` | `integer` | Number of deposits in this time bucket |
+
+### Example response
+
+```json
+{
+  "sumValue": "15250.00",
+  "sumCount": 128,
+  "deposits": {
+    "CONFIRMED": 112,
+    "PENDING": 8,
+    "FAILED": 3,
+    "EXPIRED": 5,
+    "REFUNDED": 0
+  },
+  "ticks": [
+    {
+      "tickDate": "2026-06-01T00:00:00.000Z",
+      "sumValue": "500.00",
+      "sumCount": 5
+    },
+    {
+      "tickDate": "2026-06-02T00:00:00.000Z",
+      "sumValue": "1200.00",
+      "sumCount": 10
+    },
+    {
+      "tickDate": "2026-06-03T00:00:00.000Z",
+      "sumValue": "2300.00",
+      "sumCount": 18
+    }
+  ]
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `400` | `validation_failed` | Missing required parameters or invalid interval |
+| `401` | `unauthorized` | Missing or invalid authentication |

@@ -1,0 +1,73 @@
+---
+title: "Query Accounts"
+icon: "angle-right"
+---
+
+> List all accounts linked to a business.
+
+`GET /api/v1/businesses/accounts`
+
+Returns all blockchain accounts linked to the business specified by the `businessId` query parameter. Accepts optional filters for type, network, and address. Accepts both Bearer token (registered user) and API key authentication.
+
+## Parameters
+
+### Query
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+| `type` | `string` | No | Filter by account type (`WEB3`) |
+| `network` | `string` | No | Filter by blockchain network |
+| `address` | `string` | No | Filter by blockchain address |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/businesses/accounts?businessId=biz_abc123&network=ethereum' \
+  --header 'Authorization: Bearer <business_token>'
+
+curl --request GET 'https://payments.bleepay.com/api/v1/businesses/accounts?businessId=biz_abc123&network=ethereum' \
+  --header 'x-api-key: <api_key>'
+```
+
+## Response
+
+### Response schema
+
+Returns an array of account objects.
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Account identifier |
+| `businessId` | `string` | Parent business identifier |
+| `type` | `string` | Account type (`WEB3`) |
+| `network` | `string` | Blockchain network |
+| `address` | `string` | Blockchain address |
+| `currencies` | `array` | Accepted currencies as `[{ currency, currencyAddress }]` |
+| `label` | `string` or `null` | Human-readable label |
+| `status` | `string` | `PENDING`, `ENABLED`, or `DISABLED` |
+| `version` | `number` | Optimistic lock version |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+[
+  {
+    "id": "acc_abc123",
+    "businessId": "biz_abc123",
+    "type": "WEB3",
+    "network": "ethereum",
+    "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+    "currencies": [
+      { "currency": "USDC", "currencyAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" }
+    ],
+    "label": "Primary wallet",
+    "status": "ENABLED",
+    "version": 0,
+    "createdAt": "2026-06-09T12:00:00.000Z",
+    "updatedAt": "2026-06-09T12:00:00.000Z"
+  }
+]
+```

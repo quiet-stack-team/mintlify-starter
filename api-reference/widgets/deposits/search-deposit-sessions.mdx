@@ -1,0 +1,88 @@
+---
+title: "Search Deposit Sessions"
+icon: "angle-right"
+---
+
+> Search deposit sessions with complex filtering operators.
+
+`GET /api/v1/widgets/deposit-sessions/search`
+
+Performs a full-text search across deposit sessions combined with optional filter operators. You can filter fields using bracket-notation operators for equality, comparison, inclusion, and pattern matching. The text `search` parameter looks across amount, value (for numeric input) or currency, currencyAddress, confirmedTxid, and confirmedPayerAddress (for text input).
+
+## Parameters
+
+### Query
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `businessId` | `string` | Yes | The business ID |
+| `widgetId` | `string` | No | Filter by widget ID |
+| `paymentStatus` | `string` | No | Filter by payment status. When not provided, `CREATED` sessions are excluded by default |
+| `search` | `string` | No | Free-text search term |
+| `limit` | `integer` | No | Number of items (default 20, max 100) |
+| `offset` | `integer` | No | Pagination offset |
+| `since` | `integer` | No | Unix timestamp (ms) -- return items created after this time |
+| `until` | `integer` | No | Unix timestamp (ms) -- return items created before this time |
+
+### Filter operators
+
+Apply operators to any filterable field using bracket notation: `field[operator]=value`.
+
+| Operator | Description | Example |
+|----------|-------------|---------|
+| `eq` | Equal to | `?paymentStatus[eq]=CONFIRMED` |
+| `ne` | Not equal to | `?paymentStatus[ne]=EXPIRED` |
+| `gt` | Greater than | `?amount[gt]=10` |
+| `gte` | Greater than or equal to | `?amount[gte]=10` |
+| `lt` | Less than | `?amount[lt]=1000` |
+| `lte` | Less than or equal to | `?amount[lte]=1000` |
+| `in` | In array | `?currency[in]=USDC&currency[in]=EURC` |
+| `nin` | Not in array | `?network[nin]=ethereum` |
+| `like` | Pattern match | `?customerEmail[like]=%@example.com` |
+
+A plain value without bracket notation is treated as `eq`: `?paymentStatus=CONFIRMED` is equivalent to `?paymentStatus[eq]=CONFIRMED`.
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/deposit-sessions/search?businessId=biz_abc123&search=0xPayer&paymentStatus[ne]=EXPIRED&currency[in]=USDC&currency[in]=EURC&limit=20' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+Returns an array of deposit session objects. See [Query Deposit Sessions](/api-reference/widgets/deposits/query-deposit-sessions) for the object schema.
+
+### Example response
+
+```json
+[
+  {
+    "id": "dep_a1b2c3d4e5f6",
+    "businessId": "biz_abc123",
+    "widgetId": "wdgt_abc",
+    "paymentStatus": "CONFIRMED",
+    "amount": "100",
+    "amountRaw": "100000000",
+    "currency": "USDC",
+    "network": "polygon",
+    "currencyAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+    "depositAddress": "0xMerchantWalletAddress",
+    "value": "100.00",
+    "valueRaw": "10000",
+    "confirmedTxid": "0xabc123def456...",
+    "confirmedPayerAddress": "0xPayerWallet123...",
+    "expiresAt": "2026-06-09T12:30:00.000Z",
+    "confirmedAt": "2026-06-09T12:05:00.000Z",
+    "createdAt": "2026-06-09T12:00:00.000Z",
+    "updatedAt": "2026-06-09T12:05:00.000Z"
+  }
+]
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `401` | `unauthorized` | Missing or invalid authentication |
+| `400` | `validation_failed` | Invalid query or filter parameters |

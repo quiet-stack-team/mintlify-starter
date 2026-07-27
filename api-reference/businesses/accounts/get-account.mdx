@@ -1,0 +1,66 @@
+---
+title: "Get Account"
+icon: "angle-right"
+---
+
+> Retrieve a single account by ID.
+
+`GET /api/v1/businesses/accounts/:accountId`
+
+Returns full details for a specific blockchain account. The owning business is resolved from the account ID. Accepts both Bearer token (registered user) and API key authentication.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `accountId` | `string` | Yes | The account ID |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/businesses/accounts/acc_abc123' \
+  --header 'Authorization: Bearer <business_token>'
+
+curl --request GET 'https://payments.bleepay.com/api/v1/businesses/accounts/acc_abc123' \
+  --header 'x-api-key: <api_key>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Account identifier |
+| `businessId` | `string` | Parent business identifier |
+| `type` | `string` | Account type (`WEB3`) |
+| `network` | `string` | Blockchain network |
+| `address` | `string` | Blockchain address |
+| `currencies` | `array` | Accepted currencies as `[{ currency, currencyAddress }]` |
+| `label` | `string` or `null` | Human-readable label |
+| `status` | `string` | `PENDING`, `ENABLED`, or `DISABLED` |
+| `version` | `number` | Optimistic lock version |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+{
+  "id": "acc_abc123",
+  "businessId": "biz_abc123",
+  "type": "WEB3",
+  "network": "ethereum",
+  "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+  "currencies": [
+    { "currency": "USDC", "currencyAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" }
+  ],
+  "label": "Primary wallet",
+  "status": "ENABLED",
+  "version": 1,
+  "createdAt": "2026-06-09T12:00:00.000Z",
+  "updatedAt": "2026-06-09T12:30:00.000Z"
+}
+```

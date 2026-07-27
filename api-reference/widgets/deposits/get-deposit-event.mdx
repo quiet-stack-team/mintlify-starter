@@ -1,0 +1,70 @@
+---
+title: "Get Deposit Event"
+icon: "angle-right"
+---
+
+> Get a single deposit event by ID.
+
+`GET /api/v1/widgets/deposit-events/:eventId`
+
+Retrieves a specific deposit event by its unique identifier. The event must belong to a deposit session owned by the authenticated business.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `eventId` | `string` | Yes | The deposit event ID |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/deposit-events/evt_abc123' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Unique event identifier |
+| `businessId` | `string` | The business ID |
+| `depositSessionId` | `string` | The deposit session ID |
+| `type` | `string` | Event type (e.g. `deposit.confirmed`) |
+| `payload` | `object` | Full event data specific to the event type |
+| `payloadHash` | `string` or `null` | Hash of the event payload for integrity verification |
+| `status` | `string` | Event status: `PENDING`, `ENABLED`, `DISABLED`, `SUSPENDED` |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+{
+  "id": "evt_abc123",
+  "businessId": "biz_abc123",
+  "depositSessionId": "dep_a1b2c3d4e5f6",
+  "type": "deposit.confirmed",
+  "payload": {
+    "amount": "100",
+    "currency": "USDC",
+    "network": "polygon",
+    "txid": "0x7a1b2c3d...",
+    "srcAddress": "0xPayerWallet123..."
+  },
+  "payloadHash": "a1b2c3d4e5f6...",
+  "status": "ENABLED",
+  "createdAt": "2026-06-09T12:05:00.000Z",
+  "updatedAt": "2026-06-09T12:05:00.000Z"
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `401` | `unauthorized` | Missing or invalid authentication |
+| `404` | `not_found` | Deposit event not found |

@@ -1,0 +1,80 @@
+---
+title: "Get Deposit"
+icon: "angle-right"
+---
+
+> Get a single deposit by ID.
+
+`GET /api/v1/widgets/deposits/:depositId`
+
+Retrieves a specific on-chain deposit by its unique identifier. The deposit must belong to the authenticated business.
+
+## Parameters
+
+### Path
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `depositId` | `string` | Yes | The deposit ID |
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/deposits/dep_tx_abc123' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Unique deposit identifier |
+| `depositSessionId` | `string` | Linked deposit session ID |
+| `businessId` | `string` | The business ID |
+| `txid` | `string` | Blockchain transaction hash |
+| `network` | `string` | Blockchain network |
+| `currency` | `string` | Currency symbol |
+| `currencyAddress` | `string` | Currency contract address |
+| `amount` | `string` | Deposit amount as a decimal string |
+| `amountRaw` | `string` | Raw amount in lowest denominator |
+| `value` | `string` | Estimated USD value |
+| `valueRaw` | `string` | Raw USD value in lowest denominator |
+| `srcAddress` | `string` or `null` | Sender wallet address |
+| `dstAddress` | `string` | Destination (merchant) address |
+| `timestamp` | `integer` | Unix timestamp of the on-chain deposit |
+| `status` | `string` | Deposit status |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+{
+  "id": "dep_tx_abc123",
+  "depositSessionId": "dep_a1b2c3d4e5f6",
+  "businessId": "biz_abc123",
+  "txid": "0x7a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b",
+  "network": "polygon",
+  "currency": "USDC",
+  "currencyAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+  "amount": "100.00",
+  "amountRaw": "100000000",
+  "value": "100.00",
+  "valueRaw": "10000",
+  "srcAddress": "0xPayerWallet123...",
+  "dstAddress": "0xMerchantWalletAddress",
+  "timestamp": 1717934400,
+  "status": "ENABLED",
+  "createdAt": "2026-06-09T12:05:00.000Z",
+  "updatedAt": "2026-06-09T12:05:00.000Z"
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `401` | `unauthorized` | Missing or invalid authentication |
+| `404` | `not_found` | Deposit not found |

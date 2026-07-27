@@ -3,7 +3,7 @@ title: "Sessions"
 icon: "circle"
 ---
 
-import { ThemeImage } from '/snippets/theme-image.jsx'
+# Sessions
 
 > Group multiple vouchers in a session for multi-payment flows.
 
@@ -20,7 +20,7 @@ Each voucher in a session has the same capabilities as a standalone payment: SIM
 ## Flow overview
 
 1. **Payer** opens their wallet, authenticates, and opens a context — shares the context code with you.
-2. **You authenticate** using the context code.
+2. **You authenticate** using your API key (`x-api-key` header).
 3. **You open a session** using the context code.
 4. **Payer** joins the session in their wallet.
 5. **You reserve and redeem** each voucher independently within the session.
@@ -33,20 +33,11 @@ The payer has already opened their wallet and shared a context code with you.
 
 ### 1. Authenticate and open a session
 
-```
-POST /api/v1/auth/sign-in
-
-{
-    "type": "resource",
-    "data": {
-        "resource": "voucher::context::code::A1B2C3"
-    }
-}
-```
+Pass your API key in the `x-api-key` header. No separate sign-in step is needed.
 
 ```
 POST /api/v1/vouchers/sessions/session-open
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 
 {
     "code": "A1B2C3"
@@ -61,7 +52,7 @@ The payer joins the session in their wallet.
 
 ```
 POST /api/v1/vouchers/sessions/ses_xyz/reserve-voucher
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 
 {}
 ```
@@ -70,7 +61,7 @@ Response: `{ "id": "vch_482916", "code": "482916", "status": "RESERVED" }`
 
 ```
 POST /api/v1/vouchers/vch_482916/redeem-voucher
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 
 {
     "expectedPayment": {
@@ -89,7 +80,7 @@ Authorization: Bearer <payee_token>
 
 ```
 POST /api/v1/vouchers/sessions/ses_xyz/reserve-voucher
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 
 {}
 ```
@@ -98,7 +89,7 @@ Response: `{ "id": "vch_739104", "code": "739104", "status": "RESERVED" }`
 
 ```
 POST /api/v1/vouchers/vch_739104/redeem-voucher
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 
 {
     "expectedPayment": {
@@ -119,17 +110,49 @@ The payer signs and submits receipts for each voucher in their wallet. Once all 
 
 ```
 POST /api/v1/vouchers/sessions/ses_xyz/session-close
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 
 {}
 ```
 
 ### Diagram
 
-<ThemeImage
-    img_name="Payer-resolves-you-close.png"
-    alt="Payer resolves, you close"
-/>
+```text
+Payer (wallet)          Bleepay              Payee (you)
+     |                     |                     |
+     | open context        |                     |
+     |-------------------->|                     |
+     |<-- code "A1B2C3" ---|                     |
+     |                     |                     |
+     |   (share context code)                    |
+     |------------------------------------------>|
+     |                     |  session-open (x-api-key)
+     |                     |<---------------------|
+     |                     |-- ses_xyz --------->|
+     |                     |                     |
+     | join session        |                     |
+     |-------------------->|                     |
+     |                     |                     |
+     |                     |  reserve vch_482916    |
+     |                     |<---------------------|
+     |                     |  redeem vch_482916     |
+     |                     |<---------------------|
+     |                     |                     |
+     |                     |  reserve vch_739104    |
+     |                     |<---------------------|
+     |                     |  redeem vch_739104     |
+     |                     |<---------------------|
+     |                     |                     |
+     | resolve vch_482916     |                     |
+     |-------------------->|                     |
+     | resolve vch_739104     |                     |
+     |-------------------->|                     |
+     |                     |                     |
+     |                     |  session-close      |
+     |                     |<---------------------|
+     |                     |                     |
+     |          funds → your address (EURC + USDC)|
+```
 
 ## Key points
 
@@ -140,5 +163,5 @@ Authorization: Bearer <payee_token>
 
 ## Next steps
 
-* [Simple Payments](/home/web2-web3-payments/simple-payments) — single voucher payments.
-* [Smart Contracts](/home/web2-web3-payments/smart-contracts) — CUSTOM voucher for contract interactions.
+* [Simple Payments](/web2-web3-payments/simple-payments) — single voucher payments.
+* [Smart Contracts](/web2-web3-payments/smart-contracts) — CUSTOM voucher for contract interactions.

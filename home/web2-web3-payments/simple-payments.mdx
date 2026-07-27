@@ -3,7 +3,7 @@ title: "Simple Payments"
 icon: "arrow-down-left"
 ---
 
-import { ThemeImage } from '/snippets/theme-image.jsx'
+# Simple Payments
 
 > Using a SIMPLE voucher to create a single token payment with built-in FX.
 
@@ -15,7 +15,7 @@ Using a SIMPLE voucher enables the payer to take advantage of **FX out of the bo
 
 1. **Payer** opens their Bleepay-compatible wallet, authenticates, and opens a context — the wallet displays a context code.
 2. **Payer** shares the context code with you (QR, link, NFC, etc.).
-3. **You authenticate** using the context code as a resource.
+3. **You authenticate** using your API key (`x-api-key` header).
 4. **You reserve** a voucher using the context code → receive a 6-digit voucher code.
 5. **You redeem** the voucher with `expectedPayment` specifying what you want to receive.
 6. (Optional) **Payer negotiates** — if they don't hold the requested currency, their wallet proposes an alternative. Bleepay calculates the FX rate automatically.
@@ -28,24 +28,13 @@ The payer has already opened their wallet and shared a context code with you.
 
 ### 1. Authenticate
 
-```
-POST /api/v1/auth/sign-in
-
-{
-    "type": "resource",
-    "data": {
-        "resource": "voucher::context::code::A1B2C3"
-    }
-}
-```
-
-Response: `{ "authorization": { "token": "<payee_token>" } }`
+Pass your API key in the `x-api-key` header on every request. No separate sign-in step is needed.
 
 ### 2. Reserve a voucher
 
 ```
 POST /api/v1/vouchers/reserve-voucher
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 
 {
     "code": "A1B2C3"
@@ -58,7 +47,7 @@ Response: `{ "id": "vch_482916", "code": "482916", "status": "RESERVED" }`
 
 ```
 POST /api/v1/vouchers/vch_482916/redeem-voucher
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 
 {
     "expectedPayment": {
@@ -81,7 +70,7 @@ The payer reviews the transaction in their wallet, signs it, and the wallet subm
 
 ```
 GET /api/v1/vouchers/vch_482916
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 ```
 
 ### (Optional) FX negotiation
@@ -90,10 +79,32 @@ If the payer doesn't hold EURC, their wallet can negotiate by proposing a differ
 
 ### Diagram
 
-<ThemeImage
-    img_name="fx-negotiation.png"
-    alt="FX negotiation"
-/>
+```text
+Payer (wallet)          Bleepay              Payee (you)
+     |                     |                     |
+     | open context        |                     |
+     |-------------------->|                     |
+     |<-- context code -----|                     |
+     |                     |                     |
+     |   (share context code via QR/link/etc.)   |
+     |------------------------------------------>|
+     |                     |  reserve-voucher     |
+     |                     |  (x-api-key)         |
+     |                     |<---------------------|
+     |                     |-- code "482916" ---->|
+     |                     |                     |
+     |                     |  redeem-voucher      |
+     |                     |  (expectedPayment)   |
+     |                     |<---------------------|
+     |                     |                     |
+     | negotiate (opt.)    |                     |
+     |-------------------->|                     |
+     |                     |                     |
+     | resolve-voucher     |                     |
+     |-------------------->|                     |
+     |                     |                     |
+     |              funds → your address         |
+```
 
 ## When to use SIMPLE
 
@@ -104,6 +115,6 @@ If the payer doesn't hold EURC, their wallet can negotiate by proposing a differ
 
 ## Next steps
 
-* [Sessions](/home/web2-web3-payments/sessions) — group multiple vouchers in a session.
-* [Smart Contracts](/home/web2-web3-payments/smart-contracts) — complex interactions with CUSTOM vouchers.
-* [Integration overview](/home/web2-web3-payments/overview) — full parameter reference.
+* [Sessions](/web2-web3-payments/sessions) — group multiple vouchers in a session.
+* [Smart Contracts](/web2-web3-payments/smart-contracts) — complex interactions with CUSTOM vouchers.
+* [Integration overview](/web2-web3-payments/overview) — full parameter reference.

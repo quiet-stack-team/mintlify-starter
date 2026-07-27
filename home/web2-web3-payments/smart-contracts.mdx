@@ -3,7 +3,7 @@ title: "Smart Contracts"
 icon: "file-contract"
 ---
 
-import { ThemeImage } from '/snippets/theme-image.jsx'
+# Smart Contracts
 
 > Using a CUSTOM voucher to interact with smart contracts — for staking, DeFi, and complex on-chain actions.
 
@@ -14,7 +14,7 @@ CUSTOM vouchers do **not** support FX. They are for scenarios where you define e
 ## Flow
 
 1. **Payer** opens their wallet, authenticates, and opens a context — shares the context code with you.
-2. **You authenticate** using the context code.
+2. **You authenticate** using your API key (`x-api-key` header).
 3. **You reserve** a voucher using the context code.
 4. **You redeem** with explicit `networks`, `payments`, and `extras` — the system detects these and creates a **CUSTOM** voucher.
 5. **Payer** reviews the transaction in their wallet, signs, and submits the receipt.
@@ -27,20 +27,11 @@ The payer has already opened their wallet and shared a context code with you.
 
 ### 1. Authenticate and reserve
 
-```
-POST /api/v1/auth/sign-in
-
-{
-    "type": "resource",
-    "data": {
-        "resource": "voucher::context::code::A1B2C3"
-    }
-}
-```
+Pass your API key in the `x-api-key` header. No separate sign-in step is needed.
 
 ```
 POST /api/v1/vouchers/reserve-voucher
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 
 {
     "code": "A1B2C3"
@@ -85,7 +76,7 @@ const stakeData = encodeFunctionData({
 
 ```
 POST /api/v1/vouchers/vch_591234/redeem-voucher
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 
 {
     "networks": [
@@ -118,15 +109,38 @@ The payer reviews the staking transaction in their wallet, signs it, and the wal
 
 ```
 GET /api/v1/vouchers/vch_591234
-Authorization: Bearer <payee_token>
+x-api-key: <your_api_key>
 ```
 
 ### Diagram
 
-<ThemeImage
-    img_name="Payer-resolves.png"
-    alt="Payer resolves"
-/>
+```text
+Payer (wallet)          Bleepay              Payee (you / dApp)
+     |                     |                     |
+     | open context        |                     |
+     |-------------------->|                     |
+     |<-- code "A1B2C3" ---|                     |
+     |                     |                     |
+     |   (share context code)                    |
+     |------------------------------------------>|
+     |                     |  reserve-voucher    |
+     |                     |  (x-api-key)        |
+     |                     |<---------------------|
+     |                     |-- code "591234" --->|
+     |                     |                     |
+     |                     |  redeem-voucher     |
+     |                     |  (networks, payments,|
+     |                     |   extras)           |
+     |                     |<---------------------|
+     |                     |                     |
+     |                     |  type = CUSTOM      |
+     |                     |                     |
+     | resolve-voucher     |                     |
+     | (signs staking tx)  |                     |
+     |-------------------->|                     |
+     |                     |                     |
+     | staking contract called on-chain          |
+```
 
 ## When to use CUSTOM
 
@@ -143,6 +157,6 @@ Authorization: Bearer <payee_token>
 
 ## Next steps
 
-* [Simple Payments](/home/web2-web3-payments/simple-payments) — SIMPLE vouchers for straightforward transfers.
-* [Sessions](/home/web2-web3-payments/sessions) — group vouchers in a session.
-* [Web3 processing](/home/integration/processing) — swaps, DeFi, and complex on-chain actions.
+* [Simple Payments](/web2-web3-payments/simple-payments) — SIMPLE vouchers for straightforward transfers.
+* [Sessions](/web2-web3-payments/sessions) — group vouchers in a session.
+* [Web3 processing](/integrations/processing) — swaps, DeFi, and complex on-chain actions.

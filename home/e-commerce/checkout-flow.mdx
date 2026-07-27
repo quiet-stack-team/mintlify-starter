@@ -3,7 +3,7 @@ title: "Checkout Flow"
 icon: "almost-equal-to"
 ---
 
-import { ThemeImage } from '/snippets/theme-image.jsx'
+# Checkout Flow
 
 > User and merchant steps in the Bleepay checkout experience.
 
@@ -29,15 +29,30 @@ No wallet connection on your domain, no extension, no popups. Just a code and a 
 
 ## UX best practices
 
-- **Clear instructions**: Tell the user to open their wallet, generate a code, and enter it (and that the code expires after a short time).
-- **Error handling**: Handle invalid/expired codes and show a clear message or retry option.
-- **Mobile**: The flow works on mobile; ensure the code input is easy to use on small screens.
+* **Clear instructions**: Tell the user to open their wallet, generate a code, and enter it (and that the code expires after a short time).
+* **Error handling**: Handle invalid/expired codes and show a clear message or retry option.
+* **Mobile**: The flow works on mobile; ensure the code input is easy to use on small screens.
 
 ## Diagram (high level)
 
-<ThemeImage img_name="Checkout-Flow.png" alt="Checkout Flow" />
+```
+[Your site]         [Bleepay]           [User wallet]
+    |                   |                     |
+    | 1. Start session  |                     |
+    |------------------>|                     |
+    |                   | 2. User generates   |
+    |                   |    code             |
+    |                   |<--------------------|
+    | 3. User enters code|                    |
+    |------------------>| 4. Redeem & build tx|
+    |                   |-------------------->| 5. Sign
+    |                   |<--------------------|
+    | 6. Webhook (settled)                    |
+    |<------------------|                     |
+    | 7. Fulfill order  |                     |
+```
 
 ## Next steps
 
-- [Integration overview](/home/web2-web3-payments/overview) — technical integration steps.
-- [Webhooks](/home/e-commerce/webhooks) — handling server-side events.
+* [Integration overview](/web2-web3-payments/overview) — technical integration steps.
+* [Webhooks](/e-commerce/webhooks) — handling server-side events.

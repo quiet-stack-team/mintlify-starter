@@ -3,6 +3,8 @@ title: "Security"
 icon: "bullseye"
 ---
 
+# Security
+
 > Zero-trust, non-custodial model and session integrity.
 
 Bleepay follows a **zero-trust, non-custodial** model and keeps orchestration strictly separate from asset custody.
@@ -15,14 +17,14 @@ Bleepay never has access to private keys and cannot sign or broadcast on behalf 
 
 ## Session integrity
 
-- **6-digit codes** are ephemeral and bound to a specific payment intent (session). This limits replay attacks and unauthorized redirection.
-- Each voucher is **single-use**: after redemption and retrieval by the payer, the session is finalized and the code is unreserved.
-- Communication between the wallet and Bleepay can be **signed** (e.g. with the payer's key) so the server can verify that requests and redemptions belong to the correct payer.
+* **6-digit codes** are ephemeral and bound to a specific payment intent (session). This limits replay attacks and unauthorized redirection.
+* Each voucher is **single-use**: after redemption and retrieval by the payer, the session is finalized and the code is unreserved.
+* Communication between the wallet and Bleepay can be **signed** (e.g. with the payer's key) so the server can verify that requests and redemptions belong to the correct payer.
 
 ## Real-time validation
 
-- The engine can **verify fiat requirements against on-chain swap parameters** before the user signs, helping prevent price manipulation or slippage exploits.
-- Settlement and routing logic are designed to align with the stated amount and currency (e.g. EUR) within agreed tolerances.
+* The engine can **verify fiat requirements against on-chain swap parameters** before the user signs, helping prevent price manipulation or slippage exploits.
+* Settlement and routing logic are designed to align with the stated amount and currency (e.g. EUR) within agreed tolerances.
 
 ## Progressive decentralization (roadmap)
 
@@ -30,20 +32,10 @@ To reduce single points of failure, the roadmap includes moving **orchestration*
 
 Custody and signing remain with the user regardless of how orchestration is distributed.
 
-## Widget security
-
-The security of the Widget relies on a **"Secure by Default"** architecture, which protects both the business and the customer throughout the entire payment flow. The key security mechanisms of this module include:
-
-- **Rigorous server-side validation:** Every transaction attempt initiated through the Widget is strictly verified on the server against the initial configuration set by the business. The system validates whether the deposit amount falls within the strictly defined min/max limits, ensures the selected blockchain network and currency are on the allowed lists, and verifies that funds are directed to an authorized deposit address.
-- **Domain Restrictions:** The Widget can be locked to specific business website domains. If anyone attempts to embed your Widget on an unauthorized page (e.g., during a phishing attack), the system detects this and the Widget will simply not load.
-- **Single-use client secrets:** The platform does not use persistent credentials, eliminating the risk of password leaks. Instead, customer deposit sessions are accessed and tracked using dynamically generated, single-use client secrets.
-- **Cryptographic authentication (HMAC-SHA256):** The backend communication with the business's server via webhooks is secured using digital signatures. This guarantees that when the company's system receives an event notification (like `deposit.confirmed`), the payload is 100% authentic and has not been tampered with.
-- **Strict session time management:** Each created deposit session is valid for exactly 30 minutes. If the customer fails to send the funds within this time window, the session automatically expires (moving to an `EXPIRED` status), which significantly minimizes the risk of hanging or vulnerable payment states.
-
 ## Summary
 
 | Principle | Implementation |
-| --- | --- |
+|-----------|---------------|
 | Non-custodial | User holds keys; Bleepay never holds funds. |
 | Zero-trust | Server validates signed requests; no trust in a central custodian for assets. |
 | Session binding | Codes bound to intent; single-use; time-limited. |
@@ -51,6 +43,6 @@ The security of the Widget relies on a **"Secure by Default"** architecture, whi
 
 ## Next steps
 
-- [Custody model](/home/architecture/custody-model) — non-custodial across products.
-- [How money moves](/home/architecture/how-money-moves) — fund flows by scenario.
-- [Terminology](/home/reference/terminology) — payer, payee, voucher, session.
+* [Custody model](/architecture/custody-model) — non-custodial across products.
+* [How money moves](/architecture/how-money-moves) — fund flows by scenario.
+* [Terminology](/reference/terminology) — payer, payee, voucher, session.

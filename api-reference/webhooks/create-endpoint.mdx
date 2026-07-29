@@ -5,46 +5,49 @@ icon: "angle-right"
 
 > Register a webhook endpoint to receive payment event notifications.
 
-`POST /api/v1/businesses/:businessId/webhook-endpoints/create-endpoint`
+`POST /api/v1/widgets/webhook-endpoints/create-endpoint`
 
-Webhooks are dispatched as signed HTTP POST requests with HMAC-SHA256 signatures. You can subscribe to specific event types and register multiple endpoints per business.
+Webhooks are dispatched as signed HTTP POST requests with HMAC-SHA256 signatures. You can subscribe to specific event types and register multiple endpoints per widget.
 
 ## Parameters
-
-### Path
-
-| Name | Type | Required | Description |
-| --- | --- | --- | --- |
-| `businessId` | `string` | Yes | The business ID |
 
 ### Body
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
+| `widgetId` | `string` | Yes | The widget ID |
 | `url` | `string` | Yes | HTTPS URL to deliver events to |
 | `description` | `string` | No | Human-readable description of this endpoint |
 | `events` | `array` | Yes | List of event types to subscribe to |
 
 **Supported event types:**
 
-- `deposit.created` — Deposit session created
-- `deposit.pending` — On-chain payment detected
-- `deposit.confirmed` — Payment confirmed after block confirmations
-- `deposit.expired` — Session expired without payment
-- `deposit.failed` — Deposit failed
-- `deposit.underpaid` — Payment received below the expected amount
-- `deposit.overpaid` — Payment received above the expected amount
+| Event Type | Description |
+|---|---|
+| `deposit.created` | Deposit session created |
+| `deposit.pending` | On-chain payment detected |
+| `deposit.confirmed` | Payment confirmed after block confirmations |
+| `deposit.expired` | Session expired without payment |
+| `deposit.failed` | Deposit failed |
+| `deposit.underpaid` | Payment received below the expected amount |
+| `deposit.overpaid` | Payment received above the expected amount |
+| `deposit.unmatched` | Payment received but no matching session found |
+| `refund.confirmed` | Refund confirmed on-chain |
+| `refund.expired` | Refund received after session expired |
+| `refund.failed` | Refund failed |
+| `refund.unmatched` | Refund received but no matching session found |
 
 ## Request example
 
 ```shell
-curl --request POST 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webhook-endpoints/create-endpoint' \
+curl --request POST 'https://payments.bleepay.com/api/v1/widgets/webhook-endpoints/create-endpoint' \
   --header 'Authorization: Bearer <business_token>' \
   --header 'Content-Type: application/json' \
   --data '{
+    "widgetId": "wdgt_abc",
     "url": "https://example.com/webhooks/bleepay",
     "description": "Production webhook endpoint",
-    "events": ["deposit.pending", "deposit.confirmed", "deposit.expired"]
+    "events": ["deposit.pending", "deposit.confirmed", "deposit.expired", "refund.confirmed"]
   }'
 ```
 
@@ -67,7 +70,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webh
   "id": "wh_abc123",
   "url": "https://example.com/webhooks/bleepay",
   "description": "Production webhook endpoint",
-  "events": ["deposit.pending", "deposit.confirmed", "deposit.expired"],
+  "events": ["deposit.pending", "deposit.confirmed", "deposit.expired", "refund.confirmed"],
   "enabled": true,
   "signingSecret": "whsec_abc123def456..."
 }

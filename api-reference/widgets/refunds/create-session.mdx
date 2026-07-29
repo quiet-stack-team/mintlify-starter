@@ -1,0 +1,97 @@
+---
+title: "Create Refund Session"
+icon: "angle-right"
+---
+
+> Create a refund session for a confirmed deposit.
+
+`POST /api/v1/widgets/refund-sessions/create-session`
+
+Creates a refund session linked to a confirmed deposit session. The refund session has an expiry and is tracked through `CREATED` → `PENDING` → `CONFIRMED` statuses. Refunds are sent to the payer addresses specified in the request.
+
+## Parameters
+
+### Body
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `depositSessionId` | `string` | Yes | The confirmed deposit session ID to refund |
+| `payers` | `array` | Yes | Array of 1–10 payer objects, each with an `address` field |
+
+## Request example
+
+```shell
+curl --request POST 'https://payments.bleepay.com/api/v1/widgets/refund-sessions/create-session' \
+  --header 'Authorization: Bearer <business_token>' \
+  --header 'Content-Type: application/json' \
+  --data '{
+    "depositSessionId": "dep_a1b2c3d4e5f6",
+    "payers": [
+      { "address": "0xPayerWalletAddress" }
+    ]
+  }'
+```
+
+## Response
+
+### Response schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `id` | `string` | Unique refund session identifier |
+| `businessId` | `string` | The business ID |
+| `widgetId` | `string` | The widget ID |
+| `depositSessionId` | `string` | The parent deposit session ID |
+| `paymentStatus` | `string` | Initial status — `CREATED` |
+| `amount` | `string` | Refund amount (matches original deposit) |
+| `amountRaw` | `string` | Raw amount in lowest denominator |
+| `currency` | `string` | Currency symbol |
+| `network` | `string` | Blockchain network |
+| `currencyAddress` | `string` | Currency contract address |
+| `dstAddress` | `string` | Refund destination address |
+| `value` | `string` | Estimated USD value |
+| `valueRaw` | `string` | Raw USD value in lowest denominator |
+| `payers` | `array` | Payer addresses for the refund |
+| `confirmedTxid` | `string` or `null` | Confirmed blockchain transaction hash |
+| `confirmedPayerAddress` | `string` or `null` | Confirmed payer wallet address |
+| `expiresAt` | `string` | ISO 8601 expiry timestamp |
+| `confirmedAt` | `string` or `null` | ISO 8601 confirmation timestamp |
+| `createdAt` | `string` | ISO 8601 creation timestamp |
+| `updatedAt` | `string` | ISO 8601 last update timestamp |
+
+### Example response
+
+```json
+{
+  "id": "ref_a1b2c3d4e5f6",
+  "businessId": "biz_abc123",
+  "widgetId": "wdgt_abc",
+  "depositSessionId": "dep_a1b2c3d4e5f6",
+  "paymentStatus": "CREATED",
+  "amount": "100",
+  "amountRaw": "100000000",
+  "currency": "USDC",
+  "network": "polygon",
+  "currencyAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+  "dstAddress": "0xPayerWalletAddress",
+  "value": "100.00",
+  "valueRaw": "10000",
+  "payers": [
+    { "address": "0xPayerWalletAddress" }
+  ],
+  "confirmedTxid": null,
+  "confirmedPayerAddress": null,
+  "expiresAt": "2026-06-09T12:30:00.000Z",
+  "confirmedAt": null,
+  "createdAt": "2026-06-09T12:00:00.000Z",
+  "updatedAt": "2026-06-09T12:00:00.000Z"
+}
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `400` | `validation_failed` | Invalid parameters or deposit session not in confirmed state |
+| `401` | `unauthorized` | Missing or invalid authentication |
+| `404` | `not_found` | Deposit session not found |

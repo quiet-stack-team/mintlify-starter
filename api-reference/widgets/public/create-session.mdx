@@ -5,7 +5,7 @@ icon: "angle-right"
 
 > Start a customer deposit session through a widget.
 
-`POST /api/v1/widgets/:widgetId/create-session`
+`POST /api/v1/widgets/deposit-sessions/create-session`
 
 Creates a deposit session for a customer paying through the widget. The session has a 30-minute expiry and is tracked through `CREATED` → `PENDING` → `CONFIRMED` statuses.
 
@@ -13,21 +13,16 @@ This endpoint accepts either a JWT bearer token or the widget's client secret vi
 
 ## Parameters
 
-### Path
-
-| Name | Type | Required | Description |
-| --- | --- | --- | --- |
-| `widgetId` | `string` | Yes | The widget ID |
-
 ### Body
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
+| `widgetId` | `string` | Yes | The widget ID |
 | `amount` | `string` | Yes | Payment amount as a decimal string, 1–32 characters |
 | `currency` | `string` | Yes | Currency symbol, 2–8 uppercase alphanumeric (e.g. `USDC`) |
 | `network` | `string` | Yes | Blockchain network, 4–66 characters |
 | `currencyAddress` | `string` | Yes | Contract address of the currency on the network, 0–66 characters |
-| `depositAddress` | `string` | Yes | Destination address for the deposit, 1–128 characters |
+| `payers` | `array` | Yes | Array of 1–10 payer objects, each with an `address` field |
 | `customerEmail` | `string` | No | Customer's email, 1–128 characters |
 | `customerReference` | `string` | No | Your internal reference ID, 1–128 characters |
 | `metadata` | `object` | No | Custom metadata matching the widget's schema, 1–2,048 bytes |
@@ -35,15 +30,18 @@ This endpoint accepts either a JWT bearer token or the widget's client secret vi
 ## Request example
 
 ```shell
-curl --request POST 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc/create-session' \
+curl --request POST 'https://payments.bleepay.com/api/v1/widgets/deposit-sessions/create-session' \
   --header 'X-Client-Secret: wdgt_secret_abc123...' \
   --header 'Content-Type: application/json' \
   --data '{
+    "widgetId": "wdgt_abc",
     "amount": "100",
     "currency": "USDC",
     "network": "polygon",
     "currencyAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-    "depositAddress": "0xMerchantWalletAddress",
+    "payers": [
+      { "address": "0xPayerWalletAddress" }
+    ],
     "customerEmail": "customer@example.com",
     "customerReference": "order_12345"
   }'
@@ -61,7 +59,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc/create
 | `currency` | `string` | Currency symbol |
 | `network` | `string` | Blockchain network |
 | `currencyAddress` | `string` | Currency contract address |
-| `depositAddress` | `string` | Destination deposit address |
+| `dstAddress` | `string` | Destination deposit address |
 | `expiresAt` | `string` | ISO 8601 expiry (30 minutes from creation) |
 | `clientSecret` | `string` | One-time client secret for tracking this session |
 
@@ -75,7 +73,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc/create
   "currency": "USDC",
   "network": "polygon",
   "currencyAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
-  "depositAddress": "0xMerchantWalletAddress",
+  "dstAddress": "0xMerchantWalletAddress",
   "expiresAt": "2026-06-09T12:30:00.000Z",
   "clientSecret": "dep_secret_xyz..."
 }

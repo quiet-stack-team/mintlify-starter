@@ -1,0 +1,86 @@
+---
+title: "Search Refund Sessions"
+icon: "angle-right"
+---
+
+> Search refund sessions with complex filtering operators.
+
+`GET /api/v1/widgets/refund-sessions/search`
+
+Performs a full-text search across refund sessions combined with optional filter operators. You can filter fields using bracket-notation operators for equality, comparison, inclusion, and pattern matching.
+
+## Parameters
+
+### Query
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `search` | `string` | Yes | Free-text search term (min 3 characters) |
+| `businessId` | `string` | Conditionally | The business ID. Required unless `widgetId` is provided |
+| `widgetId` | `string` | Conditionally | Filter by widget ID. Required unless `businessId` is provided |
+| `depositSessionId` | `string` | No | Filter by parent deposit session ID |
+| `paymentStatus` | `string` | No | Filter by payment status |
+| `limit` | `integer` | No | Number of items (default 20, max 100) |
+| `offset` | `integer` | No | Pagination offset |
+| `since` | `integer` | No | Unix timestamp (ms) -- return items created after this time |
+| `until` | `integer` | No | Unix timestamp (ms) -- return items created before this time |
+
+### Filter operators
+
+Apply operators to any filterable field using bracket notation: `field[operator]=value`.
+
+| Operator | Description | Example |
+|----------|-------------|---------|
+| `eq` | Equal to | `?paymentStatus[eq]=CONFIRMED` |
+| `ne` | Not equal to | `?paymentStatus[ne]=EXPIRED` |
+| `in` | In array | `?currency[in]=USDC&currency[in]=EURC` |
+| `nin` | Not in array | `?network[nin]=ethereum` |
+| `like` | Pattern match | `?dstAddress[like]=0xPayer%` |
+
+A plain value without bracket notation is treated as `eq`: `?paymentStatus=CONFIRMED`.
+
+## Request example
+
+```shell
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/refund-sessions/search?businessId=biz_abc123&search=0xPayer&paymentStatus[ne]=EXPIRED&limit=20' \
+  --header 'Authorization: Bearer <business_token>'
+```
+
+## Response
+
+Returns an array of refund session objects. See [Query Refund Sessions](/api-reference/widgets/refunds/query-sessions) for the object schema.
+
+### Example response
+
+```json
+[
+  {
+    "id": "ref_a1b2c3d4e5f6",
+    "businessId": "biz_abc123",
+    "widgetId": "wdgt_abc",
+    "depositSessionId": "dep_a1b2c3d4e5f6",
+    "paymentStatus": "CONFIRMED",
+    "amount": "100",
+    "amountRaw": "100000000",
+    "currency": "USDC",
+    "network": "polygon",
+    "currencyAddress": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+    "dstAddress": "0xPayerWalletAddress",
+    "value": "100.00",
+    "valueRaw": "10000",
+    "confirmedTxid": "0xabc123def456...",
+    "confirmedPayerAddress": "0xPayerWallet123...",
+    "expiresAt": "2026-06-09T12:30:00.000Z",
+    "confirmedAt": "2026-06-09T12:05:00.000Z",
+    "createdAt": "2026-06-09T12:00:00.000Z",
+    "updatedAt": "2026-06-09T12:05:00.000Z"
+  }
+]
+```
+
+### Error responses
+
+| Status | Code | Description |
+|--------|------|-------------|
+| `401` | `unauthorized` | Missing or invalid authentication |
+| `400` | `validation_failed` | Invalid query or filter parameters |

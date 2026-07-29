@@ -25,10 +25,10 @@ https://payments.bleepay.com/api/v1
 ## API reference
 
 ### Introduction
-- [Authentication](/api-reference/introduction/authentication) — API keys, bearer tokens, and resource-based auth
+- [Authentication](/api-reference/introduction/authentication) — API keys and bearer tokens
 
 ### Auth
-- [Sign in](/api-reference/auth/sign-in) — Authenticate as a user or with a resource
+- [Sign in](/api-reference/auth/sign-in) — Authenticate as a user to obtain a JWT bearer token
 - [Sign up](/api-reference/auth/sign-up) — Create a new user account
 - [Get challenge](/api-reference/auth/get-challenge) — Get a verification challenge
 
@@ -61,6 +61,8 @@ https://payments.bleepay.com/api/v1
 - [Convert amount](/api-reference/finance/convert-amount) — Convert an amount between currencies
 
 ### Widgets
+
+#### Management
 - [Create widget](/api-reference/widgets/management/create-widget) — Configure a new widget
 - [Get widget](/api-reference/widgets/management/get-widget) — Retrieve a widget by ID
 - [Query widgets](/api-reference/widgets/management/query-widgets) — List business widgets
@@ -68,10 +70,32 @@ https://payments.bleepay.com/api/v1
 - [Enable widget](/api-reference/widgets/management/enable-widget) — Enable a widget
 - [Disable widget](/api-reference/widgets/management/disable-widget) — Disable a widget
 - [Delete widget](/api-reference/widgets/management/delete-widget) — Delete a widget
+
+#### Public
 - [Get public config](/api-reference/widgets/public/get-config) — Get public widget configuration
 - [Create deposit session](/api-reference/widgets/public/create-session) — Start a customer deposit
+- [Create session voucher](/api-reference/widgets/public/create-session-voucher) — Create deposit session with reserved voucher
 - [Get deposit session](/api-reference/widgets/public/get-session) — Check deposit session status
 - [Cancel deposit session](/api-reference/widgets/public/cancel-session) — Cancel a deposit session
+
+#### Deposits
+- [Query deposit sessions](/api-reference/widgets/deposits/query-deposit-sessions) — List deposit sessions
+- [Search deposit sessions](/api-reference/widgets/deposits/search-deposit-sessions) — Search deposit sessions
+- [Query deposits](/api-reference/widgets/deposits/query-deposits) — List on-chain payments
+- [Get deposit](/api-reference/widgets/deposits/get-deposit) — Retrieve a payment by ID
+- [Query widget events](/api-reference/widgets/deposits/query-widget-events) — List widget events
+- [Get widget event](/api-reference/widgets/deposits/get-widget-event) — Retrieve a widget event by ID
+
+#### Charts
+- [Get charts](/api-reference/widgets/charts/get-charts) — Retrieve aggregated payment chart data
+
+#### Refunds
+- [Create refund session](/api-reference/widgets/refunds/create-session) — Create a refund session
+- [Create refund session voucher](/api-reference/widgets/refunds/create-session-voucher) — Create refund session with reserved voucher
+- [Query refund sessions](/api-reference/widgets/refunds/query-sessions) — List refund sessions
+- [Search refund sessions](/api-reference/widgets/refunds/search-sessions) — Search refund sessions
+- [Get refund session](/api-reference/widgets/refunds/get-session) — Retrieve a refund session by ID
+- [Cancel refund session](/api-reference/widgets/refunds/cancel-session) — Cancel a refund session
 
 ### Webhooks
 - [Create endpoint](/api-reference/webhooks/create-endpoint) — Register a webhook endpoint

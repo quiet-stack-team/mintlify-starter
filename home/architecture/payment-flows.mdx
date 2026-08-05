@@ -59,8 +59,12 @@ Bleepay integrates **multiple swap/exchange providers** and routes each pair to 
 
 The payee receives traditional money in a bank account while the payer pays in crypto. The conversion to fiat and the bank transfer are handled by a fiat integration partner.
 
+<Info>
+  Fiat settlement is **in development** via regulated partners and not yet live for merchants; this section describes the designed flow. Crypto and stablecoin settlement are available today.
+</Info>
+
 1. **Payee sets a fiat expected payment** — currency (USD, EUR, GBP, …), amount, bank account details, and a payment rail (ACH, wire, SEPA, Faster Payments).
-2. **A liquidation address is created** — Bleepay contacts a fiat off-ramp partner (e.g. **Bridge.xyz**), which returns a dedicated crypto deposit address configured to convert incoming crypto to fiat and pay the bank account.
+2. **A liquidation address is created** — Bleepay contacts a regulated fiat off-ramp partner (one of several), which returns a dedicated crypto deposit address configured to convert incoming crypto to fiat and pay the bank account.
 3. **Payer chooses a crypto to pay with**.
 4. **System calculates the rate** — including any crypto→crypto step, crypto→fiat fees, bank-transfer fees, and margins.
 5. **Two-stage conversion on resolve:**

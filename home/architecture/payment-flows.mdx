@@ -78,7 +78,7 @@ flowchart LR
 The payee receives traditional money in a bank account while the payer pays in crypto. The conversion to fiat and the bank transfer are handled by a fiat integration partner.
 
 1. **Payee sets a fiat expected payment** — currency (USD, EUR, GBP, …), amount, bank account details, and a payment rail (ACH, wire, SEPA, Faster Payments).
-2. **A liquidation address is created** — Bleepay contacts a fiat off-ramp partner (e.g. **Bridge.xyz**), which returns a dedicated crypto deposit address configured to convert incoming crypto to fiat and pay the bank account.
+2. **A liquidation address is created** — Bleepay contacts a fiat off-ramp partner, which returns a dedicated crypto deposit address configured to convert incoming crypto to fiat and pay the bank account.
 3. **Payer chooses a crypto to pay with**.
 4. **System calculates the rate** — including any crypto→crypto step, crypto→fiat fees, bank-transfer fees, and margins.
 5. **Two-stage conversion on resolve:**
@@ -92,13 +92,13 @@ flowchart LR
     Payer([Payer wallet<br/>crypto]) --> Swap{{Swap<br/>stage 1, if needed}}
     Swap --> Liq[(Liquidation address<br/>operated by fiat partner)]
     Payer -. "or directly if token matches" .-> Liq
-    Liq --> Partner[[Fiat partner<br/>e.g. Bridge.xyz]]
+    Liq --> Partner[[Fiat partner]]
     Partner --> Bank[(Payee bank account<br/>fiat via ACH/SEPA/wire)]
     Bleepay[[Bleepay system]] -. "creates liquidation addr,<br/>quotes, orchestrates" .-> Liq
 ```
 
 ## Next steps
 
-* [How money moves](/architecture/how-money-moves) — who holds funds at each step.
-* [Custody model](/architecture/custody-model) — non-custodial design.
-* [Security](/architecture/security) — zero-trust model.
+- [How money moves](/architecture/how-money-moves) — who holds funds at each step.
+- [Custody model](/architecture/custody-model) — non-custodial design.
+- [Security](/architecture/security) — zero-trust model.

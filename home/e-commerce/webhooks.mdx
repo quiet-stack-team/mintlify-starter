@@ -26,7 +26,7 @@ Bleepay sends HTTP POST requests to your registered webhook endpoints when payme
 | `deposit.underpaid` | The customer sent less than the required amount. |
 | `deposit.overpaid` | The customer sent more than the required amount. |
 
-Always check the `type` field and handle idempotency (e.g. by `order_id` or `tx_id`).
+Always check the `type` field and handle idempotency (e.g. by `orderId` or the transaction hash). Note: the transaction hash field is named `txHash` in webhook payloads and `txId` on the session API — match on the value, not the field name.
 
 ## Example payload
 

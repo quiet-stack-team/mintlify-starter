@@ -72,15 +72,6 @@
             ]
           },
           {
-            "group": "Integration",
-            "pages": [
-              "home/integration/dapps",
-              "home/integration/wallet-providers",
-              "home/integration/developers",
-              "home/integration/processing"
-            ]
-          },
-          {
             "group": "Architecture",
             "pages": [
               "home/architecture/system-overview",

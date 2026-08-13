@@ -5,15 +5,9 @@ icon: "angle-right"
 
 > List all widgets for a business.
 
-`GET /api/v1/businesses/:businessId/widgets`
+`GET /api/v1/widgets`
 
 ## Parameters
-
-### Path
-
-| Name | Type | Required | Description |
-| --- | --- | --- | --- |
-| `businessId` | `string` | Yes | The business ID |
 
 ### Query
 
@@ -27,7 +21,7 @@ icon: "angle-right"
 ## Request example
 
 ```shell
-curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/widgets' \
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets' \
   --header 'Authorization: Bearer <business_token>'
 ```
 

@@ -5,17 +5,11 @@ icon: "angle-right"
 
 > List all webhook endpoints for a business.
 
-`GET /api/v1/businesses/:businessId/webhook-endpoints`
+`GET /api/v1/widgets/webhook-endpoints`
 
 Returns a list of all webhook endpoints registered for the business.
 
 ## Parameters
-
-### Path
-
-| Name | Type | Required | Description |
-| --- | --- | --- | --- |
-| `businessId` | `string` | Yes | The business ID |
 
 ### Query
 
@@ -29,7 +23,7 @@ Returns a list of all webhook endpoints registered for the business.
 ## Request example
 
 ```shell
-curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webhook-endpoints' \
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/webhook-endpoints' \
   --header 'Authorization: Bearer <business_token>'
 ```
 

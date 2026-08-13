@@ -5,7 +5,7 @@ icon: "angle-right"
 
 > Retrieve a widget by its ID.
 
-`GET /api/v1/businesses/:businessId/widgets/:widgetId`
+`GET /api/v1/widgets/:widgetId`
 
 ## Parameters
 
@@ -13,13 +13,12 @@ icon: "angle-right"
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| `businessId` | `string` | Yes | The business ID |
 | `widgetId` | `string` | Yes | The widget ID |
 
 ## Request example
 
 ```shell
-curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/widgets/wdgt_abc' \
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc' \
   --header 'Authorization: Bearer <business_token>'
 ```
 

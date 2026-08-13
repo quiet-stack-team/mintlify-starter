@@ -5,7 +5,7 @@ icon: "angle-right"
 
 > Enable a disabled webhook endpoint.
 
-`POST /api/v1/businesses/:businessId/webhook-endpoints/:endpointId/enable-endpoint`
+`POST /api/v1/widgets/webhook-endpoints/:endpointId/enable-endpoint`
 
 ## Parameters
 
@@ -13,13 +13,12 @@ icon: "angle-right"
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| `businessId` | `string` | Yes | The business ID |
 | `endpointId` | `string` | Yes | The endpoint ID |
 
 ## Request example
 
 ```shell
-curl --request POST 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webhook-endpoints/wh_abc123/enable-endpoint' \
+curl --request POST 'https://payments.bleepay.com/api/v1/widgets/webhook-endpoints/wh_abc123/enable-endpoint' \
   --header 'Authorization: Bearer <business_token>' \
   --header 'Content-Type: application/json' \
   --data '{}'

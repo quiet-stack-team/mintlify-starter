@@ -5,17 +5,11 @@ icon: "angle-right"
 
 > List webhook delivery attempts for a business.
 
-`GET /api/v1/businesses/:businessId/webhook-deliveries`
+`GET /api/v1/widgets/webhook-deliveries`
 
 Returns a list of webhook delivery attempts with their status. Failed deliveries are automatically retried up to 3 times at 30-second intervals.
 
 ## Parameters
-
-### Path
-
-| Name | Type | Required | Description |
-| --- | --- | --- | --- |
-| `businessId` | `string` | Yes | The business ID |
 
 ### Query
 
@@ -29,7 +23,7 @@ Returns a list of webhook delivery attempts with their status. Failed deliveries
 ## Request example
 
 ```shell
-curl --request GET 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webhook-deliveries?limit=20' \
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/webhook-deliveries?limit=20' \
   --header 'Authorization: Bearer <business_token>'
 ```
 

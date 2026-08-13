@@ -5,7 +5,7 @@ icon: "angle-right"
 
 > Get a single deposit by ID.
 
-`GET /api/v1/widgets/deposits/:depositId`
+`GET /api/v1/widgets/payments/:paymentId`
 
 Retrieves a specific on-chain deposit by its unique identifier. The deposit must belong to the authenticated business.
 
@@ -15,12 +15,12 @@ Retrieves a specific on-chain deposit by its unique identifier. The deposit must
 
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
-| `depositId` | `string` | Yes | The deposit ID |
+| `paymentId` | `string` | Yes | The payment ID |
 
 ## Request example
 
 ```shell
-curl --request GET 'https://payments.bleepay.com/api/v1/widgets/deposits/dep_tx_abc123' \
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/payments/dep_tx_abc123' \
   --header 'Authorization: Bearer <business_token>'
 ```
 

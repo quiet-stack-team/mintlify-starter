@@ -5,7 +5,7 @@ icon: "angle-right"
 
 > Update a widget's configuration.
 
-`POST /api/v1/businesses/:businessId/widgets/:widgetId/update-widget`
+`POST /api/v1/widgets/:widgetId/update-widget`
 
 All body parameters are optional — only provide the fields you want to change.
 
@@ -15,7 +15,6 @@ All body parameters are optional — only provide the fields you want to change.
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| `businessId` | `string` | Yes | The business ID |
 | `widgetId` | `string` | Yes | The widget ID |
 
 ### Body
@@ -25,7 +24,7 @@ Same shape as [Create Widget](/api-reference/widgets/management/create-widget), 
 ## Request example
 
 ```shell
-curl --request POST 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/widgets/wdgt_abc/update-widget' \
+curl --request POST 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc/update-widget' \
   --header 'Authorization: Bearer <business_token>' \
   --header 'Content-Type: application/json' \
   --data '{

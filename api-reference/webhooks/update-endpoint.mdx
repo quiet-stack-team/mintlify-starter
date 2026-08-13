@@ -5,7 +5,7 @@ icon: "angle-right"
 
 > Update a webhook endpoint's configuration.
 
-`POST /api/v1/businesses/:businessId/webhook-endpoints/:endpointId/update-endpoint`
+`POST /api/v1/widgets/webhook-endpoints/:endpointId/update-endpoint`
 
 ## Parameters
 
@@ -13,7 +13,6 @@ icon: "angle-right"
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| `businessId` | `string` | Yes | The business ID |
 | `endpointId` | `string` | Yes | The endpoint ID |
 
 ### Body
@@ -27,7 +26,7 @@ icon: "angle-right"
 ## Request example
 
 ```shell
-curl --request POST 'https://payments.bleepay.com/api/v1/businesses/biz_abc/webhook-endpoints/wh_abc123/update-endpoint' \
+curl --request POST 'https://payments.bleepay.com/api/v1/widgets/webhook-endpoints/wh_abc123/update-endpoint' \
   --header 'Authorization: Bearer <business_token>' \
   --header 'Content-Type: application/json' \
   --data '{

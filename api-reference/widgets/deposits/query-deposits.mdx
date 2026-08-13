@@ -5,7 +5,7 @@ icon: "angle-right"
 
 > List confirmed on-chain deposits for a business.
 
-`GET /api/v1/widgets/deposits`
+`GET /api/v1/widgets/payments`
 
 Returns a paginated list of on-chain deposits that have been detected and matched to deposit sessions. Deposits represent the actual blockchain transactions that triggered a payment confirmation.
 
@@ -30,7 +30,7 @@ Returns a paginated list of on-chain deposits that have been detected and matche
 ## Request example
 
 ```shell
-curl --request GET 'https://payments.bleepay.com/api/v1/widgets/deposits?businessId=biz_abc123&network=polygon&currency=USDC&limit=20' \
+curl --request GET 'https://payments.bleepay.com/api/v1/widgets/payments?businessId=biz_abc123&network=polygon&currency=USDC&limit=20' \
   --header 'Authorization: Bearer <business_token>'
 ```
 

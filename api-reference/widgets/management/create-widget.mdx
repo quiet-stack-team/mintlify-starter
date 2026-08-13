@@ -5,17 +5,11 @@ icon: "angle-right"
 
 > Create and configure a new payment widget for a business.
 
-`POST /api/v1/businesses/:businessId/widgets/create-widget`
+`POST /api/v1/widgets/create-widget`
 
 A widget is an embeddable crypto payment gateway. Each business can have up to 10 widgets, each independently configured.
 
 ## Parameters
-
-### Path
-
-| Name | Type | Required | Description |
-| --- | --- | --- | --- |
-| `businessId` | `string` | Yes | The business ID |
 
 ### Body
 
@@ -45,7 +39,7 @@ A widget is an embeddable crypto payment gateway. Each business can have up to 1
 ## Request example
 
 ```shell
-curl --request POST 'https://payments.bleepay.com/api/v1/businesses/biz_abc123/widgets/create-widget' \
+curl --request POST 'https://payments.bleepay.com/api/v1/widgets/create-widget' \
   --header 'Authorization: Bearer <business_token>' \
   --header 'Content-Type: application/json' \
   --data '{

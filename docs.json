@@ -187,7 +187,7 @@
             "group": "Businesses",
             "pages": [
               "/api-reference/businesses/accounts/get-account",
-              "/api-reference/businesses/accounts/query-account"
+              "/api-reference/businesses/accounts/query-accounts"
             ]
           }
         ]

@@ -186,14 +186,8 @@
           {
             "group": "Businesses",
             "pages": [
-              "/api-reference/businesses/create-business",
-              "/api-reference/businesses/get-business",
-              "/api-reference/businesses/query-businesses",
-              "/api-reference/businesses/update-business",
-              "/api-reference/businesses/update-status",
-              "/api-reference/businesses/get-role",
-              "/api-reference/businesses/query-users",
-              "/api-reference/businesses/update-user-status"
+              "/api-reference/businesses/accounts/get-account",
+              "/api-reference/businesses/accounts/query-account"
             ]
           }
         ]

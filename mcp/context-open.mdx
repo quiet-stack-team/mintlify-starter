@@ -1,0 +1,38 @@
+---
+title: "Open Context"
+icon: "plug"
+---
+
+> Open a payment context and generate a six-digit code for the payer.
+
+`context.open`
+
+Generates a numeric payment context and returns its six-digit code. The payer shares this code with the merchant, who then requests a payment against it.
+
+**Actor:** Payer — requires a JWT bearer token.
+
+## Input
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `payers` | `array` | Yes | Payer addresses as `[{ "address": "0x…" }]`. 1–10 items. |
+
+## Output
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `id` | `string` | Context identifier |
+| `code` | `string` | Six-digit payment code |
+| `status` | `string` | `OPEN` |
+| `expiresAt` | `string` | ISO 8601 expiry timestamp |
+
+### Example
+
+```json
+{
+  "id": "ctx_482916",
+  "code": "482916",
+  "status": "OPEN",
+  "expiresAt": "2026-08-20T12:00:00.000Z"
+}
+```

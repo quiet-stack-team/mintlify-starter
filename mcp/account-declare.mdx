@@ -1,0 +1,39 @@
+---
+title: "Declare Account"
+icon: "plug"
+---
+
+> Register a blockchain account (network + address + accepted currencies) for the merchant business.
+
+`account.declare`
+
+The owning business is resolved from the authenticated credential. The account starts in `PENDING` status.
+
+**Actor:** Merchant — requires `X-Api-Key` or a business JWT.
+
+## Input
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `network` | `string` | Yes | Blockchain network (e.g. `ethereum`). 4–32 chars, `[a-zA-Z0-9_-]`. |
+| `address` | `string` | Yes | Account address. Up to 120 chars. |
+| `label` | `string` \| `null` | No | Human-readable label. Up to 128 chars. |
+| `currencies` | `array` | Yes | Accepted currencies as `[{ "currency": "USDC", "currencyAddress": "0x…" }]`. Up to 20 items. `currency` is 2–8 uppercase alphanumeric chars. |
+
+## Output
+
+Returns the created account object, including `id`, `network`, `address`, `currencies`, and `status`.
+
+### Example
+
+```json
+{
+  "id": "acc_abc123",
+  "network": "ethereum",
+  "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+  "currencies": [
+    { "currency": "USDC", "currencyAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" }
+  ],
+  "status": "PENDING"
+}
+```

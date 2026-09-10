@@ -1,0 +1,41 @@
+---
+title: "List Currencies"
+icon: "plug"
+---
+
+> List the currencies available for payments, optionally filtered by network, symbol, or address.
+
+`finance.currencies`
+
+Read-only.
+
+## Input
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `network` | `string` | No | Filter by network. |
+| `symbol` | `string` | No | Filter by currency symbol (e.g. `USDC`). |
+| `address` | `string` | No | Filter by contract address. |
+
+## Output
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `currencies` | `array` | Currency objects (`symbol`, `network`, `address`, `decimals`, `bridgeable`, `enabled`). |
+
+### Example
+
+```json
+{
+  "currencies": [
+    {
+      "symbol": "USDC",
+      "network": "ethereum",
+      "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+      "decimals": 6,
+      "bridgeable": true,
+      "enabled": true
+    }
+  ]
+}
+```

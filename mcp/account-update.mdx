@@ -1,0 +1,27 @@
+---
+title: "Update Account"
+icon: "plug"
+---
+
+> Update a previously declared account — address, label, or accepted currencies.
+
+`account.update`
+
+Pass only the fields you want to change. `label: null` clears the label. Supplying `currencies` replaces the whole list.
+
+**Actor:** Merchant — requires `X-Api-Key` or a business JWT.
+
+## Input
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `accountId` | `string` | Yes | The account ID to update. |
+| `address` | `string` | No | New address. Up to 120 chars. |
+| `label` | `string` \| `null` | No | New label, or `null` to clear. Up to 128 chars. |
+| `currencies` | `array` | No | Replacement currency list (up to 20 items). |
+
+## Output
+
+```json
+{ "status": "UPDATED" }
+```

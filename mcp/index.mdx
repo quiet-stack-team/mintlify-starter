@@ -1,0 +1,55 @@
+---
+title: "MCP Reference"
+icon: "plug"
+---
+
+# MCP Reference
+
+> Give an LLM agent (Claude, Cursor, etc.) direct access to the Bleepay payment protocol through the Model Context Protocol (MCP).
+
+The MCP server exposes the same voucher + business-account domain as the REST API, but as a small set of agent-friendly tools. One end-to-end flow — a payer opens a context, a merchant requests a payment, both check status — is covered with a handful of tools instead of many REST round-trips.
+
+## Endpoint
+
+| Environment | Transport | URL |
+|-------------|-----------|-----|
+| **Sandbox** | Streamable HTTP | `https://sandbox.bleepay.com/mcp` |
+| **Production** | Streamable HTTP | `https://payments.bleepay.com/mcp` |
+
+The server also supports stdio transport for local development.
+
+## Authentication
+
+MCP requests use the same credentials as the REST API:
+
+| Actor | Auth |
+|-------|------|
+| **Payer** | JWT — `Authorization: Bearer <token>` |
+| **Merchant** | `X-Api-Key: <api_key>` or business JWT |
+
+`businessId` is always derived from the credential, never from tool arguments.
+
+## Tools
+
+### Accounts
+- [Declare account](/mcp/account-declare) — Register a blockchain account for a merchant
+- [Update account](/mcp/account-update) — Update address, label, or accepted currencies
+- [List accounts](/mcp/account-list) — List the merchant's declared accounts
+
+### Payments
+- [Open context](/mcp/context-open) — Generate a six-digit payment code for a payer
+- [Request payment](/mcp/payment-request) — Reserve + redeem in a single call
+- [Check status](/mcp/payment-status) — Check voucher/payment state
+
+### Finance
+- [List networks](/mcp/finance-networks) — Supported blockchain networks
+- [List currencies](/mcp/finance-currencies) — Supported currencies and tokens
+
+## Voucher state
+
+| State | Meaning |
+|-------|---------|
+| `RESERVED` | Merchant claimed the code |
+| `REDEEMED` | Payment requested — awaiting payer |
+| `RESOLVED` | Payer signed and settled |
+| `EXPIRED` / `TIMED_OUT` | Code or voucher lapsed |

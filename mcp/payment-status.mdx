@@ -1,0 +1,37 @@
+---
+title: "Check Payment Status"
+icon: "plug"
+---
+
+> Check the state of a voucher by `voucherId` (merchant) or `code` (payer).
+
+`payment.status`
+
+Provide exactly one of `voucherId` or `code`.
+
+**Actor:** Merchant (`voucherId`) or payer (`code`).
+
+## Input
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `voucherId` | `string` | No* | Voucher ID (merchant). |
+| `code` | `string` | No* | Six-digit code (payer). |
+
+*Provide one of `voucherId` or `code`.
+
+## Output
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `status` | `string` | `RESERVED`, `REDEEMED`, `RESOLVED`, `EXPIRED`, `TIMED_OUT`, or `UNKNOWN` |
+| `voucher` | `object` | Full voucher object |
+
+### Example
+
+```json
+{
+  "status": "RESOLVED",
+  "voucher": { "id": "vch_482916", "status": "RESOLVED" }
+}
+```

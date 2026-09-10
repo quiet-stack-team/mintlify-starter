@@ -1,0 +1,41 @@
+---
+title: "List Accounts"
+icon: "plug"
+---
+
+> List the accounts declared for the merchant business.
+
+`account.list`
+
+Returns the accounts owned by the authenticated business, optionally filtered by network.
+
+**Actor:** Merchant — requires `X-Api-Key` or a business JWT.
+
+## Input
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `network` | `string` | No | Filter by network name (e.g. `ethereum`). |
+
+## Output
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `accounts` | `array` | Account objects, each with `id`, `network`, `address`, and `currencies`. |
+
+### Example
+
+```json
+{
+  "accounts": [
+    {
+      "id": "acc_abc123",
+      "network": "ethereum",
+      "address": "0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18",
+      "currencies": [
+        { "currency": "USDC", "currencyAddress": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48" }
+      ]
+    }
+  ]
+}
+```

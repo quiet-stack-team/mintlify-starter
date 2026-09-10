@@ -1,0 +1,32 @@
+---
+title: "List Networks"
+icon: "plug"
+---
+
+> List the blockchain networks supported for payments.
+
+`finance.networks`
+
+Read-only. Optionally filtered by network name.
+
+## Input
+
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| `network` | `string` | No | Filter by network name. |
+
+## Output
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `networks` | `array` | Network objects (`network`, `type`, `chainId`, `nativeCurrency`, `enabled`). |
+
+### Example
+
+```json
+{
+  "networks": [
+    { "network": "ethereum", "type": "evm", "chainId": "1", "nativeCurrency": "ETH", "enabled": true }
+  ]
+}
+```

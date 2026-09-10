@@ -200,10 +200,10 @@
           {
             "group": "MCP reference",
             "pages": [
-              "/mcp/index",
-              "/mcp/account-declare",
-              "/mcp/account-list",
-              "/mcp/account-update",
+              "mcp/mcp-reference/index",
+              "mcp/accounts/account-declare",
+              "mcp/accounts/account-list",
+              "mcp/accounts/account-update",
               "/mcp/context-open",
               "/mcp/finance-currencies",
               "/mcp/finance-networks",

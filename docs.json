@@ -98,6 +98,7 @@
       },
       {
         "tab": "API reference",
+        "icon": "square-terminal",
         "groups": [
           {
             "group": "Introduction",
@@ -188,6 +189,26 @@
             "pages": [
               "/api-reference/businesses/accounts/get-account",
               "/api-reference/businesses/accounts/query-accounts"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "MCP",
+        "icon": "plug",
+        "groups": [
+          {
+            "group": "MCP reference",
+            "pages": [
+              "mcp/index",
+              "mcp/account-declare",
+              "mcp/account-list",
+              "mcp/account-update",
+              "mcp/context-open",
+              "mcp/finance-currencies",
+              "mcp/finance-networks",
+              "mcp/payment-request",
+              "mcp/payment-status"
             ]
           }
         ]

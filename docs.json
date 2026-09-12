@@ -108,14 +108,6 @@
             ]
           },
           {
-            "group": "Auth",
-            "pages": [
-              "/api-reference/auth/sign-in",
-              "/api-reference/auth/sign-up",
-              "/api-reference/auth/get-challenge"
-            ]
-          },
-          {
             "group": "Vouchers",
             "pages": [
               "/api-reference/vouchers/contexts/open-context",

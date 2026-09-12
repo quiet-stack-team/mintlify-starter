@@ -192,7 +192,7 @@
           {
             "group": "MCP reference",
             "pages": [
-              "mcp/mcp-reference/index",
+              "mcp/index",
               "mcp/accounts/account-declare",
               "mcp/accounts/account-list",
               "mcp/accounts/account-update",

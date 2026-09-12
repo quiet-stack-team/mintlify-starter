@@ -21,7 +21,7 @@ Existing deposit sessions are unaffected. New sessions cannot be created while t
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc/disable-widget' \
-  --header 'Authorization: Bearer <business_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{}'
 ```

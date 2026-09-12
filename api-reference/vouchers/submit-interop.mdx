@@ -35,7 +35,7 @@ Initiates a cross-chain signature submission flow. Used when the voucher require
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/submit/interop-init?id=sig_abc&paymentIndex=0' \
-  --header 'Authorization: Bearer <payer_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{ "signature": "0xSignature..." }'
 ```
@@ -48,5 +48,5 @@ Returns `{ "id": "<submission_id>" }` on success.
 
 | Status | Code | Description |
 | --- | --- | --- |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Voucher not found |

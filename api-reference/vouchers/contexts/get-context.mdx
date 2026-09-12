@@ -21,7 +21,7 @@ Returns the full state of a payment context, including its code, status, and ass
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/contexts/ctx_a1b2c3d4e5f6' \
-  --header 'Authorization: Bearer <payer_token>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response
@@ -60,5 +60,5 @@ curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/contexts/ctx_a1
 
 | Status | Code | Description |
 | --- | --- | --- |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Context not found |

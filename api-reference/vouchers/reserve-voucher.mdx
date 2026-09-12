@@ -9,7 +9,7 @@ icon: "angle-right"
 
 The payee reserves a voucher using the context code the payer shared with them. The response includes a 6-digit voucher code and a voucher ID. The voucher starts in `RESERVED` status.
 
-This endpoint accepts both API key authentication and registered user tokens.
+This endpoint authenticates with an API key.
 
 ## Parameters
 
@@ -23,7 +23,7 @@ This endpoint accepts both API key authentication and registered user tokens.
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/reserve-voucher' \
-  --header 'Authorization: Bearer <payee_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{ "code": "A1B2C3" }'
 ```
@@ -55,5 +55,5 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/reserve-vouche
 | Status | Code | Description |
 | --- | --- | --- |
 | `400` | `invalid_code` | The context code is invalid or expired |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Context not found |

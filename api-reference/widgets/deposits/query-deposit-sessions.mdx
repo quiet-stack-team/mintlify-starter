@@ -30,7 +30,7 @@ Returns a paginated list of deposit sessions belonging to the authenticated busi
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/widgets/deposit-sessions?businessId=biz_abc123&paymentStatus=CONFIRMED&limit=20' \
-  --header 'Authorization: Bearer <business_token>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response

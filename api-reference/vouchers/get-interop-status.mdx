@@ -29,7 +29,7 @@ Returns the status of a cross-chain signature submission initiated via `submit/i
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/status/interop-info?id=sig_abc&paymentIndex=0' \
-  --header 'Authorization: Bearer <payer_token>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response
@@ -52,5 +52,5 @@ curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/stat
 
 | Status | Code | Description |
 | --- | --- | --- |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Voucher not found |

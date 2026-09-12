@@ -35,7 +35,7 @@ This only applies to SIMPLE vouchers. The negotiation happens on the payer's sid
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/negotiate-voucher' \
-  --header 'Authorization: Bearer <payer_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{
     "suppliedPayment": {
@@ -90,5 +90,5 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/neg
 | --- | --- | --- |
 | `400` | `not_simple` | Negotiation is only available for SIMPLE vouchers |
 | `400` | `different_network` | The supplied currency must be on the same network as the expected currency |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Voucher not found |

@@ -23,7 +23,7 @@ This is the endpoint to poll when waiting for the payer to resolve the voucher.
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/vch_482916' \
-  --header 'Authorization: Bearer <payee_token>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response
@@ -72,5 +72,5 @@ curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/vch_482916' \
 
 | Status | Code | Description |
 | --- | --- | --- |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Voucher not found |

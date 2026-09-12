@@ -7,7 +7,7 @@ icon: "angle-right"
 
 `GET /api/v1/businesses/accounts`
 
-Returns all blockchain accounts linked to the business specified by the `businessId` query parameter. Accepts optional filters for type, network, and address. Accepts both Bearer token (registered user) and API key authentication.
+Returns all blockchain accounts linked to the business specified by the `businessId` query parameter. Accepts optional filters for type, network, and address. Authenticates with an API key.
 
 ## Parameters
 
@@ -24,10 +24,7 @@ Returns all blockchain accounts linked to the business specified by the `busines
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/businesses/accounts?businessId=biz_abc123&network=ethereum' \
-  --header 'Authorization: Bearer <business_token>'
-
-curl --request GET 'https://payments.bleepay.com/api/v1/businesses/accounts?businessId=biz_abc123&network=ethereum' \
-  --header 'x-api-key: <api_key>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response

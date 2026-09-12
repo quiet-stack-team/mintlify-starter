@@ -21,7 +21,7 @@ Deleted widgets cannot be recovered. Active deposit sessions for this widget are
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/widgets/wdgt_abc/delete-widget' \
-  --header 'Authorization: Bearer <business_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{}'
 ```

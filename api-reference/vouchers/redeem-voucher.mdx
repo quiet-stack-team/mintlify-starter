@@ -61,7 +61,7 @@ Use `networks`, `payments`, and `extras` for smart contract interactions:
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/redeem-voucher' \
-  --header 'Authorization: Bearer <payee_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{
     "expectedPayment": {
@@ -80,7 +80,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/red
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_591234/redeem-voucher' \
-  --header 'Authorization: Bearer <payee_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{
     "networks": [
@@ -144,5 +144,5 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_591234/red
 | --- | --- | --- |
 | `400` | `already_redeemed` | The voucher has already been redeemed |
 | `400` | `validation_failed` | Invalid parameters — check that `expectedPayment` and `networks`/`payments` are not both provided |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Voucher not found |

@@ -25,7 +25,7 @@ No body parameters required.
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_xyz/session-join' \
-  --header 'Authorization: Bearer <payer_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{}'
 ```
@@ -42,5 +42,5 @@ Returns the updated session object with the payer joined.
 | --- | --- | --- |
 | `400` | `already_joined` | Payer has already joined this session |
 | `400` | `session_closed` | Cannot join a closed session |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Session not found |

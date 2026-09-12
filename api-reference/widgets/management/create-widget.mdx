@@ -40,7 +40,7 @@ A widget is an embeddable crypto payment gateway. Each business can have up to 1
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/widgets/create-widget' \
-  --header 'Authorization: Bearer <business_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{
     "name": "Checkout Widget",

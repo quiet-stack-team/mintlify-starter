@@ -9,7 +9,7 @@ icon: "angle-right"
 
 After the payer reviews and signs the transaction in their wallet, the wallet submits the signed receipts via this endpoint. This completes the voucher lifecycle — the status moves to `RESOLVED`.
 
-This endpoint requires authentication as a registered user (the payer).
+This endpoint authenticates with an API key.
 
 ## Parameters
 
@@ -35,7 +35,7 @@ This endpoint requires authentication as a registered user (the payer).
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/resolve-voucher' \
-  --header 'Authorization: Bearer <payer_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{
     "receipts": [
@@ -69,5 +69,5 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/res
 | `400` | `not_redeemed` | The voucher must be redeemed before resolving |
 | `400` | `already_resolved` | The voucher has already been resolved |
 | `400` | `validation_failed` | Invalid or missing receipt data |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Voucher not found |

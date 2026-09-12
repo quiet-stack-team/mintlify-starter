@@ -28,7 +28,7 @@ Attaches a cryptographic signature to a voucher. This is used for protocols that
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/sign-voucher' \
-  --header 'Authorization: Bearer <payer_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{
     "publicKey": "0xPublicKey...",
@@ -47,5 +47,5 @@ Returns the updated voucher object with the signature attached.
 | Status | Code | Description |
 | --- | --- | --- |
 | `400` | `validation_failed` | Invalid or missing fields |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Voucher not found |

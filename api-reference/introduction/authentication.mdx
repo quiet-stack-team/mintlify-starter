@@ -3,83 +3,27 @@ title: "Authentication"
 icon: "angle-right"
 ---
 
-> How to authenticate with the Bleepay API — bearer tokens and API keys.
+> How to authenticate with the Bleepay API using API keys.
 
-The Bleepay API uses **Bearer tokens** (JWTs) for most endpoints. The authentication method depends on who you are and what you're doing.
+API keys provide scoped, server-to-server access to your business resources —
+vouchers, widgets, accounts, and finance. They are meant for backends and
+automation, not end users.
 
-## Authentication methods
+Manage your API keys from the Bleepay app: log in, open your business, and go
+to its API keys section to create, rename, revoke, or delete keys.
 
-| Method | Header | Used by |
-| --- | --- | --- |
-| **Bearer token (JWT)** | `Authorization: Bearer <token>` | Payers, payees, businesses |
-| **Client secret** | `X-Client-Secret: <secret>` | Widget public endpoints (customer-facing) |
-| **None** | — | Auth endpoints, finance endpoints, health checks |
+## Using an API key
 
-## Bearer token (JWT)
-
-The most common method. Obtain a token by signing in, then include it in all subsequent requests.
-
-### Obtaining a token
-
-**User sign-in** — for payers using a wallet:
-
-```text
-POST /api/v1/auth/sign-in
-
-{
-    "type": "mobile-device",
-    "data": {
-        "installationId": "a1b2c3d4e5f6...",
-        "password": "your-device-password..."
-    }
-}
-```
-
-**Response:**
-
-```json
-{
-    "authorization": {
-        "token": "eyJhbGciOiJIUzI1NiIs..."
-    }
-}
-```
-
-### Using the token
-
-Include it as a Bearer token in the `Authorization` header:
+Send the key in the `x-api-key` header:
 
 ```shell
-curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/reserve-voucher' \
-  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIs...' \
-  --header 'Content-Type: application/json' \
-  --data '{ "code": "A1B2C3" }'
+curl --request GET 'https://payments.bleepay.com/api/v1/vouchers?limit=10' \
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
-### Token types
-
-Bleepay JWTs encode the authentication method:
-
-| Guard | Token type | Access |
-| --- | --- | --- |
-| `RegisteredUserGuard` | JWT with `userId` or `deviceId` | Full user operations |
-| `RegisteredUserOrApiKeyGuard` | JWT with `userId`/`deviceId` or API key | Finance, widget, voucher, and session operations |
-| `BusinessUserGuard` | JWT with `userId` \+ business membership | Widget management, business CRUD |
-
-API keys provide scoped access to business resources and widget management endpoints. They cannot access user management endpoints.
-
-## Client secret
-
-Widget public endpoints accept either a JWT or a client secret header:
-
-```shell
-curl --request GET 'https://payments.bleepay.com/api/v1/widgets/wdgt_123/config' \
-  --header 'X-Client-Secret: wdgt_secret_abc123...'
-```
-
-Client secrets are issued when a widget is created.
-
-> **Security notice:** Never expose client secrets in client-side code, public repositories, or logs. Client secrets are shown only once at the time of widget creation.
+Keys use the format `bs_` followed by 64 hexadecimal characters. The full key
+is shown only once when you create it, so store it securely and never expose
+it in client-side code, public repositories, or logs.
 
 ## HTTP status codes
 
@@ -95,18 +39,22 @@ Client secrets are issued when a widget is created.
 
 ## Rate limits
 
-Each endpoint has its own rate limit. The limits below are per-endpoint (not per scope):
+Each endpoint enforces two independent windows: a per-second limit and a
+per-15-minute limit. A request is rejected when either is exceeded.
 
-| Endpoint group | Limit |
-| --- | --- |
-| Auth (`sign-in`, `sign-up`, `get-challenge`) | 5 requests per 300 seconds |
-| Businesses read/write | 5 requests per 300 seconds |
-| Finance read/write | 5 requests per 300 seconds |
-| Vouchers read (`query`, `get`) | 10 requests per 600 seconds |
-| Vouchers write (`reserve`, `redeem`, `resolve`, `sign`, `discard`, sessions) | 5 requests per 300 seconds |
-| Voucher negotiate | 1 request per 60 seconds |
-| Widgets read/write | 5 requests per 300 seconds |
-| Widgets public read/write | 5 requests per 300 seconds |
-| Webhooks read/write | 5 requests per 300 seconds |
+Most endpoints share a common limit, differentiated by read vs write:
+
+| Operation | Per second | Per 15 minutes |
+| --- | --- | --- |
+| Read (`GET`) | 20 | 300 |
+| Write (`POST`) | 10 | 300 |
+
+A few endpoints differ from the general limits:
+
+| Endpoint | Per second | Per 15 minutes |
+| --- | --- | --- |
+| Vouchers read | 20 | 600 |
+| Code-based entry (`reserve-voucher`, `session-open`, `create-session-voucher`, `create-refund-session-voucher`) | 5 | 300 |
+| Voucher negotiate (`negotiate-voucher`) | 1 | 60 |
 
 When a limit is exceeded, the API returns `429 Too Many Requests`.

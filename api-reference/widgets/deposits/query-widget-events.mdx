@@ -42,7 +42,7 @@ Returns a paginated list of widget events that record every state transition in 
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/widgets/events?businessId=biz_abc123&type=deposit.confirmed&since=1717200000000&limit=20' \
-  --header 'Authorization: Bearer <business_token>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response

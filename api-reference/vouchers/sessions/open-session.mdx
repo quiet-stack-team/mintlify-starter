@@ -23,7 +23,7 @@ A session groups multiple vouchers together for multi-payment flows like split p
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/session-open' \
-  --header 'Authorization: Bearer <payee_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{
     "code": "A1B2C3",
@@ -60,4 +60,4 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/sessi
 | Status | Code | Description |
 | --- | --- | --- |
 | `400` | `invalid_code` | The context code is invalid or expired |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |

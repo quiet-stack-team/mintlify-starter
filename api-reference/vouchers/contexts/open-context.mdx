@@ -9,7 +9,7 @@ icon: "angle-right"
 
 A context is a secure link between a payer's wallet and a payment session. The payer opens a context in their wallet, which generates a **context code** they share with the payee. The payee then uses this code to authenticate and reserve vouchers.
 
-This endpoint requires authentication as a registered user (the payer).
+This endpoint authenticates with an API key.
 
 ## Parameters
 
@@ -30,7 +30,7 @@ This endpoint requires authentication as a registered user (the payer).
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/contexts/context-open' \
-  --header 'Authorization: Bearer <payer_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{
     "format": "numeric",
@@ -75,5 +75,5 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/contexts/conte
 | Status | Code | Description |
 | --- | --- | --- |
 | `400` | `validation_failed` | Invalid or missing required fields |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `500` | `unexpected` | An unexpected error occurred |

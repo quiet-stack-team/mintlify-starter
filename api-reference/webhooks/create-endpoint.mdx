@@ -41,7 +41,7 @@ Webhooks are dispatched as signed HTTP POST requests with HMAC-SHA256 signatures
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/widgets/webhook-endpoints/create-endpoint' \
-  --header 'Authorization: Bearer <business_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{
     "widgetId": "wdgt_abc",

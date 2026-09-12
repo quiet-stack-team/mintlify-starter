@@ -25,7 +25,7 @@ No body parameters required.
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/widgets/refund-sessions/ref_a1b2c3d4e5f6/cancel-session' \
-  --header 'Authorization: Bearer <business_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{}'
 ```

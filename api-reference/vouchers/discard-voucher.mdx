@@ -9,7 +9,7 @@ icon: "angle-right"
 
 Discards a voucher that is no longer needed. The voucher must be in `RESERVED` or `REDEEMED` status. Once discarded, the voucher cannot be used.
 
-This endpoint accepts both API key and registered user tokens.
+This endpoint authenticates with an API key.
 
 ## Parameters
 
@@ -27,7 +27,7 @@ No body parameters required.
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/vch_482916/discard-voucher' \
-  --header 'Authorization: Bearer <payee_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{}'
 ```
@@ -43,5 +43,5 @@ Returns the updated voucher object with a discarded status.
 | Status | Code | Description |
 | --- | --- | --- |
 | `400` | `already_resolved` | A resolved voucher cannot be discarded |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Voucher not found |

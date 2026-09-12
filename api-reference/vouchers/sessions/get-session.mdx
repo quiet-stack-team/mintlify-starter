@@ -21,7 +21,7 @@ Returns the state of a session, including its status and any vouchers reserved w
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_xyz' \
-  --header 'Authorization: Bearer <payee_token>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response
@@ -56,5 +56,5 @@ curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_xy
 
 | Status | Code | Description |
 | --- | --- | --- |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Session not found |

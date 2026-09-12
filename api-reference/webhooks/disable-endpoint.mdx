@@ -21,7 +21,7 @@ Disabled endpoints do not receive webhook deliveries. Events for this endpoint a
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/widgets/webhook-endpoints/wh_abc123/disable-endpoint' \
-  --header 'Authorization: Bearer <business_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{}'
 ```

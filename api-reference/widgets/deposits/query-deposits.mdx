@@ -31,7 +31,7 @@ Returns a paginated list of on-chain deposits that have been detected and matche
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/widgets/payments?businessId=biz_abc123&network=polygon&currency=USDC&limit=20' \
-  --header 'Authorization: Bearer <business_token>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response

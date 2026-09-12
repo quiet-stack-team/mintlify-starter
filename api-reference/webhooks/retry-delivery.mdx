@@ -21,7 +21,7 @@ Triggers an immediate retry of a previously failed delivery. This is in addition
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/widgets/webhook-deliveries/dly_abc123/retry-delivery' \
-  --header 'Authorization: Bearer <business_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{}'
 ```

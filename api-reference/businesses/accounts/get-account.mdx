@@ -7,7 +7,7 @@ icon: "angle-right"
 
 `GET /api/v1/businesses/accounts/:accountId`
 
-Returns full details for a specific blockchain account. The owning business is resolved from the account ID. Accepts both Bearer token (registered user) and API key authentication.
+Returns full details for a specific blockchain account. The owning business is resolved from the account ID. Authenticates with an API key.
 
 ## Parameters
 
@@ -21,10 +21,7 @@ Returns full details for a specific blockchain account. The owning business is r
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/businesses/accounts/acc_abc123' \
-  --header 'Authorization: Bearer <business_token>'
-
-curl --request GET 'https://payments.bleepay.com/api/v1/businesses/accounts/acc_abc123' \
-  --header 'x-api-key: <api_key>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response

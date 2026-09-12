@@ -20,12 +20,7 @@ The server also supports stdio transport for local development.
 
 ## Authentication
 
-MCP requests use the same credentials as the REST API:
-
-| Actor | Auth |
-|-------|------|
-| **Payer** | JWT — `Authorization: Bearer <token>` |
-| **Merchant** | `X-Api-Key: <api_key>` or business JWT |
+MCP requests use the same API-key authentication as the REST API — send your key in the `x-api-key` header.
 
 `businessId` is always derived from the credential, never from tool arguments.
 

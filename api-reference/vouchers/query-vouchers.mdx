@@ -25,7 +25,7 @@ Returns a paginated list of vouchers ordered by creation time. Useful for checki
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/vouchers/?status=RESOLVED&limit=20' \
-  --header 'Authorization: Bearer <payer_token>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response

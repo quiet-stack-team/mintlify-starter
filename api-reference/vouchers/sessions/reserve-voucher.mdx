@@ -25,7 +25,7 @@ No body parameters required. The context is derived from the session.
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_xyz/reserve-voucher' \
-  --header 'Authorization: Bearer <payee_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{}'
 ```
@@ -57,7 +57,7 @@ curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/sessions/ses_x
 | Status | Code | Description |
 | --- | --- | --- |
 | `400` | `session_closed` | Cannot reserve in a closed session |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Session not found |
 
 ## Next steps

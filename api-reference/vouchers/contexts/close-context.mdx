@@ -27,7 +27,7 @@ Closes a context, preventing any new vouchers from being reserved against it. Ex
 
 ```shell
 curl --request POST 'https://payments.bleepay.com/api/v1/vouchers/contexts/ctx_a1b2c3d4e5f6/context-close' \
-  --header 'Authorization: Bearer <payer_token>' \
+  --header 'x-api-key: bs_<your-api-key>' \
   --header 'Content-Type: application/json' \
   --data '{ "payeeId": null }'
 ```
@@ -61,5 +61,5 @@ Returns the updated context object with status `CLOSED`.
 | Status | Code | Description |
 | --- | --- | --- |
 | `400` | `already_closed` | The context is already closed |
-| `401` | `unauthorized` | Missing or invalid bearer token |
+| `401` | `unauthorized` | Missing or invalid API key |
 | `404` | `not_found` | Context not found |

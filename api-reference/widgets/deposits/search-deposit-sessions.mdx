@@ -46,7 +46,7 @@ A plain value without bracket notation is treated as `eq`: `?paymentStatus=CONFI
 
 ```shell
 curl --request GET 'https://payments.bleepay.com/api/v1/widgets/deposit-sessions/search?businessId=biz_abc123&search=0xPayer&paymentStatus[ne]=EXPIRED&currency[in]=USDC&currency[in]=EURC&limit=20' \
-  --header 'Authorization: Bearer <business_token>'
+  --header 'x-api-key: bs_<your-api-key>'
 ```
 
 ## Response

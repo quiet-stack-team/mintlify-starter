@@ -188,21 +188,20 @@
       {
         "tab": "MCP reference",
         "icon": "plug",
-        "groups": [
+        "pages": [
           {
             "group": "MCP reference",
-            "pages": [
-              "mcp/index",
-              "mcp/accounts/account-declare",
-              "mcp/accounts/account-list",
-              "mcp/accounts/account-update",
-              "/mcp/context-open",
-              "/mcp/finance-currencies",
-              "/mcp/finance-networks",
-              "/mcp/payment-request",
-              "/mcp/payment-status"
-            ]
-          }
+            "pages": []
+          },
+          "mcp/index",
+          "mcp/accounts/account-declare",
+          "mcp/accounts/account-list",
+          "mcp/accounts/account-update",
+          "mcp/context-open",
+          "mcp/finance-currencies",
+          "mcp/payment-request",
+          "mcp/finance-networks",
+          "mcp/payment-status"
         ]
       }
     ]

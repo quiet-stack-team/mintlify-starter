@@ -194,9 +194,9 @@
             "pages": []
           },
           "mcp/index",
-          "mcp/accounts/account-declare",
-          "mcp/accounts/account-list",
-          "mcp/accounts/account-update",
+          "mcp/account-declare",
+          "mcp/account-list",
+          "mcp/account-update",
           "mcp/context-open",
           "mcp/finance-currencies",
           "mcp/payment-request",

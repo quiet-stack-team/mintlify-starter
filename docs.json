@@ -193,15 +193,15 @@
             "group": "MCP reference",
             "pages": []
           },
-          "mcp/index",
-          "mcp/account-declare",
-          "mcp/account-list",
-          "mcp/account-update",
-          "mcp/context-open",
-          "mcp/finance-currencies",
-          "mcp/payment-request",
-          "mcp/finance-networks",
-          "mcp/payment-status"
+          "mcp-reference/index",
+          "mcp-reference/account-declare",
+          "mcp-reference/account-list",
+          "mcp-reference/account-update",
+          "mcp-reference/context-open",
+          "mcp-reference/finance-currencies",
+          "mcp-reference/payment-request",
+          "mcp-reference/finance-networks",
+          "mcp-reference/payment-status"
         ]
       }
     ]

@@ -3,6 +3,34 @@ title: "Quickstart"
 icon: "fire"
 ---
 
+import { ThemeImage } from '/snippets/theme-image.jsx'
+
+<Frame>
+    <img
+        alt="195"
+        title="195"
+        lightAlt="195"
+        darkAlt="195"
+        src="/images/200.png"
+        className="dark:hidden"
+    />
+    <img
+        alt="195"
+        title="195"
+        lightAlt="195"
+        darkAlt="195"
+        src="/images/34.png"
+        className="hidden dark:block"
+    />
+</Frame>
+
+> 🔥 Get your first Bleepay payment flow running in minutes.
+
+<Info>
+    This guide walks through the payee (merchant/dApp) side of a Bleepay voucher payment. The payer uses a Bleepay-compatible wallet — you don't implement that side.
+</Info>
+
+
 # Quickstart
 
 > Get your first Bleepay payment flow running in minutes.
@@ -11,34 +39,13 @@ This guide walks through the payee (merchant/dApp) side of a Bleepay voucher pay
 
 ## Prerequisites
 
-* A Bleepay account with API credentials
-* A Bleepay-compatible wallet (e.g. Bleepay Wallet) for the payer
-* cURL or any HTTP client
+- A Bleepay account with API credentials
+- A Bleepay-compatible wallet (e.g. Bleepay Wallet) for the payer
+- cURL or any HTTP client
 
 ## Flow overview
 
-```text
-Payer (wallet)          Bleepay API            Payee (you)
-     |                       |                     |
-     | open context           |                     |
-     |---------------------->|                     |
-     |<-- context code -------|                     |
-     |                       |                     |
-     |   (share context code: QR, link, NFC, etc.) |
-     |-------------------------------------------->|
-     |                       |  reserve-voucher     |
-     |                       |  (x-api-key)         |
-     |                       |<---------------------|
-     |                       |-- voucher "482916" ->|
-     |                       |                     |
-     |                       |  redeem-voucher      |
-     |                       |  (expectedPayment)   |
-     |                       |<---------------------|
-     |                       |                     |
-     | resolve-voucher       |                     |
-     | (sign & submit)       |                     |
-     |---------------------->|                     |
-```
+<ThemeImage img_name="Flow-overview.png" alt="Flow overview" />
 
 Your responsibility is the **payee side** (right column). The payer side happens in their wallet.
 
@@ -177,6 +184,6 @@ while (status !== 'RESOLVED') {
 
 ## Next steps
 
-* [Integration overview](/home/web2-web3-payments/overview) — full parameter reference and Web2 vs Web3 modes.
-* [Simple Payments](/home/web2-web3-payments/simple-payments) — SIMPLE vouchers, FX, and negotiation.
-* [Webhooks](/home/e-commerce/webhooks) — event-driven settlement tracking.
+- [Integration overview](/home/web2-web3-payments/overview) — full parameter reference and Web2 vs Web3 modes.
+- [Simple Payments](/home/web2-web3-payments/simple-payments) — SIMPLE vouchers, FX, and negotiation.
+- [Webhooks](/home/e-commerce/webhooks) — event-driven settlement tracking.

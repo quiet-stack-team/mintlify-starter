@@ -3,6 +3,8 @@ title: "Sessions"
 icon: "circle"
 ---
 
+import { ThemeImage } from '/snippets/theme-image.jsx'
+
 # Sessions
 
 > Group multiple vouchers in a session for multi-payment flows.
@@ -117,6 +119,12 @@ x-api-key: <your_api_key>
 
 ### Diagram
 
+<ThemeImage
+    img_name="Payer-resolves-you-close.png"
+    alt="Payer resolves, you close"
+/>
+
+
 ```text
 Payer (wallet)          Bleepay              Payee (you)
      |                     |                     |
@@ -163,5 +171,5 @@ Payer (wallet)          Bleepay              Payee (you)
 
 ## Next steps
 
-* [Simple Payments](/home/web2-web3-payments/simple-payments) — single voucher payments.
-* [Smart Contracts](/home/web2-web3-payments/smart-contracts) — CUSTOM voucher for contract interactions.
+- [Simple Payments](/home/web2-web3-payments/simple-payments) — single voucher payments.
+- [Smart Contracts](/home/web2-web3-payments/smart-contracts) — CUSTOM voucher for contract interactions.

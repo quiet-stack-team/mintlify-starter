@@ -3,6 +3,8 @@ title: "Smart Contracts"
 icon: "file-contract"
 ---
 
+import { ThemeImage } from '/snippets/theme-image.jsx'
+
 # Smart Contracts
 
 > Using a CUSTOM voucher to interact with smart contracts — for staking, DeFi, and complex on-chain actions.
@@ -114,33 +116,10 @@ x-api-key: <your_api_key>
 
 ### Diagram
 
-```text
-Payer (wallet)          Bleepay              Payee (you / dApp)
-     |                     |                     |
-     | open context        |                     |
-     |-------------------->|                     |
-     |<-- code "A1B2C3" ---|                     |
-     |                     |                     |
-     |   (share context code)                    |
-     |------------------------------------------>|
-     |                     |  reserve-voucher    |
-     |                     |  (x-api-key)        |
-     |                     |<---------------------|
-     |                     |-- code "591234" --->|
-     |                     |                     |
-     |                     |  redeem-voucher     |
-     |                     |  (networks, payments,|
-     |                     |   extras)           |
-     |                     |<---------------------|
-     |                     |                     |
-     |                     |  type = CUSTOM      |
-     |                     |                     |
-     | resolve-voucher     |                     |
-     | (signs staking tx)  |                     |
-     |-------------------->|                     |
-     |                     |                     |
-     | staking contract called on-chain          |
-```
+<ThemeImage
+    img_name="Payer-resolves.png"
+    alt="Payer resolves"
+/>
 
 ## When to use CUSTOM
 

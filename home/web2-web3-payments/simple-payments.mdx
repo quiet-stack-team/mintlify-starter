@@ -3,6 +3,8 @@ title: "Simple Payments"
 icon: "arrow-down-left"
 ---
 
+import { ThemeImage } from '/snippets/theme-image.jsx'
+
 # Simple Payments
 
 > Using a SIMPLE voucher to create a single token payment with built-in FX.
@@ -79,32 +81,11 @@ If the payer doesn't hold EURC, their wallet can negotiate by proposing a differ
 
 ### Diagram
 
-```text
-Payer (wallet)          Bleepay              Payee (you)
-     |                     |                     |
-     | open context        |                     |
-     |-------------------->|                     |
-     |<-- context code -----|                     |
-     |                     |                     |
-     |   (share context code via QR/link/etc.)   |
-     |------------------------------------------>|
-     |                     |  reserve-voucher     |
-     |                     |  (x-api-key)         |
-     |                     |<---------------------|
-     |                     |-- code "482916" ---->|
-     |                     |                     |
-     |                     |  redeem-voucher      |
-     |                     |  (expectedPayment)   |
-     |                     |<---------------------|
-     |                     |                     |
-     | negotiate (opt.)    |                     |
-     |-------------------->|                     |
-     |                     |                     |
-     | resolve-voucher     |                     |
-     |-------------------->|                     |
-     |                     |                     |
-     |              funds → your address         |
-```
+<ThemeImage
+    img_name="fx-negotiation.png"
+    alt="FX negotiation"
+/>
+
 
 ## When to use SIMPLE
 

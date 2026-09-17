@@ -124,44 +124,6 @@ x-api-key: <your_api_key>
     alt="Payer resolves, you close"
 />
 
-
-```text
-Payer (wallet)          Bleepay              Payee (you)
-     |                     |                     |
-     | open context        |                     |
-     |-------------------->|                     |
-     |<-- code "A1B2C3" ---|                     |
-     |                     |                     |
-     |   (share context code)                    |
-     |------------------------------------------>|
-     |                     |  session-open (x-api-key)
-     |                     |<---------------------|
-     |                     |-- ses_xyz --------->|
-     |                     |                     |
-     | join session        |                     |
-     |-------------------->|                     |
-     |                     |                     |
-     |                     |  reserve vch_482916    |
-     |                     |<---------------------|
-     |                     |  redeem vch_482916     |
-     |                     |<---------------------|
-     |                     |                     |
-     |                     |  reserve vch_739104    |
-     |                     |<---------------------|
-     |                     |  redeem vch_739104     |
-     |                     |<---------------------|
-     |                     |                     |
-     | resolve vch_482916     |                     |
-     |-------------------->|                     |
-     | resolve vch_739104     |                     |
-     |-------------------->|                     |
-     |                     |                     |
-     |                     |  session-close      |
-     |                     |<---------------------|
-     |                     |                     |
-     |          funds → your address (EURC + USDC)|
-```
-
 ## Key points
 
 * Each voucher in a session is **independent** — status, lifecycle, and settlement are tracked per-voucher.
